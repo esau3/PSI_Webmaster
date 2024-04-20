@@ -1,0 +1,17 @@
+
+.container {
+  display: flex;
+  justify-content: center; // Centraliza horizontalmente
+  align-items: center; // Centraliza verticalmente
+  height: 100vh; // Altura da janela de visualização
+
+  // Estilos para o mat-card dentro do container
+  mat-card {
+    text-align: center; // Centraliza o conteúdo dentro do mat-card
+    max-width: 400px; // Define a largura máxima do mat-card
+    padding: 20px; // Adiciona espaço interno ao mat-card
+  }
+}
+
+
+  
