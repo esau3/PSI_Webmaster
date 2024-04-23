@@ -8,9 +8,16 @@
 
   <mat-form-field appearance="fill" class="forms">
     <mat-label>Insira o URL do website</mat-label>
-    <input type="text" matInput placeholder="url" formControlName='url' required>
+    <input type="text" matInput placeholder="URL" formControlName='url' required>
     <mat-error *ngIf="form.get('url')?.hasError('required')">O URL é obrigatório</mat-error>
     <mat-error *ngIf="form.get('url')?.hasError('pattern')">O URL não é válido</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="forms">
+    <mat-label>Insira o URL de uma página do website</mat-label>
+    <input type="text" matInput placeholder="Pagina" formControlName='page' required>
+    <mat-error *ngIf="form.get('page')?.hasError('required')">O URL da página é obrigatório</mat-error>
+    <mat-error *ngIf="form.get('page')?.hasError('pattern')">O URL da página não é válido</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="forms">
@@ -22,6 +29,7 @@
     </mat-select>
     <mat-error *ngIf="form.get('importancia')?.hasError('required')">A importância é obrigatória</mat-error>
   </mat-form-field>
+
   <button class="submitButton" mat-raised-button type="submit" color="primary" [disabled]="form.invalid">Submeter</button>
 </form>
 
@@ -33,4 +41,13 @@
 <div>
   <label for="URL">Website URL: </label>
   <input id="URL" [(ngModel)]="website.URL" placeholder="URL">
-</div>-->
+</div>
+
+Aqui era para ter um botao add, para adicionar campos de adiçao de paginas dinamicamente
+mas n consegui por isto a rolar ;(
+<button class="addButton" mat-raised-button (click)="addForm = true"><mat-icon>add</mat-icon></button>
+  <div *ngIf=addForm>
+    <p>Novo form de adiçao de paginas</p>
+ </div>
+
+-->

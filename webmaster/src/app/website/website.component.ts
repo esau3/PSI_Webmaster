@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, booleanAttribute } from '@angular/core';
 
 import { Website } from '../types';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-website',
@@ -10,18 +10,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class WebsiteComponent {
 
-
   form: FormGroup;
+
+  addForm: boolean = false;
 
   constructor(private fb: FormBuilder) {
 
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.form = this.fb.group({
-      nome: ['', Validators.required],
+      nome: ['', Validators.required, Validators.minLength(3)],
       url: ['', [Validators.required, Validators.pattern(reg)]], //validaçao com ReGex
+      page: ['', [Validators.required, Validators.pattern(reg),]],
       importancia: ['', Validators.required] //exemplo
     });
   }
+
 
   website: Website = { // Declare a propriedade 'website' e inicialize-a com um objeto vazio ou com dados iniciais
     id: 0,
@@ -36,6 +39,7 @@ export class WebsiteComponent {
     this.selectedWebsite = website;
   }
 
+
   submitForm() {
     if (this.form.valid) {
       console.log(this.form.value);
@@ -43,4 +47,5 @@ export class WebsiteComponent {
       //fazer o tratamento?
     }
   }
+
 }

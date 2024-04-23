@@ -17,7 +17,7 @@ export interface Options {
         [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
     };
     reportProgress?: boolean;
-    responseType: 'text'; //podemos alterar para json
+    responseType: 'text'; //podemos alterar para
     withCredentials?: boolean;
     transferCache?: {
         includeHeaders?: string[];
