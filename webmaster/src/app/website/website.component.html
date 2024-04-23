@@ -18,8 +18,7 @@
     <input type="text" matInput placeholder="Pagina" formControlName='page' required>
     <mat-error *ngIf="form.get('page')?.hasError('required')">O URL da página é obrigatório</mat-error>
     <mat-error *ngIf="form.get('page')?.hasError('pattern')">O URL da página não é válido</mat-error>
-    <mat-error *ngIf="checkDomains()">A página não pertence ao mesmo dominio do URL principal</mat-error>
-  </mat-form-field>
+    </mat-form-field>
 
   <mat-form-field appearance="fill" class="forms">
     <mat-label>Selecione a importância</mat-label>
@@ -51,4 +50,7 @@ mas n consegui por isto a rolar ;(
     <p>Novo form de adiçao de paginas</p>
  </div>
 
+esta linha nao esta a funcioanr bem
+ <mat-error *ngIf="checkDomains()">A página não pertence ao mesmo dominio do URL principal</mat-error>
+  
 -->
