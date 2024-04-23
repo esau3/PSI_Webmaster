@@ -1,6 +1,36 @@
-<h2>{{website.name}} Details</h2>
+
+<form [formGroup]="form" (ngSubmit)="submitForm()" class="parentForm">
+  <mat-form-field appearance="fill" class="forms">
+    <mat-label>Insira o nome do website</mat-label>
+    <input type="text" matInput placeholder="Nome" formControlName="nome" required>
+    <mat-error *ngIf="form.get('nome')?.hasError('required')">O nome é obrigatório</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="forms">
+    <mat-label>Insira o URL do website</mat-label>
+    <input type="text" matInput placeholder="url" formControlName='url' required>
+    <mat-error *ngIf="form.get('url')?.hasError('required')">O URL é obrigatório</mat-error>
+    <mat-error *ngIf="form.get('url')?.hasError('pattern')">O URL não é válido</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="forms">
+    <mat-label>Selecione a importância</mat-label>
+    <mat-select formControlName="importancia" required>
+      <mat-option value="1">Urgente</mat-option>
+      <mat-option value="2">Importante</mat-option>
+      <mat-option value="3">Normal</mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('importancia')?.hasError('required')">A importância é obrigatória</mat-error>
+  </mat-form-field>
+  <button class="submitButton" mat-raised-button type="submit" color="primary" [disabled]="form.invalid">Submeter</button>
+</form>
+
+
+
+<!-- esta parte seria para dar display a um dos websites
+  <h2>{{website.name}} Details</h2>
 <div><span>id: </span>{{website.id}}</div>
 <div>
   <label for="URL">Website URL: </label>
   <input id="URL" [(ngModel)]="website.URL" placeholder="URL">
-</div>
+</div>-->
