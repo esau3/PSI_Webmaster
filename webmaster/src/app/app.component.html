@@ -1,6 +1,18 @@
-<h1>{{title}}</h1>
+<mat-toolbar class="toolbar">
+    <button routerLink="/side-nav" routerLinkActive="active" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>WebMaster</span>
+    <span class="spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
 <body>
-    <app-side-nav></app-side-nav>
-    <app-website></app-website>  
+  <router-outlet></router-outlet>
 </body>
+
     
