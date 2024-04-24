@@ -2,10 +2,10 @@
   <mat-drawer #drawer opened="true" mode="side" position="start">
   <mat-nav-list>
       <mat-list-item>
-          <button mat-button><mat-icon>home</mat-icon> Webmaster</button>
+          <button routerLink="/" mat-button><mat-icon>home</mat-icon> Webmaster</button>
       </mat-list-item>
       <mat-list-item>
-        <button routerLink="website" mat-button><mat-icon>add</mat-icon> Inserir Website</button>
+        <button routerLink="/website" mat-button><mat-icon>add</mat-icon> Inserir Website</button>
     </mat-list-item>
     <mat-list-item>
       <button mat-button><mat-icon>analytics</mat-icon> Visualizar Websites</button>
@@ -20,8 +20,9 @@
   </mat-drawer>
   <mat-drawer-content>
       <div style="text-align: center;min-height: 600px;">
-          <router-outlet></router-outlet>
-          </div>
+        </div>
   </mat-drawer-content>
 </mat-drawer-container>
+<router-outlet></router-outlet>
+
   
