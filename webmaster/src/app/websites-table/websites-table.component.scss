@@ -1,0 +1,45 @@
+// Defina as variáveis de cores
+$light-blue: #c4e3fe; // Azul claro para cabeçalhos
+$lighter-blue: #e3f0fe; // Azul ainda mais claro para células
+$lightest-blue: #ecf5fd; // O mais claro para hover
+$gray: #e6e6e6; // Cinza para a mensagem "No data"
+
+// Estilo da tabela
+.mat-elevation-z8 {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: $lightest-blue; // Cor de fundo da tabela
+  border: 1px solid $light-blue; // Borda da tabela
+}
+
+// Estilo do cabeçalho da tabela
+.mat-header-cell {
+  background-color: $light-blue; // Cor de fundo do cabeçalho
+  color: #333; // Cor do texto
+}
+
+// Estilo das células da tabela
+.mat-cell {
+  background-color: $lighter-blue; // Cor de fundo das células
+}
+
+// Estilo do hover
+.mat-row:hover .mat-cell {
+  background-color: $lightest-blue; // Cor de fundo quando a linha é hover
+}
+
+// Estilo da mensagem "No data"
+.mat-row.mat-no-row:hover .mat-cell {
+  background-color: transparent; // Cor de fundo quando a mensagem de "No data" é hover
+}
+
+// Estilo para o paginador
+.mat-paginator {
+  margin-top: 20px; // Espaçamento superior
+}
+
+// Estilo para a mensagem "No data"
+.no-data {
+  background-color: $gray; // Cor de fundo da mensagem "No data"
+}
