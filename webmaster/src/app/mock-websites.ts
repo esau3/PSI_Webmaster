@@ -188,7 +188,7 @@ function randomDate(start: Date, end: Date): Date {
 }
 
 function randomState(): string {
-    const states = ['Em avaliação', 'Avaliado', 'Erro na avaliação'];
+    const states = ['under evaluation', 'evaluated', 'error in evaluation'];
     const index = Math.floor(Math.random() * states.length);
     return states[index];
 }
