@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+
+  if pet_list.length
+    ul
+      each pet in pet_list
+        li
+          a(href=pet.url) #{pet.name}
+  else
+    p There are no pets.
