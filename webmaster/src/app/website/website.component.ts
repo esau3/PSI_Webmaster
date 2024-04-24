@@ -30,7 +30,10 @@ export class WebsiteComponent {
     id: 0,
     name: "moodle_FCUL",
     URL: 'https://moodle.ciencias.ulisboa.pt',
-    pages: []
+    pages: [],
+    register_date: new Date(2023, 5, 15, 21, 43, 11), // Ano: 2024, Mês: 6 (junho - começa em 0), Dia: 15, Hora: 21, Minuto: 43, Segundo: 11)
+    eval_date: new Date(2024, 7, 16, 18, 17, 1),
+    monitor_state: 'Em avaliacao'
   };
 
   selectedWebsite?: Website;

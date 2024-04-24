@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { WebsiteComponent } from './website/website.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { AppRoutingModule } from './app-routing.module';
+import { WebsitesTableComponent } from './websites-table/websites-table.component';
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -26,7 +27,8 @@ import {MatTableModule} from '@angular/material/table';
   declarations: [
     AppComponent,
     WebsiteComponent,
-    SideNavComponent
+    SideNavComponent,
+    WebsitesTableComponent
   ],
   imports: [
     BrowserModule,
