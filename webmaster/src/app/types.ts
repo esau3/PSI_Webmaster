@@ -5,6 +5,9 @@ export interface Website {
     name: string;
     URL: string;
     pages: string[];
+    register_date: Date;
+    eval_date: Date;
+    monitor_state: string;
 }
 
 export interface Options {
