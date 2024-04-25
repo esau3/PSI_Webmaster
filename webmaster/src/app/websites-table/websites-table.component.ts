@@ -14,7 +14,7 @@ import { Website } from '../types';
 
 export class WebsitesTableComponent {
   
-  displayedColumns: string[] = ['id', 'name', 'URL', 'pages', 'register_date', 'eval_date', 'monitor_state'];
+  displayedColumns: string[] = ['id', 'name', 'URL', 'register_date', 'eval_date', 'monitor_state'];
   dataSource: MatTableDataSource<Website>;
 
   @ViewChild(MatPaginator)
