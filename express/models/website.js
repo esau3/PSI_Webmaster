@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 const WebsiteSchema = new Schema({
   name: { type: String, required: true, maxLength: 100 },
   URL: { type: String, required: true, maxLength: 500 },
-  //pages, se for um objeto, trata-se em page.js
   register_date: { type: Date, default: Date.now },
   eval_date: { type: Date, default: new Date(0) },                   //TODO ver se isto esta a dar jan 1 1970 (ideal)
   monitor_state: {
@@ -14,6 +13,7 @@ const WebsiteSchema = new Schema({
     enum: ["Por avaliar", "Em avaliação", "Avaliado", "Erro na avaliação"],
     default: "Por avaliar",
   },
+  pages: [{ type: Schema.Types.ObjectId, ref: "Page" }], 
 });
 
 // Virtual for website's URL

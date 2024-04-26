@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+
+  if website_list.length
+    ul
+      each website in website_list
+        li
+          a(href=website.url) #{website.name}
+  else
+    p There are no websites.

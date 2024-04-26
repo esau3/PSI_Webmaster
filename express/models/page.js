@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const PageSchema = new Schema({
-  website: { type: Schema.Types.ObjectId, ref: "Website", required: true },
+  //website: { type: Schema.Types.ObjectId, ref: "Website", required: true },
   page_URL: { type: String, required: true, minLength: 1, maxLength: 500 },
   eval_date: { type: Date, default: new Date(0) },                               //TODO ver se isto esta a dar jan 1 1970 (ideal)
   monitor_state: {

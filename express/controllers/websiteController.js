@@ -12,7 +12,7 @@ exports.website_list = asyncHandler(async (req, res, next) => {
 // Display detail page for a specific Website.
 exports.website_detail = asyncHandler(async (req, res, next) => {
   // Get details of website and their pages (in parallel)
-  const website = await Website.findById(req.params.id).populate("pet").exec();         // TODO pages (varias) em vez de pet
+  const website = await Website.findById(req.params.id).populate('pages', 'page_URL').exec();
 
   if (website === null) {
     // No results.
@@ -74,16 +74,16 @@ exports.website_create_post = [
 // Handle Website delete on DELETE.
 exports.website_delete = asyncHandler(async (req, res, next) => {
   // Get details of website and all their pages (in parallel)                                   //TODO pages tambem??
-  const [website] = await Promise.all([Website.findById(req.params._id).exec()]);
+  const website = await Website.findById(req.params._id).exec();
 
-  if (website.length > 0) {
+  if (website === null) {
+    await Website.findByIdAndDelete(req.params._id);
+    res.redirect("/websites");
+  } else {
     res.render("website_delete", {
       title: "Delete Website",
       website: website,
     });
     return;
-  } else {
-    await Website.findByIdAndDelete(req.params._id);
-    res.redirect("/websites");
   }
 });

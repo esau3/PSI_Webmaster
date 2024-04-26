@@ -1,0 +1,15 @@
+extends layout
+
+block content
+
+  h1 Website: #{website.name}
+  p #{website.URL}
+  p #{website.register_date}
+  p #{website.eval_date}
+  p #{website.monitor_state}
+  if website.pages.length > 0
+    h2 Pages:
+    ul
+      each page in website.pages
+        li
+          a(href=`/page/${page.pageId}`) #{page.page_URL}

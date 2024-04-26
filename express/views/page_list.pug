@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+
+  if page_list.length
+    ul
+      each page in page_list
+        li
+          a(href=page.url) #{page.page_URL}
+  else
+    p There are no pages.

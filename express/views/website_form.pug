@@ -1,0 +1,51 @@
+extends layout
+
+block content
+
+  h1 #{title}
+
+  form(method='POST')
+    div.form-group
+      label(for='name') Name:
+      input#name.form-control(type='text', placeholder='Enter website name' name='name' required)
+    div.form-group
+      label(for='URL') URL:
+      input#URL.form-control(type='text', placeholder='Enter website URL' name='URL' required)
+    div.form-group
+      label(for='register_date') Register Date:
+      input#register_date.form-control(type='date', name='register_date' required)
+    div.form-group
+      label(for='eval_date') Evaluation Date:
+      input#eval_date.form-control(type='date', name='eval_date')
+    div.form-group
+      label(for='monitor_state') Monitor State:
+      select#monitor_state.form-control(name='monitor_state' required)
+        option(value='Por avaliar') Por avaliar
+        option(value='Em avaliação') Em avaliação
+        option(value='Avaliado') Avaliado
+        option(value='Erro na avaliação') Erro na avaliação
+
+    //- Add multiple pages section
+    hr
+    h2 Pages
+    div#pages-container
+      //- Each page field set
+      div.page-field
+        label(for='page_URL') Page URL:
+        input.page_URL.form-control(type='text', placeholder='Enter page URL' name='page_URL' required)
+        label(for='page_monitor_state') Monitor State:
+        select.page_monitor_state.form-control(name='page_monitor_state' required)
+          option(value='Por avaliar') Por avaliar
+          option(value='Em avaliação') Em avaliação
+          option(value='Conforme') Conforme
+          option(value='Não Conforme') Não Conforme
+          option(value='Erro na avaliação') Erro na avaliação
+      //- Button to add more pages
+      button#add-page-btn.btn.btn-secondary(type='button') Add Page
+
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
