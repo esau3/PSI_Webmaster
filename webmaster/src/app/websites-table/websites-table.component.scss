@@ -43,3 +43,21 @@ $gray: #e6e6e6; // Cinza para a mensagem "No data"
 .no-data {
   background-color: $gray; // Cor de fundo da mensagem "No data"
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+#delete {
+  color: rgba(252, 23, 23, 0.893);
+}
+
+#visibility {
+  color: grey;
+}

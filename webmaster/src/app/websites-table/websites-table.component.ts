@@ -14,7 +14,7 @@ import { Website } from '../types';
 
 export class WebsitesTableComponent {
   
-  displayedColumns: string[] = ['id', 'name', 'URL', 'register_date', 'eval_date', 'monitor_state'];
+  displayedColumns: string[] = ['id', 'name', 'URL', 'register_date', 'eval_date', 'monitor_state', 'actions'];
   dataSource: MatTableDataSource<Website>;
 
   @ViewChild(MatPaginator)
@@ -24,6 +24,8 @@ export class WebsitesTableComponent {
 
   constructor() {
     this.dataSource = new MatTableDataSource(WEBSITES);
+
+    
   }
 
   ngAfterViewInit() {

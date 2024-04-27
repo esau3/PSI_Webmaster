@@ -11,6 +11,7 @@ export interface Website {
 }
 
 export interface Page {
+    id: number;
     page_URL: string;
     eval_date: Date;
     monitor_state: string;

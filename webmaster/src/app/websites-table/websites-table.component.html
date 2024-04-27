@@ -1,5 +1,5 @@
 <mat-form-field>
-  <mat-label>Filter</mat-label>
+  <mat-label>Search</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. PSI" #input>
 </mat-form-field>
 
@@ -8,37 +8,49 @@
   <!-- Id Column -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Id. </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    <td mat-cell *matCellDef="let website"> {{website.id}} </td>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <td mat-cell *matCellDef="let website"> {{website.name}} </td>
   </ng-container>
 
   <!-- URL Column -->
   <ng-container matColumnDef="URL">
     <th mat-header-cell *matHeaderCellDef> URL </th>
-    <td mat-cell *matCellDef="let element"> {{element.URL}} </td>
+    <td mat-cell *matCellDef="let website"> {{website.URL}} </td>
   </ng-container>
 
   <!-- Register Date Column -->
   <ng-container matColumnDef="register_date">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Registered date</th>
-    <td mat-cell *matCellDef="let element"> {{element.register_date | date:'short'}} </td>
+    <td mat-cell *matCellDef="let website"> {{website.register_date | date:'short'}} </td>
   </ng-container>
 
   <!-- Eval Date Column -->
   <ng-container matColumnDef="eval_date">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Last evaluation date </th>
-    <td mat-cell *matCellDef="let element"> {{element.eval_date | date:'short'}} </td>
+    <td mat-cell *matCellDef="let website"> {{website.eval_date | date:'short'}} </td>
   </ng-container>
 
   <!-- Monitor State Column -->
   <ng-container matColumnDef="monitor_state">
     <th mat-header-cell *matHeaderCellDef> Monitor State </th>
-    <td mat-cell *matCellDef="let element"> {{element.monitor_state}} </td>
+    <td mat-cell *matCellDef="let website"> {{website.monitor_state}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let website">
+      <button mat-icon-button routerLink="/website-detail/{{website.id}}">
+        <span class="material-symbols-outlined" id="visibility">visibility</span>
+      </button>
+      <button mat-icon-button>
+        <span class="material-symbols-outlined" id="delete">delete</span>
+      </button>
+    </td>
   </ng-container>
 
   <tr mat-header-row class="mat-header-row" *matHeaderRowDef="displayedColumns"></tr>

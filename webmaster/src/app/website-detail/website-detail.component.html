@@ -1,0 +1,10 @@
+<div *ngIf="website">
+    <h2>{{website.name}} Details</h2>
+    <div>id: {{website.id}}</div>
+    <div>
+      <label for="website-name">Website name: </label>
+      <input id="website-name" [(ngModel)]="website.name" placeholder="name">
+    </div>
+  </div>
+
+  <button type="button" (click)="goBack()">go back</button>
