@@ -20,16 +20,6 @@
     <mat-error *ngIf="form.get('page')?.hasError('pattern')">O URL da página não é válido</mat-error>
     </mat-form-field>
 
-  <mat-form-field appearance="fill" class="forms">
-    <mat-label>Selecione a importância</mat-label>
-    <mat-select formControlName="importancia" required>
-      <mat-option value="1">Urgente</mat-option>
-      <mat-option value="2">Importante</mat-option>
-      <mat-option value="3">Normal</mat-option>
-    </mat-select>
-    <mat-error *ngIf="form.get('importancia')?.hasError('required')">A importância é obrigatória</mat-error>
-  </mat-form-field>
-
   <button class="submitButton" mat-raised-button type="submit" color="primary" [disabled]="form.invalid">Submeter</button>
 </form>
 <router-outlet></router-outlet>
