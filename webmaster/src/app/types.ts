@@ -4,8 +4,14 @@ export interface Website {
     id: number;
     name: string;
     URL: string;
-    pages: string[];
+    pages: Page[];
     register_date: Date;
+    eval_date: Date;
+    monitor_state: string;
+}
+
+export interface Page {
+    page_URL: string;
     eval_date: Date;
     monitor_state: string;
 }
