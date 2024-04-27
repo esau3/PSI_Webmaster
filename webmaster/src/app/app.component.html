@@ -1,5 +1,5 @@
 <mat-toolbar class="toolbar">
-    <button routerLink="/side-nav" routerLinkActive="active" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
     <span>WebMaster</span>
@@ -12,7 +12,32 @@
     </button>
   </mat-toolbar>
 <body>
-  <router-outlet></router-outlet>
+  <mat-drawer-container autosize>
+    <mat-drawer #drawer opened="true" mode="side" position="start">
+    <mat-nav-list>
+        <mat-list-item>
+            <button routerLink="/" mat-button><mat-icon>home</mat-icon> Webmaster</button>
+        </mat-list-item>
+        <mat-list-item>
+          <button routerLink="/website" mat-button><mat-icon>add</mat-icon> Add Website</button>
+      </mat-list-item>
+      <mat-list-item>
+        <button routerLink="/websites-table" mat-button><mat-icon>analytics</mat-icon> View Websites</button>
+    </mat-list-item>
+        <mat-list-item>
+            <button mat-button><mat-icon>settings</mat-icon> Settings</button>
+        </mat-list-item>
+        <mat-list-item>
+            <button mat-button><mat-icon>help</mat-icon> Help</button>
+        </mat-list-item>
+    </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div style="text-align: center;min-height: 600px;">
+          <router-outlet></router-outlet>
+        </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
 </body>
 
     
