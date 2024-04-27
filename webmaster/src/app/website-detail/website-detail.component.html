@@ -1,4 +1,8 @@
+<body>
 <div *ngIf="website" class="website-details">
+  <button mat-icon-button (click)="goBack()" class="back-button">
+    <span class="material-symbols-outlined">arrow_back</span>
+  </button>
   <div class="website-info">
     <h2>{{ website.name }} details</h2>
     <div class="info-item">ID: {{ website.id }}</div>
@@ -16,8 +20,5 @@
       <div class="info-item">Monitoring state: <span class="monitor-state">{{ page.monitor_state }}</span></div>
     </div>
   </div>
-
-  <button mat-icon-button (click)="goBack()" class="back-button">
-    <span class="material-symbols-outlined">arrow_back</span>
-  </button>
 </div>
+</body>

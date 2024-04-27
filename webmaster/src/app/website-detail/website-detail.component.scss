@@ -9,6 +9,7 @@
   
   .website-info {
     flex: 1;
+    padding-left: 30px;
   }
   
   .pages-menu {
@@ -53,8 +54,9 @@
     background-color: #007bff;
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 6px 6px;
+    padding-bottom: 2px;
+    border-radius: 3px;
     cursor: pointer;
     transition: background-color 0.3s;
   
