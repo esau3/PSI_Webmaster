@@ -257,7 +257,10 @@ export const WEBSITES: Website[] = [
         pages: [
            { id: count++, page_URL: 'https://www.whatsapp.com/Home', eval_date: randomDate(new Date(2019, 0, 1), new Date()), monitor_state: randomState() },
            { id: count++, page_URL: 'https://www.whatsapp.com/Chats', eval_date: randomDate(new Date(2019, 0, 1), new Date()), monitor_state: randomState() },
-           { id: count++, page_URL: 'https://www.whatsapp.com/Status', eval_date: randomDate(new Date(2019, 0, 1), new Date()), monitor_state: randomState() }
+           { id: count++, page_URL: 'https://www.whatsapp.com/Status', eval_date: randomDate(new Date(2019, 0, 1), new Date()), monitor_state: randomState() },
+           { id: count++, page_URL: 'https://www.whatsapp.com/alo1', eval_date: randomDate(new Date(2019, 0, 1), new Date()), monitor_state: randomState() },
+           { id: count++, page_URL: 'https://www.whatsapp.com/alo2', eval_date: randomDate(new Date(2019, 0, 1), new Date()), monitor_state: randomState() }
+
         ], 
         register_date: randomDate(new Date(2019, 0, 1), new Date()), 
         eval_date: randomDate(new Date(2019, 0, 1), new Date()), 

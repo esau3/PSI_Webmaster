@@ -9,7 +9,7 @@ $gray: #e6e6e6; // Cinza para a mensagem "No data"
   border-collapse: collapse;
   width: 100%;
   margin-bottom: 20px;
-  background-color: $lightest-blue; // Cor de fundo da tabela
+  background-color: #ffc266; // Cor de fundo da tabela
   border: 1px solid $light-blue; // Borda da tabela
 }
 
@@ -32,6 +32,15 @@ $gray: #e6e6e6; // Cinza para a mensagem "No data"
 // Estilo da mensagem "No data"
 .mat-row.mat-no-row:hover .mat-cell {
   background-color: transparent; // Cor de fundo quando a mensagem de "No data" é hover
+}
+
+.mat-row:nth-child(even) {
+  background-color: $lighter-blue; /* Azul claro */
+}
+
+/* Estilo para as linhas pares (branco) */
+.mat-row:nth-child(odd) {
+  background-color: #ffffff; /* Branco */
 }
 
 // Estilo para o paginador
