@@ -36,7 +36,6 @@ exports.website_create_post = [
   asyncHandler(async (req, res, next) => {
     // Extract the validation errors from a request.
     const errors = validationResult(req);
-    console.log(req.body);
     // Create a website object with escaped and trimmed data.
     const website = new Website({
       name: req.body.name,
@@ -55,7 +54,6 @@ exports.website_create_post = [
     } else {
       // Data from form is valid.
       // Check if Website with same name already exists.
-      console.log(req.body);
       const websiteExists = await Website.findOne({ name: req.body.name }).exec();
       if (websiteExists) {
         // Website exists, redirect to its detail page.
