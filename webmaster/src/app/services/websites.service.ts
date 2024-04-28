@@ -47,9 +47,9 @@ export class WebsiteService {
       );
   }
 
-  getPage(_id:number):Observable<Page>{
+  getPage(_id: string):Observable<Page>{
     const url="page/"+_id.toString();
-    return this.http.delete<Page>(this.websites)
+    return this.http.get<Page>(this.website + url)
    .pipe(
      catchError(this.handleError)
    );
