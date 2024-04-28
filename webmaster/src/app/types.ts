@@ -1,7 +1,7 @@
 import { HttpContext, HttpHeaders, HttpParams } from "@angular/common/http";
 
 export interface Website {
-    id: number;
+    _id: number;
     name: string;
     URL: string;
     pages: Page[];
@@ -11,7 +11,7 @@ export interface Website {
 }
 
 export interface Page {
-    id: number;
+    _id: number;
     page_URL: string;
     eval_date: Date;
     monitor_state: string;
