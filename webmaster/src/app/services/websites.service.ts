@@ -10,6 +10,7 @@ export class WebsiteService {
 
   private website = "http://10.101.151.25:3092/website";
   private websites = "http://10.101.151.25:3092/websites";
+  private page = "http://10.101.151.25:3092/page";
   constructor(
     private http: HttpClient) { }
 
@@ -48,8 +49,8 @@ export class WebsiteService {
   }
 
   getPage(_id: string):Observable<Page>{
-    const url="page/"+_id.toString();
-    return this.http.get<Page>(this.website + url)
+    const url=_id.toString();
+    return this.http.get<Page>(this.page + url)
    .pipe(
      catchError(this.handleError)
    );
