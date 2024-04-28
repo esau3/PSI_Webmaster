@@ -25,9 +25,11 @@ export class WebsitesTableComponent {
   sort!: MatSort;
 
   constructor(private websiteService: WebsiteService) {
-    const alo = this.websiteService.getWebsites().subscribe(website => this.websitesArray = website);
-    console.log(alo);
-    this.dataSource = new MatTableDataSource(this.websitesArray);
+    this.websiteService.getWebsites().subscribe(websites => {
+      this.dataSource = new MatTableDataSource(websites);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
 
     
   }
