@@ -74,25 +74,22 @@ export class WebsiteComponent {
     // Retorna true se ambos os valores forem null
     return urlValue === pageValue;
   }
-
   sendWebsite() {
-      // Obtendo os valores dos campos do formulário
-      const nameValue: string = this.form.get('nome')?.value;
-      const urlValue: string = this.form.get('url')?.value;
-      const pageValue: string = this.form.get('page')?.value;
-  
-      // Criando o objeto JSON
-      const websiteParams = {
-          name: nameValue,
-          url: urlValue,
-          page: pageValue
-      };
-  
-      // Convertendo o objeto JSON em uma string JSON
-      const websiteParamsJSON = JSON.parse(JSON.stringify(websiteParams));
-  
-      // Fazendo a solicitação POST com a string JSON
-      this.websiteService.postWebsite(websiteParamsJSON);
+  if (this.form.valid) {
+      const websiteData = this.form.value;
+
+      this.websiteService.postWebsite(websiteData)
+        .subscribe(
+          response => {
+            console.log('Website enviado com sucesso:', response);
+            // Você pode redirecionar o usuário ou fazer outra ação aqui após o sucesso
+          },
+          error => {
+            console.error('Erro ao enviar o website:', error);
+            // Manipule o erro aqui
+          }
+        );
+    }
   }
   
 

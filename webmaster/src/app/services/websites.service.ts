@@ -39,11 +39,12 @@ export class WebsiteService {
    );
   }
 
-  postWebsite(json: JSON):Observable<JSON>{
-    return this.http.post<JSON>(this.websitesUrl, json)
-   .pipe(
-     catchError(this.handleError)
-   );
+  postWebsite(websiteData: any): Observable<any> {
+
+    return this.http.post<any>(this.websitesUrl, websiteData)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   getPage(_id:number):Observable<Page>{
