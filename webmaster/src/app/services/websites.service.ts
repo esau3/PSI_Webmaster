@@ -8,8 +8,8 @@ import { Page, Website } from '../types';
 @Injectable({ providedIn: 'root' })
 export class WebsiteService {
 
-  private websiteUrl = "http://10.101.151.25:3092";
-  private websitesUrl = "http://10.101.151.25:3092";
+  private websiteUrl = "http://10.101.151.25:3092/website";
+  private websitesUrl = "http://10.101.151.25:3092/websites";
   constructor(
     private http: HttpClient) { }
 
