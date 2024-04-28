@@ -22,10 +22,9 @@ export class WebsiteService {
 
     // URL to web api
 
-  getWebsite(_id: number): Observable<Website> {
+  getWebsite(_id: string): Observable<Website> {
     // For now, assume that a website with the specified `id` always exists.
     // Error handling will be added in the next step of the tutorial.
-    const url=this.websites+"/"+_id.toString();
      return this.http.get<Website>(this.websites)
     .pipe(
       catchError(this.handleError)
@@ -33,7 +32,6 @@ export class WebsiteService {
   }
 
   deleteWebsite(_id:number):Observable<Website>{
-    const url=this.websites+"/"+_id.toString();
     return this.http.delete<Website>(this.websites)
    .pipe(
      catchError(this.handleError)

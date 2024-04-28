@@ -26,8 +26,7 @@ export class WebsiteDetailComponent implements OnInit {
   }
 
   getWebsite(): void {
-    const _id = Number(this.route.snapshot.paramMap.get('_id'));
-    //this.website = WEBSITES[_id - 1];
+    const _id = String(this.route.snapshot.paramMap.get('_id'));
     this.websiteService.getWebsite(_id)
       .subscribe((website: any) => this.website = website);
   }
