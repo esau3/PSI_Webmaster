@@ -8,7 +8,8 @@ import { Page, Website } from '../types';
 @Injectable({ providedIn: 'root' })
 export class WebsiteService {
 
-  private websitesUrl = 'api/websites';
+  private websitesUrl = 'api/website';
+  private websiteUrl = 'website';
   constructor(
     private http: HttpClient) { }
 
