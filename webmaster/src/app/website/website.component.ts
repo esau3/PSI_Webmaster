@@ -76,15 +76,25 @@ export class WebsiteComponent {
   }
 
   sendWebsite() {
-    // Obtendo os valores dos campos do formulário diretamente como um objeto JSON
-    const websiteParams = this.form.value;
-
-    // Fazendo a solicitação POST com o objeto JSON
-    this.websiteService.postWebsite(websiteParams);
-}
-
-
-
+      // Obtendo os valores dos campos do formulário
+      const nameValue: string = this.form.get('nome')?.value;
+      const urlValue: string = this.form.get('url')?.value;
+      const pageValue: string = this.form.get('page')?.value;
+  
+      // Criando o objeto JSON
+      const websiteParams = {
+          name: nameValue,
+          url: urlValue,
+          page: pageValue
+      };
+  
+      // Convertendo o objeto JSON em uma string JSON
+      const websiteParamsJSON = JSON.parse(JSON.stringify(websiteParams));
+  
+      // Fazendo a solicitação POST com a string JSON
+      this.websiteService.postWebsite(websiteParamsJSON);
+  }
+  
 
 
 
