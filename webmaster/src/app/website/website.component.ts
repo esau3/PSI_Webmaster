@@ -20,8 +20,7 @@ export class WebsiteComponent {
     this.form = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(3)]],
       url: ['', [Validators.required, Validators.pattern(reg)]], //validaçao com ReGex
-      page: ['', [Validators.required, Validators.pattern(reg)]],
-      importancia: ['', Validators.required] //exemplo
+      page: ['', [Validators.required, Validators.pattern(reg)]]
     });
   }
 
