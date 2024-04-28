@@ -40,9 +40,9 @@ export class WebsiteService {
    );
   }
 
-  postWebsite(websiteData: any): Observable<any> {
+  postWebsite(websiteData: string): Observable<any> {
 
-    return this.http.post<any>(this.websiteUrl, websiteData)
+    return this.http.post(this.websiteUrl, websiteData)
       .pipe(
         catchError(this.handleError)
       );
@@ -66,8 +66,7 @@ export class WebsiteService {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
       console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+        'Backend returned code ${error.status}');
     }
     // Return an observable with a user-facing error message.
     return throwError(
