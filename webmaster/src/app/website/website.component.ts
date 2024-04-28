@@ -2,6 +2,7 @@ import { Component} from '@angular/core';
 
 import { Website } from '../types';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { WebsiteService} from '../services/websites.service';
 
 @Component({
   selector: 'app-website',
@@ -12,9 +13,10 @@ export class WebsiteComponent {
 
   form: FormGroup;
 
-  addForm: boolean = false;
+  websiteParams: string[] | undefined;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private websiteService: WebsiteService) {
+
 
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.form = this.fb.group({
@@ -73,6 +75,14 @@ export class WebsiteComponent {
     return urlValue === pageValue;
   }
 
+  sendWebsite() {
+
+    // Convertendo a string JSON em um objeto JSON
+    const websiteParams = JSON.parse(this.form.value);
+    // Fazendo a solicitação POST com o objeto JSON
+    this.websiteService.postWebsite(websiteParams);
+}
+
 
 
 
@@ -80,8 +90,6 @@ export class WebsiteComponent {
   submitForm() {
     if (this.form.valid) {
       console.log(this.form.value);
-    } else {
-      //fazer o tratamento?
     }
   }
 

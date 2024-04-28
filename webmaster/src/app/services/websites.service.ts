@@ -39,8 +39,8 @@ export class WebsiteService {
    );
   }
 
-  postWebsite(website:Website):Observable<Website>{
-    return this.http.post<Website>(this.websitesUrl,website)
+  postWebsite(json: JSON):Observable<JSON>{
+    return this.http.post<JSON>(this.websitesUrl, json)
    .pipe(
      catchError(this.handleError)
    );

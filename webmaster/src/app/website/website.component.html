@@ -20,7 +20,7 @@
     <mat-error *ngIf="form.get('page')?.hasError('pattern')">O URL da página não é válido</mat-error>
     </mat-form-field>
 
-  <button class="submitButton" mat-raised-button type="submit" color="primary" [disabled]="form.invalid">Submeter</button>
+  <button class="submitButton" (click)="sendWebsite()" mat-raised-button type="submit" color="primary" [disabled]="form.invalid">Submeter</button>
 </form>
 <router-outlet></router-outlet>
 
