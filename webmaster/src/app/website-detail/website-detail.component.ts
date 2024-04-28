@@ -24,10 +24,10 @@ export class WebsiteDetailComponent implements OnInit {
   ) {}
   
   ngOnInit(): void {
-    console.log(this.website);
-    console.log(this.website?.pages);
     this.getWebsite();
     this.getPages();
+    console.log(this.website);
+    console.log(this.website?.pages);
   }
 
   getWebsite(): void {
