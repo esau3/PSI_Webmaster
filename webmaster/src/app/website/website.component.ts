@@ -76,9 +76,14 @@ export class WebsiteComponent {
   }
 
   sendWebsite() {
-    
-      const websiteData = this.form.value;
 
+      //const websiteData = this.form.value;
+      const websiteData = {
+        name: 'alo',
+        url: 'alo.com',
+        page: 'alo2.com'
+      };
+      console.log(websiteData);
       this.websiteService.postWebsite(websiteData).subscribe(response => {
             console.log( response);
           });
