@@ -41,10 +41,7 @@ exports.website_create_post = [
     const website = new Website({
       name: req.body.name,
       URL: req.body.url,
-      pages: req.body.pages,
-      register_date: req.body.register_date,
-      eval_date: req.body.eval_date,
-      monitor_state: req.body.monitor_state,
+      pages: req.body.pages
     });
 
     if (!errors.isEmpty()) {
