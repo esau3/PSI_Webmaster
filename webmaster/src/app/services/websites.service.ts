@@ -8,11 +8,11 @@ import { Page, Website } from '../types';
 @Injectable({ providedIn: 'root' })
 export class WebsiteService {
 
-  private websitesUrl = '/websites';
+  private websitesUrl = 'api/websites';
   constructor(
     private http: HttpClient) { }
 
-    /** GET websitees from the server */
+    /** GET websites from the server */
   getWebsites(): Observable<Website[]> {
     return this.http.get<Website[]>(this.websitesUrl).pipe(
       catchError(this.handleError)
