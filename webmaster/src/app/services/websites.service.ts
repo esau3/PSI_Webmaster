@@ -8,7 +8,8 @@ import { Page, Website } from '../types';
 @Injectable({ providedIn: 'root' })
 export class WebsiteService {
 
-  private websitesUrl = "http://10.101.151.25:3092/website";
+  private websiteUrl = "http://10.101.151.25:3092/website";
+  private websitesUrl = "http://10.101.151.25:3092/websites";
   constructor(
     private http: HttpClient) { }
 
@@ -41,7 +42,7 @@ export class WebsiteService {
 
   postWebsite(websiteData: any): Observable<any> {
 
-    return this.http.post<any>(this.websitesUrl, websiteData)
+    return this.http.post<any>(this.websiteUrl, websiteData)
       .pipe(
         catchError(this.handleError)
       );
