@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { WebsiteComponent } from './website/website.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { AppRoutingModule } from './app-routing.module';
 import { WebsitesTableComponent } from './websites-table/websites-table.component';
-import {WebsiteDetailComponent} from './website-detail/website-detail.component'
+import { WebsiteDetailComponent} from './website-detail/website-detail.component'
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -32,7 +33,7 @@ import {MatSortModule} from '@angular/material/sort';
     WebsiteComponent,
     SideNavComponent,
     WebsitesTableComponent,
-    WebsiteDetailComponent
+    WebsiteDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +55,8 @@ import {MatSortModule} from '@angular/material/sort';
     MatToolbarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
