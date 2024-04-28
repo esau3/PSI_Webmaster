@@ -114,7 +114,7 @@ async function createWebsites() {
 }
 
 function randomState() {
-  const states = ['to be evaluated', 'under evaluation', 'evaluated', 'error in evaluation'];
+  const states = ["Por avaliar", "Em avaliação", "Avaliado", "Erro na avaliação"];
   const index = Math.floor(Math.random() * states.length);
   return states[index];
 }
