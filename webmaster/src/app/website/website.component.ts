@@ -27,7 +27,7 @@ export class WebsiteComponent {
 
 
   website: Website = { // Declare a propriedade 'website' e inicialize-a com um objeto vazio ou com dados iniciais
-    id: 0,
+    _id: 0,
     name: "moodle_FCUL",
     URL: 'https://moodle.ciencias.ulisboa.pt',
     pages: [],
