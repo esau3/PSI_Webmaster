@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './website-detail.component.scss'
 })
 export class WebsiteDetailComponent implements OnInit {
-  website: Website | undefined;
+  website!: Website;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,11 +22,10 @@ export class WebsiteDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getWebsite();
+    this.getWebsite(this.website._id);
   }
 
-  getWebsite(): void {
-    const _id = String(this.route.snapshot.paramMap.get('_id'));
+  getWebsite(_id: string): void {
     console.log(_id);
     this.websiteService.getWebsite(_id)
       .subscribe((website: any) => this.website = website);
