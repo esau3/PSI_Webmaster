@@ -44,6 +44,7 @@ exports.website_create_post = [
       pages: req.body.pages
     });
 
+    console.log(req.body);
     if (!errors.isEmpty()) {
       // There are errors. Render the form again with sanitized values/error messages.
       res.render("website_form", {

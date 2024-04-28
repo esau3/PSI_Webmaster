@@ -74,22 +74,14 @@ export class WebsiteComponent {
     // Retorna true se ambos os valores forem null
     return urlValue === pageValue;
   }
+
   sendWebsite() {
-  if (this.form.valid) {
+    
       const websiteData = this.form.value;
 
-      this.websiteService.postWebsite(websiteData)
-        .subscribe(
-          response => {
-            console.log('Website enviado com sucesso:', response);
-            // Você pode redirecionar o usuário ou fazer outra ação aqui após o sucesso
-          },
-          error => {
-            console.error('Erro ao enviar o website:', error);
-            // Manipule o erro aqui
-          }
-        );
-    }
+      this.websiteService.postWebsite(websiteData).subscribe(response => {
+            console.log( response);
+          });
   }
   
 
