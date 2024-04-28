@@ -4,7 +4,6 @@ import { Location } from '@angular/common';
 import { Website, Page } from '../types';
 import { WebsiteService } from '../services/websites.service';
 import { ActivatedRoute } from '@angular/router';
-import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-website-detail',
@@ -26,7 +25,7 @@ export class WebsiteDetailComponent implements OnInit {
   
   ngOnInit(): void {
     console.log(this.website);
-    console.log(this.pages);
+    console.log(this.website?.pages);
     this.getWebsite();
     this.getPages();
   }
