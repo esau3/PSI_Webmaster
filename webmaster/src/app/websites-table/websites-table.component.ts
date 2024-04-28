@@ -25,7 +25,8 @@ export class WebsitesTableComponent {
   sort!: MatSort;
 
   constructor(private websiteService: WebsiteService) {
-    this.websiteService.getWebsites().subscribe(website => this.websitesArray = website);
+    const alo = this.websiteService.getWebsites().subscribe(website => this.websitesArray = website);
+    console.log(alo);
     this.dataSource = new MatTableDataSource(this.websitesArray);
 
     

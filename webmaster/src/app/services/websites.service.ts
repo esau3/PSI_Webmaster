@@ -8,14 +8,14 @@ import { Page, Website } from '../types';
 @Injectable({ providedIn: 'root' })
 export class WebsiteService {
 
-  private websitesUrl = "http://10.101.151.25:3092/website";
-  private websiteUrl = "http://10.101.151.25:3092/websites";
+  private website = "http://10.101.151.25:3092/website";
+  private websites = "http://10.101.151.25:3092/websites";
   constructor(
     private http: HttpClient) { }
 
     /** GET websites from the server */
   getWebsites(): Observable<Website[]> {
-    return this.http.get<Website[]>(this.websiteUrl).pipe(
+    return this.http.get<Website[]>(this.websites).pipe(
       catchError(this.handleError)
     );
   }
@@ -25,16 +25,16 @@ export class WebsiteService {
   getWebsite(_id: number): Observable<Website> {
     // For now, assume that a website with the specified `id` always exists.
     // Error handling will be added in the next step of the tutorial.
-    const url=this.websiteUrl+"/"+_id.toString();
-     return this.http.get<Website>(this.websiteUrl)
+    const url=this.websites+"/"+_id.toString();
+     return this.http.get<Website>(this.websites)
     .pipe(
       catchError(this.handleError)
     );
   }
 
   deleteWebsite(_id:number):Observable<Website>{
-    const url=this.websiteUrl+"/"+_id.toString();
-    return this.http.delete<Website>(this.websiteUrl)
+    const url=this.websites+"/"+_id.toString();
+    return this.http.delete<Website>(this.websites)
    .pipe(
      catchError(this.handleError)
    );
@@ -43,7 +43,7 @@ export class WebsiteService {
   postWebsite(websiteData: any): Observable<any> {
 
     console.log(websiteData);
-    return this.http.post(this.websitesUrl, websiteData)
+    return this.http.post(this.website, websiteData)
       .pipe(
         catchError(this.handleError)
       );
@@ -51,7 +51,7 @@ export class WebsiteService {
 
   getPage(_id:number):Observable<Page>{
     const url="page/"+_id.toString();
-    return this.http.delete<Page>(this.websiteUrl)
+    return this.http.delete<Page>(this.websites)
    .pipe(
      catchError(this.handleError)
    );
