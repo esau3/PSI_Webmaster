@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
-import { Website } from '../types';
+import { Website, Page } from '../types';
 import { WebsiteService } from '../services/websites.service';
-//import { WebsiteService } from '../services/websites.service'
 import { ActivatedRoute } from '@angular/router';
-//import { WEBSITES } from '../mock-websites';
 
 @Component({
   selector: 'app-website-detail',
@@ -15,6 +13,9 @@ import { ActivatedRoute } from '@angular/router';
 
 export class WebsiteDetailComponent implements OnInit {
   website: Website | undefined;
+  pages: Page[] | undefined;
+  pageData: Page | undefined;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +25,7 @@ export class WebsiteDetailComponent implements OnInit {
   
   ngOnInit(): void {
     this.getWebsite();
+    this.getPages();
   }
 
   getWebsite(): void {
@@ -34,6 +36,23 @@ export class WebsiteDetailComponent implements OnInit {
     } else {
     }
   }
+
+  getPages(): void {
+    if (this.website && this.website.pages) {
+      const pages = this.website.pages;
+      
+      for (const page of pages) {
+        this.websiteService.getPage(page._id)
+          .subscribe((pageData: Page) => {
+            console.log('Página obtida:', pageData);
+            pages.push(pageData); 
+          });
+      }
+    }
+  }
+  
+  
+  
 
   goBack(): void {
     this.location.back();

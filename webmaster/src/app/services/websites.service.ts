@@ -21,6 +21,13 @@ export class WebsiteService {
     );
   }
 
+    /** GET websites from the server */
+    getPages(): Observable<Page[]> {
+      return this.http.get<Page[]>(this.page).pipe(
+        catchError(this.handleError)
+      );
+    }
+
     // URL to web api
 
   getWebsite(_id: string): Observable<Website> {
