@@ -16,7 +16,7 @@ export class WebsiteService {
     /** GET websitees from the server */
   getWebsitees(): Observable<Website[]> {
     return this.http.get<Website[]>(this.websitesUrl).pipe(
-      catchError(this.handleError('website'))
+      catchError(this.handleError)
     );
   }
 
@@ -28,7 +28,7 @@ export class WebsiteService {
     const url=this.websitesUrl+"/"+id.toString();
      return this.http.get<Website>(this.websitesUrl)
     .pipe(
-      catchError(this.handleError('website'))
+      catchError(this.handleError)
     );
   }
 
@@ -36,7 +36,7 @@ export class WebsiteService {
     const url=this.websitesUrl+"/"+id.toString();
     return this.http.delete<Website>(this.websitesUrl)
    .pipe(
-     catchError(this.handleError('website'))
+     catchError(this.handleError)
    );
   }
 
@@ -44,7 +44,7 @@ export class WebsiteService {
     const url=this.websitesUrl;
     return this.http.delete<Website>(this.websitesUrl,website)
    .pipe(
-     catchError(this.handleError('website'))
+     catchError(this.handleError)
    );
   }
 
@@ -52,7 +52,7 @@ export class WebsiteService {
     const url="page/"+id.toString();
     return this.http.delete<Page>(this.websitesUrl)
    .pipe(
-     catchError(this.handleError('Page'))
+     catchError(this.handleError)
    );
   }
 
