@@ -42,7 +42,7 @@ export class WebsiteService {
 
   postWebsite(websiteData: any): Observable<any> {
 
-    return this.http.post<any>(this.websitesUrl, websiteData)
+    return this.http.post<any>("http://10.101.151.25:3092/website", websiteData)
       .pipe(
         catchError(this.handleError)
       );
