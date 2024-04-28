@@ -54,7 +54,7 @@ exports.website_create_post = [
     } else {
       // Data from form is valid.
       // Check if Website with same name already exists.
-      const websiteExists = await Website.findOne({ URL: req.body.url }).exec();
+      const websiteExists = await Website.findOne({ url: req.body.url }).exec();
       if (websiteExists) {
         // Website exists, redirect to its detail page.
         res.redirect(websiteExists.url);
