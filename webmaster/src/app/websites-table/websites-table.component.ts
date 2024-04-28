@@ -29,8 +29,6 @@ export class WebsitesTableComponent {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-
-    
   }
 
 
