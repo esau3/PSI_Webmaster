@@ -8,8 +8,8 @@ import { Page, Website } from '../types';
 @Injectable({ providedIn: 'root' })
 export class WebsiteService {
 
-  private websiteUrl = "http://10.101.151.25:3092/website";
-  private websitesUrl = "http://10.101.151.25:3092/websites";
+  private websiteUrl = "http://10.101.151.25:3092";
+  private websitesUrl = "http://10.101.151.25:3092";
   constructor(
     private http: HttpClient) { }
 
@@ -58,18 +58,8 @@ export class WebsiteService {
 
 
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
-      console.error(
-        'Backend returned code ${error.status}');
-    }
-    // Return an observable with a user-facing error message.
-    return throwError(
-      'Something bad happened; please try again later.');
+  private handleError(error: any) {
+    console.error('Erro:', error);
+    return throwError('Erro ao enviar o website: ' + error.message);
   }
 }
