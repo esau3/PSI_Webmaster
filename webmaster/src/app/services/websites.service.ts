@@ -49,8 +49,7 @@ export class WebsiteService {
   }
 
   getPage(_id: string):Observable<Page>{
-    const url=_id.toString();
-    return this.http.get<Page>(this.page + url)
+    return this.http.get<Page>(this.page + '/' + _id)
    .pipe(
      catchError(this.handleError)
    );
