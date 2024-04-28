@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { WEBSITES } from '../mock-websites';
+//import { WEBSITES } from '../mock-websites';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Website } from '../types';
+import { WebsiteService } from '../services/websites.service';
 
 
 @Component({
@@ -16,14 +17,16 @@ export class WebsitesTableComponent {
   
   displayedColumns: string[] = ['id', 'name', 'URL', 'register_date', 'eval_date', 'monitor_state', 'actions'];
   dataSource: MatTableDataSource<Website>;
+  websitesArray: Website[] | undefined;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  constructor() {
-    this.dataSource = new MatTableDataSource(WEBSITES);
+  constructor(private websiteService: WebsiteService) {
+    this.websiteService.getWebsites().subscribe(website => this.websitesArray = website);
+    this.dataSource = new MatTableDataSource(this.websitesArray);
 
     
   }

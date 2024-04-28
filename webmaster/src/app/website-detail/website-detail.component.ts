@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
 import { Website } from '../types';
+import { WebsiteService } from '../services/websites.service';
 //import { WebsiteService } from '../services/websites.service'
 import { ActivatedRoute } from '@angular/router';
-import { WEBSITES } from '../mock-websites';
+//import { WEBSITES } from '../mock-websites';
 
 @Component({
   selector: 'app-website-detail',
@@ -16,7 +17,7 @@ export class WebsiteDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    //private websiteService: WebsiteService,
+    private websiteService: WebsiteService,
     private location: Location
   ) {}
 
@@ -26,9 +27,9 @@ export class WebsiteDetailComponent implements OnInit {
 
   getWebsite(): void {
     const _id = Number(this.route.snapshot.paramMap.get('_id'));
-    this.website = WEBSITES[_id - 1];
-    //this.websiteService.getWebsite(_id)
-      //.subscribe((website: any) => this.website = website);
+    //this.website = WEBSITES[_id - 1];
+    this.websiteService.getWebsite(_id)
+      .subscribe((website: any) => this.website = website);
   }
 
   goBack(): void {

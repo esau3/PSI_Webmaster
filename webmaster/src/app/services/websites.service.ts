@@ -3,18 +3,17 @@ import { Injectable } from '@angular/core';
 import { Observable, of,catchError,throwError } from 'rxjs';
 import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { Page, Website } from '../types';
-import { WEBSITES } from '../mock-websites';
+//import { WEBSITES } from '../mock-websites';
 
 @Injectable({ providedIn: 'root' })
 export class WebsiteService {
-
 
   private websitesUrl = '/websites';
   constructor(
     private http: HttpClient) { }
 
     /** GET websitees from the server */
-  getWebsitees(): Observable<Website[]> {
+  getWebsites(): Observable<Website[]> {
     return this.http.get<Website[]>(this.websitesUrl).pipe(
       catchError(this.handleError)
     );
@@ -22,18 +21,18 @@ export class WebsiteService {
 
     // URL to web api
 
-  getWebsite(id: number): Observable<Website> {
+  getWebsite(_id: number): Observable<Website> {
     // For now, assume that a website with the specified `id` always exists.
     // Error handling will be added in the next step of the tutorial.
-    const url=this.websitesUrl+"/"+id.toString();
+    const url=this.websitesUrl+"/"+_id.toString();
      return this.http.get<Website>(this.websitesUrl)
     .pipe(
       catchError(this.handleError)
     );
   }
 
-  deleteWebsite(id:number):Observable<Website>{
-    const url=this.websitesUrl+"/"+id.toString();
+  deleteWebsite(_id:number):Observable<Website>{
+    const url=this.websitesUrl+"/"+_id.toString();
     return this.http.delete<Website>(this.websitesUrl)
    .pipe(
      catchError(this.handleError)
@@ -41,15 +40,14 @@ export class WebsiteService {
   }
 
   postWebsite(website:Website):Observable<Website>{
-    const url=this.websitesUrl;
-    return this.http.delete<Website>(this.websitesUrl,website)
+    return this.http.post<Website>(this.websitesUrl,website)
    .pipe(
      catchError(this.handleError)
    );
   }
 
-  getPage(id:number):Observable<Page>{
-    const url="page/"+id.toString();
+  getPage(_id:number):Observable<Page>{
+    const url="page/"+_id.toString();
     return this.http.delete<Page>(this.websitesUrl)
    .pipe(
      catchError(this.handleError)
