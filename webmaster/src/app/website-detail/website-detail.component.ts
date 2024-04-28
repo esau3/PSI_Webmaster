@@ -26,8 +26,6 @@ export class WebsiteDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getWebsite();
     this.getPages();
-    console.log(this.website);
-    console.log(this.website?.pages);
   }
 
   getWebsite(): void {
@@ -35,7 +33,6 @@ export class WebsiteDetailComponent implements OnInit {
     if (id) {
       this.websiteService.getWebsite(id)
         .subscribe((website: Website) => this.website = website);
-    } else {
     }
   }
 
@@ -53,9 +50,6 @@ export class WebsiteDetailComponent implements OnInit {
     }
   }
   
-  
-  
-
   goBack(): void {
     this.location.back();
   }
