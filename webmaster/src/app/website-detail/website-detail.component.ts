@@ -28,7 +28,6 @@ export class WebsiteDetailComponent implements OnInit {
 
   getWebsite(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
     if (id) {
       this.websiteService.getWebsite(id)
         .subscribe((website: Website) => this.website = website);

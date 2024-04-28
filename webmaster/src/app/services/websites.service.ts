@@ -25,7 +25,7 @@ export class WebsiteService {
   getWebsite(_id: string): Observable<Website> {
     // For now, assume that a website with the specified `id` always exists.
     // Error handling will be added in the next step of the tutorial.
-     return this.http.get<Website>(this.websites + _id)
+     return this.http.get<Website>(this.websites + '/' + _id)
     .pipe(
       catchError(this.handleError)
     );
