@@ -16,8 +16,7 @@ import { WebsiteService } from '../services/websites.service';
 export class WebsitesTableComponent {
   
   displayedColumns: string[] = ['id', 'name', 'URL', 'register_date', 'eval_date', 'monitor_state', 'actions'];
-  dataSource: MatTableDataSource<Website>;
-  websitesArray: Website[] | undefined;
+  dataSource!: MatTableDataSource<Website>;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
