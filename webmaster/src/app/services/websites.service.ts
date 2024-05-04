@@ -39,14 +39,14 @@ export class WebsiteService {
     );
   }
 
-  deleteWebsite(_id:number):Observable<Website>{
+  deleteWebsite(_id:string):Observable<Website>{
     return this.http.delete<Website>(this.website+ '/delete/' + _id)
    .pipe(
      catchError(this.handleError)
    );
   }
 
-  deletePage(_id:number):Observable<Page>{
+  deletePage(_id:string):Observable<Page>{
     return this.http.delete<Page>(this.page + '/delete/' + _id)
    .pipe(
      catchError(this.handleError)

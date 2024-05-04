@@ -3,7 +3,8 @@ import { Location } from '@angular/common';
 
 import { Website, Page } from '../types';
 import { WebsiteService } from '../services/websites.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-website-detail',
@@ -20,7 +21,8 @@ export class WebsiteDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private websiteService: WebsiteService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {}
   
   ngOnInit(): void {
@@ -48,6 +50,24 @@ export class WebsiteDetailComponent implements OnInit {
           });
       }
     }
+  }
+
+  startAvaliation(id:string ):void{
+    this.websiteService.deletePage(id);
+    this.reloadPage();
+    console.log("avaliation");
+  }
+
+  deletePage(id:string ):void{
+    this.websiteService.startAvaliation(id);
+    console.log("delete");
+    this.reloadPage();
+  }
+
+  reloadPage() :void{
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([this.router.url]);
+    });
   }
   
   goBack(): void {
