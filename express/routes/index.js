@@ -33,6 +33,6 @@ router.get("/page/:id", page_controller.page_detail);
 router.get("/website/:id/eval", website_controller.website_eval);
 
 // PUT request to update a Page.
-router.put("/websites/:id/pages/:pageId", websiteController.page_update);
+router.put("/websites/:id/pages/:pageId", website_controller.page_update);
 
 module.exports = router;
