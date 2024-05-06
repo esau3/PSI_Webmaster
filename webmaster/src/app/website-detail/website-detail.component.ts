@@ -71,12 +71,14 @@ export class WebsiteDetailComponent implements OnInit {
     const id = "662e6ecb265ac7576ab8170c"//this.route.snapshot.paramMap.get('id');
 
     if (id) {
-      this.websiteService.putPage(page, id)
-      .subscribe(
-        () => {
-          this.router.navigate(['/website-detail/' + id]);
+      this.websiteService.putPage(page, id).subscribe({
+        next: (res) => {
+          console.log("Page updated successfully:", res);
+        },
+        error: (err) => {
+          console.error("Error updating page:", err);
         }
-      );
+      });
     }
   }
 

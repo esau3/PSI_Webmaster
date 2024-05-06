@@ -77,7 +77,7 @@ export class WebsiteService {
   //pagina a adicionar e id do website para colocar a pagina
   putPage(page: Page, id: string) {
     //return this.http.put<Page>(this.website + '/' + id + '/page/' + page._id , page)
-    return this.http.put<Page>(this.page + '/' + page._id , page)
+    return this.http.put<Page>(this.page + '/' + id , page)
     .pipe(
       catchError(this.handleError)
     );
