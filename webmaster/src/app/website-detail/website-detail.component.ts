@@ -38,6 +38,14 @@ export class WebsiteDetailComponent implements OnInit {
     }
   }
 
+  deleteWebsite(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.websiteService.deleteWebsite(id)
+        .subscribe((website: Website) => this.website = website);
+    }
+  }
+
   getPages(): void {
     if (this.website && this.website.pages) {
       const pages = this.website.pages;
