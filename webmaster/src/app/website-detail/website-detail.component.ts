@@ -83,13 +83,13 @@ export class WebsiteDetailComponent implements OnInit {
       this.websiteService.putPage(page, id).subscribe({
         next: (res) => {
           console.log("Page updated successfully:", res);
-          location.reload();
         },
         error: (err) => {
           console.error("Error updating page:", err);
         }
       });
     }
+    location.reload();
   }
 
   startEvaluation(id:string):void{
