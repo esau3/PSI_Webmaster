@@ -18,9 +18,9 @@
       <div class="info-item">{{ page.page_URL }}</div>
       <div class="info-item">Last evaluation date: {{ page.eval_date | date:'short' }}</div>
       <div class="info-item">Monitoring state: <span class="monitor-state">{{ page.monitor_state }}</span></div>
-      <button mat-icon-button (click)="deletePage({{page._id}})">
+      <button mat-icon-button (click)="deletePage(page._id)">
         <span class="material-symbols-outlined">Delete Page</span>
-      </button><button mat-icon-button (click)="startAvaliation({{page._id}})" class="back-button">
+      </button><button mat-icon-button (click)="startEvaluation(page._id)" class="back-button">
         <span class="material-symbols-outlined">Start Eval</span>
       </button>
     </div>

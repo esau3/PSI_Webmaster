@@ -61,8 +61,8 @@ export class WebsiteService {
         catchError(this.handleError)
       );
   }
-  startAvaliation(_id: string):Observable<any>{
-    return this.http.get<any>(this.page + '/avaliation/' + _id)
+  startEvaluation(_id: string):Observable<any>{
+    return this.http.get<any>(this.page + '/evaluation/' + _id)
    .pipe(
      catchError(this.handleError)
    );
