@@ -89,7 +89,8 @@ export class WebsiteDetailComponent implements OnInit {
         }
       });
     }
-    this.ngOnInit();
+    //isto e bem perigoso, causa duplicacoes dentro do subscribe
+    location.reload();
   }
 
   startEvaluation(id:string):void{
