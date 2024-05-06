@@ -83,7 +83,7 @@ exports.website_delete = asyncHandler(async (req, res, next) => {
 
 
 // Handle Update Pages on PUT.
-exports.page_update = asyncHandler(async (req, res, next) => {
+exports.page_update = async (req, res, next) => {
   try {
     // Encontrar o website pelo ID
     const website = await Website.findById(req.params.id).exec();
@@ -104,7 +104,7 @@ exports.page_update = asyncHandler(async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
+};
 
 
 
