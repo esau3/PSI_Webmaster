@@ -85,7 +85,6 @@ export class WebsiteService {
 
 
   private handleError(error: any) {
-    console.error('Erro:', error);
     return throwError('Erro ao enviar o website: ' + error.message);
   }
 }

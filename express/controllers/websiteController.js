@@ -93,6 +93,12 @@ exports.page_update = asyncHandler(async (req, res, next) => {
     return next(err);
   }
 
+  const existingPage = await Page.findOne({ page_URL: req.body.url }).exec();
+  if (existingPage) {
+    // A página já existe, então não a adicionamos novamente
+    return res.status(409).send("Page already exists");
+  }
+
   const page = new Page({
     page_URL: req.body.url,
     eval_date: req.body.eval_date,
