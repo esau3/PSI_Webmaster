@@ -46,6 +46,7 @@ export class WebsitesTableComponent {
     this.websiteService.deleteWebsite(id)
       .subscribe(
         () => {
+          location.reload();
           this.router.navigate(['/websites-table']);
         }
       );

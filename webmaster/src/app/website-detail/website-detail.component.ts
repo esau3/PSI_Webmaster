@@ -64,20 +64,14 @@ export class WebsiteDetailComponent implements OnInit {
   startEvaluation(id:string):void{
     this.websiteService.startEvaluation(id);
     console.log("evaluation");
-    this.reloadPage();
+    location.reload();
   }
 
   deletePage(id:string ):void{
     this.websiteService.deletePage(id).subscribe(
       () => {
-          this.reloadPage();
+        location.reload();
       });
-  }
-
-  reloadPage() :void{
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate([this.router.url]);
-    });
   }
   
   goBack(): void {
