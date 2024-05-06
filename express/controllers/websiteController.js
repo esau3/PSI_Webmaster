@@ -71,11 +71,12 @@ exports.website_create_post = [
 exports.website_delete = asyncHandler(async (req, res, next) => {
   // Get details of website and all their pages (in parallel)                                   //TODO pages tambem??
   const website = await Website.findById(req.params._id).exec();
+  console.log(req.params._id);
 
   if (website === null) {
-    await Website.findByIdAndDelete(req.params._id);
     res.redirect("/websites");
   } else {
+    await Website.findByIdAndDelete(req.params._id);
     res.render("website_delete", {
       title: "Delete Website",
       website: website,
