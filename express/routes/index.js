@@ -29,5 +29,8 @@ router.get("/pages", page_controller.page_list);
 // GET request for one Page.
 router.get("/page/:id", page_controller.page_detail);
 
+// GET request for evaluation of a Website and its Pages
+router.get("/website/:id/eval", website_controller.website_eval);
+
 
 module.exports = router;

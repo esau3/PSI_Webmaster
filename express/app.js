@@ -1,6 +1,22 @@
 var createError = require("http-errors");
 var express = require("express");
 
+const { QualWeb } = require('@qualweb/core');
+
+const plugins = {
+      adBlock: true,
+      stealth: true
+    };
+
+const clusterOptions = {
+      timeout: 60 * 1000,
+    };
+
+const launchOptions = {
+    };
+
+const qualweb = new QualWeb(plugins);
+
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
@@ -10,7 +26,10 @@ const mongoDB =
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
+  await qualweb.start(clusterOptions, launchOptions);
 }
+
+
 
 var path = require("path");
 var cookieParser = require("cookie-parser");

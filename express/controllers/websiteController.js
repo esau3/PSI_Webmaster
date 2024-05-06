@@ -1,5 +1,5 @@
 const Website = require("../models/website");
-//const Page = require("../models/page");
+const Page = require("../models/page");
 const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
@@ -69,8 +69,7 @@ exports.website_create_post = [
 
 // Handle Website deletion on DELETE.
 exports.website_delete = asyncHandler(async (req, res, next) => {
-    // Get details of website and their pages (in parallel)
-    const website = await Website.findById(req.params.id).exec();
+  const website = await Website.findById(req.params.id).exec();
   res.send(JSON.stringify(website));
     if (website === null) {
       // No results.
@@ -78,6 +77,29 @@ exports.website_delete = asyncHandler(async (req, res, next) => {
       err.status = 404;
       return next(err);
     }
+    await Page.deleteMany({ _id: { $in: website.pages } }).exec();
     await Website.findByIdAndDelete(req.params.id).exec();
-    
   });
+
+// Handle Website evaluation on GET.
+exports.website_eval = asyncHandler(async (req, res, next) => {
+  // Get details of website and their pages (in parallel)
+  const website = await Website.findById(req.params.id).exec();
+  if (website === null) {
+    // No results.
+    const err = new Error("Website not found");
+    err.status = 404;
+    return next(err);
+  }
+
+  // especificar as opções, incluindo o url a avaliar
+  const qualwebOptions = {
+    url: req.params.url // substituir pelo url a avaliar
+  };
+
+  // executar a avaliação, recebendo o relatório
+  const report = await qualweb.evaluate(qualwebOptions);
+
+  // parar o avaliador
+  await qualweb.stop();
+});
