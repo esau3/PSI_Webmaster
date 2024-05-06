@@ -40,4 +40,12 @@ export class WebsitesTableComponent {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  deleteWebsite(id: string): void {
+    if (id) {
+      this.websiteService.deleteWebsite(id);
+    }
+    else console.log("Erro, id nao encontrado");
+  }
+
 }
