@@ -22,10 +22,10 @@ router.post("/website", website_controller.website_create_post);
 
 // DELETE request to delete Website.
 router.delete("/website/:id", website_controller.website_delete);
-/*
+
 // GET request for list of all Page items.
 router.get("/pages", page_controller.page_list);
-*/
+
 // GET request for one Page.
 router.get("/page/:id", page_controller.page_detail);
 
