@@ -88,7 +88,7 @@ export class WebsiteComponent {
         page: pageValue
       };
       this.websiteService.postWebsite(websiteData).subscribe(response => {
-            console.log( response);
+            //console.log( response);
           });
   }
   
@@ -97,7 +97,7 @@ export class WebsiteComponent {
 
   submitForm() {
     if (this.form.valid) {
-      console.log(this.form.value);
+      //console.log(this.form.value);
     }
   }
 

@@ -89,7 +89,7 @@ export class WebsiteDetailComponent implements OnInit {
         }
       });
     }
-    location.reload();
+    this.ngOnInit();
   }
 
   startEvaluation(id:string):void{
