@@ -39,7 +39,12 @@ export class WebsiteDetailComponent implements OnInit {
   }
 
   deleteWebsite(id: string): void {
-    this.websiteService.deleteWebsite(id);
+    this.websiteService.deleteWebsite(id)
+      .subscribe(
+        () => {
+          this.router.navigate(['/websites-table']);
+        }
+      );
     }
 
   getPages(): void {
