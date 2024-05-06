@@ -86,11 +86,6 @@ exports.page_update = asyncHandler(async (req, res, next) => {
   
     const website = await Website.findById(req.params.id).exec();
 
-    if (website === null) {
-      const err = new Error("Website not found");
-      err.status = 404;
-      return next(err);
-    }
 
     website.pages.push(req.body).exec(); 
 
