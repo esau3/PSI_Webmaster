@@ -13,18 +13,19 @@ exports.page_list = async (req, res, next) => {
 };
 
 // Display detail page for a specific Page.
-exports.page_detail = asyncHandler(async (req, res, next) => {
-  // Get details of page and the associated website (in parallel)
-  const page = await Page.findById(req.params._id).exec();
-  if (page === null) {
-    // No results.
-    const err = new Error("Page not found");
-    err.status = 404;
-    return next(err);
+exports.page_detail = async (req, res, next) => {
+  try {
+    const page = await Page.findById(req.params.id).exec();
+    if (!page) {
+      const err = new Error("Page not found");
+      err.status = 404;
+      throw err;
+    }
+    res.send(JSON.stringify(page));
+  } catch (error) {
+    next(error);
   }
-
-  res.send(JSON.stringify(page));
-});
+};
 
 // Handle Page deletion on DELETE.
 exports.page_delete = asyncHandler(async (req, res, next) => {
