@@ -70,7 +70,8 @@ exports.website_create_post = [
 // Handle Website deletion on DELETE.
 exports.website_delete = asyncHandler(async (req, res, next) => {
   // Get the website by its ID and delete it.
-  await Website.findByIdAndDelete(req.params.id).exec((err, website) => {
+  const website = await Website.findByIdAndDelete(req.params.id).exec(() => {
+    res.send(website);
     if (err) {
       // If there's an error, pass it to the next middleware.
       return next(err);
