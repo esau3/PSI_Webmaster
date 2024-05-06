@@ -53,15 +53,16 @@ export class WebsiteDetailComponent implements OnInit {
   }
 
   startEvaluation(id:string):void{
-    this.websiteService.deletePage(id);
+    this.websiteService.startEvaluation(id);
+    console.log("evaluation");
     this.reloadPage();
-    console.log("avaliation");
   }
 
   deletePage(id:string ):void{
-    this.websiteService.startEvaluation(id);
-    console.log("delete");
-    this.reloadPage();
+    this.websiteService.deletePage(id).subscribe(
+      () => {
+          this.reloadPage();
+      });
   }
 
   reloadPage() :void{

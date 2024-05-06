@@ -40,14 +40,14 @@ export class WebsiteService {
   }
 
   deleteWebsite(_id:string):Observable<Website>{
-    return this.http.delete<Website>(this.website+ '/delete/' + _id)
+    return this.http.delete<Website>(this.website + '/' + _id)
    .pipe(
      catchError(this.handleError)
    );
   }
 
   deletePage(_id:string):Observable<Page>{
-    return this.http.delete<Page>(this.page + '/delete/' + _id)
+    return this.http.delete<Page>(this.page + '/' + _id)
    .pipe(
      catchError(this.handleError)
    );
@@ -62,7 +62,7 @@ export class WebsiteService {
       );
   }
   startEvaluation(_id: string):Observable<any>{
-    return this.http.get<any>(this.page + '/evaluation/' + _id)
+    return this.http.get<any>(this.page + '/' + _id)
    .pipe(
      catchError(this.handleError)
    );
