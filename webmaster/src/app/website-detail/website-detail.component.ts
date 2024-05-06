@@ -74,6 +74,7 @@ export class WebsiteDetailComponent implements OnInit {
       this.websiteService.putPage(page, id).subscribe({
         next: (res) => {
           console.log("Page updated successfully:", res);
+          location.reload();
         },
         error: (err) => {
           console.error("Error updating page:", err);
@@ -89,10 +90,15 @@ export class WebsiteDetailComponent implements OnInit {
   }
 
   deletePage(id:string ):void{
-    this.websiteService.deletePage(id).subscribe(
-      () => {
+    this.websiteService.deletePage(id).subscribe({
+      next: (res) => {
+        console.log("Page deleted successfully:", res);
         location.reload();
-      });
+      },
+      error: (err) => {
+        console.error("Error deleting page:", err);
+      }
+    });
   }
   
   goBack(): void {

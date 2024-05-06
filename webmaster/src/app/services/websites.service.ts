@@ -46,8 +46,8 @@ export class WebsiteService {
    );
   }
 
-  deletePage(_id:string):Observable<Page>{
-    return this.http.delete<Page>(this.page + '/' + _id)
+  deletePage(id:string):Observable<Page>{
+    return this.http.delete<Page>(this.page + '/' + id)
    .pipe(
      catchError(this.handleError)
    );

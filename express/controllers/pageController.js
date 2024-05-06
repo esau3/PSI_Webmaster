@@ -29,8 +29,9 @@ exports.page_detail = async (req, res, next) => {
 
 // Handle Page deletion on DELETE.
 exports.page_delete = asyncHandler(async (req, res, next) => {
+
   const page = await Page.findById(req.params.id).exec();
-  res.send(JSON.stringify(page));
+
   if (page === null) {
     // No results.
     const err = new Error("Page not found");
@@ -38,7 +39,7 @@ exports.page_delete = asyncHandler(async (req, res, next) => {
     return next(err);
   }
   await Page.findByIdAndDelete(req.params.id).exec();
-  // Update the Website that contains the page
+
   await Website.findOneAndUpdate(
     { pages: req.params.id },
     { $pull: { pages: req.params.id } },
@@ -51,7 +52,7 @@ exports.page_delete = asyncHandler(async (req, res, next) => {
 exports.page_update = asyncHandler(async (req, res, next) => {
   
   const website = await Website.findById(req.params.id).exec();
-  console.log("Website encontrado:", website);
+  
   if (website === null) {
     const err = new Error("Website not found");
     err.status = 404;
