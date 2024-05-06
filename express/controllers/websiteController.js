@@ -109,7 +109,6 @@ exports.page_update = asyncHandler(async (req, res, next) => {
 
   await website.save();
   await page.save();
-  console.log(page);
   res.redirect(page.url);
 });
 
