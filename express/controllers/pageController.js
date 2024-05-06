@@ -3,10 +3,14 @@ const Website = require("../models/website");
 const asyncHandler = require("express-async-handler");
 
 // Display list of all Pages.
-/*exports.page_list = asyncHandler(async (req, res, next) => {
-  const allPages = await Page.find().sort({ name: 1 }).exec();
-  res.send(JSON.stringify(allPages));
-});*/
+exports.page_list = async (req, res, next) => {
+  try {
+    const allPages = await Page.find().exec();
+    res.send(JSON.stringify(allPages));
+  } catch (error) {
+    next(error);
+  }
+};
 
 // Display detail page for a specific Page.
 exports.page_detail = asyncHandler(async (req, res, next) => {
