@@ -38,10 +38,14 @@ export class WebsiteDetailComponent implements OnInit {
     }
   }
 
-  deleteWebsite(id :string): void {
-      this.websiteService.deleteWebsite(id)
-        .subscribe((website: Website) => this.website = website);
-  }
+  deleteWebsite(id: string): void {
+    this.websiteService.deleteWebsite(id)
+      .subscribe(
+        () => {
+          this.router.navigate(['/websites']);
+        }
+      );
+    }
 
   getPages(): void {
     if (this.website && this.website.pages) {
