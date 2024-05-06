@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Website } from '../types';
 import { WebsiteService } from '../services/websites.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class WebsitesTableComponent {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  constructor(private websiteService: WebsiteService) {
+  constructor(private websiteService: WebsiteService, private router: Router) {
     this.websiteService.getWebsites().subscribe(websites => {
       this.dataSource = new MatTableDataSource(websites);
       this.dataSource.paginator = this.paginator;
@@ -42,10 +43,12 @@ export class WebsitesTableComponent {
   }
 
   deleteWebsite(id: string): void {
-    if (id) {
-      this.websiteService.deleteWebsite(id);
+    this.websiteService.deleteWebsite(id)
+      .subscribe(
+        () => {
+          this.router.navigate(['/websites-table']);
+        }
+      );
     }
-    else console.log("Erro, id nao encontrado");
-  }
 
 }

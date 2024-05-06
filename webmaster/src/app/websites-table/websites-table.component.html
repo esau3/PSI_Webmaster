@@ -47,8 +47,8 @@
       <button mat-icon-button routerLink="/website-detail/{{website._id}}">
         <span class="material-symbols-outlined" id="visibility">visibility</span>
       </button>
-      <button mat-icon-button>
-        <span (click)="deleteWebsite(website._id)" class="material-symbols-outlined" id="delete">delete</span>
+      <button mat-icon-button (click)="deleteWebsite(website._id)">
+        <span  class="material-symbols-outlined" id="delete">delete</span>
       </button>
     </td>
   </ng-container>
