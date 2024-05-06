@@ -81,25 +81,6 @@ exports.website_delete = asyncHandler(async (req, res, next) => {
   });
 
 
-// Handle Update Pages on PUT.
-exports.page_update = asyncHandler(async (req, res, next) => {
-  
-    const website = await Website.findById(req.params.id).exec();
-    console.log("Website encontrado:", website);
-    if (website === null) {
-      const err = new Error("Website not found");
-      err.status = 404;
-      return next(err);
-    }
-
-    website.pages.push(req.body).exec(); 
-
-    await website.save().exec();
-});
-
-
-
-
 // Handle Website evaluation on GET.
 exports.website_eval = asyncHandler(async (req, res, next) => {
   // Get details of website and their pages (in parallel)

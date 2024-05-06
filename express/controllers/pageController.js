@@ -52,14 +52,24 @@ exports.page_delete = asyncHandler(async (req, res, next) => {
 exports.page_update = asyncHandler(async (req, res, next) => {
   
   const website = await Website.findById(req.params.id).exec();
-  
+
   if (website === null) {
     const err = new Error("Website not found");
     err.status = 404;
     return next(err);
   }
 
-  website.pages.push(req.body); 
+  const page = new page({
+    page_URL: req.body.url,
+    eval_date: req.body.eval_date,
+    monitor_state: req.body.monitor_state
+  });
+
+  console.log("Pagina criada", page);
+  website.pages.push(page); 
+
+  //necessario?
+  await page.save();
 
   await website.save();
 });

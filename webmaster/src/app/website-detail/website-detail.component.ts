@@ -70,14 +70,14 @@ export class WebsiteDetailComponent implements OnInit {
   }
 
   updatePages() {
-    const page: Page = {  _id: "662e6ecb265ac7576ab816d8",
-                          page_URL: 'https://TESTE.com',
-                          eval_date: new Date(),
-                          monitor_state: "TESTE" 
-                        }
-           
-    const id = "662e6ecb265ac7576ab8170c"//this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
+    const urlValue: string = this.form.get('pageUrl')?.value;
 
+    const page = {
+      url: urlValue,
+      eval_date: new Date(0),
+      monitor_state: "Por avaliar"
+    };
     if (id) {
       this.websiteService.putPage(page, id).subscribe({
         next: (res) => {
