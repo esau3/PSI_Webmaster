@@ -61,6 +61,24 @@ export class WebsiteDetailComponent implements OnInit {
     }
   }
 
+  updatePages() {
+    const page: Page = {  _id: "5555",
+                          page_URL: 'https://TESTE.com',
+                          eval_date: new Date(),
+                          monitor_state: "TESTE" 
+                        }
+           
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (id) {
+      this.websiteService.putPage(page, id).subscribe({
+        next:(res) => {
+          alert("Pages updated successfully");
+        }
+      });
+    }
+  }
+
   startEvaluation(id:string):void{
     this.websiteService.startEvaluation(id);
     console.log("evaluation");

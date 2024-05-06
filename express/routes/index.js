@@ -32,5 +32,7 @@ router.get("/page/:id", page_controller.page_detail);
 // GET request for evaluation of a Website and its Pages
 router.get("/website/:id/eval", website_controller.website_eval);
 
+// PUT request to update a Page.
+router.put("/websites/:id/pages/:pageId", websiteController.page_update);
 
 module.exports = router;
