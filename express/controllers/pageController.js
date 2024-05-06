@@ -52,7 +52,7 @@ exports.page_delete = asyncHandler(async (req, res, next) => {
 exports.page_update = asyncHandler(async (req, res, next) => {
   
   const website = await Website.findById(req.params.id).exec();
-
+  console.log("site:", website);
   if (website === null) {
     const err = new Error("Website not found");
     err.status = 404;
