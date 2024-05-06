@@ -86,7 +86,6 @@ exports.website_delete = asyncHandler(async (req, res, next) => {
 exports.page_update = asyncHandler(async (req, res, next) => {
   
   const website = await Website.findById(req.params.id).exec();
-  console.log("site:", website);
   
   if (website === null) {
     const err = new Error("Website not found");
@@ -94,7 +93,7 @@ exports.page_update = asyncHandler(async (req, res, next) => {
     return next(err);
   }
 
-  const page = new page({
+  const page = new Page({
     page_URL: req.body.url,
     eval_date: req.body.eval_date,
     monitor_state: req.body.monitor_state
