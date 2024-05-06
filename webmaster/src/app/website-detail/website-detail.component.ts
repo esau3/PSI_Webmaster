@@ -29,7 +29,7 @@ export class WebsiteDetailComponent implements OnInit {
 
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.form = this.fb.group({
-      pageURL: ['', [Validators.required, Validators.pattern(reg)]]
+      pageUrl: ['', [Validators.required, Validators.pattern(reg)]]
     });
   }
   
