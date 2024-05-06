@@ -33,6 +33,9 @@ router.get("/page/:id", page_controller.page_detail);
 router.get("/website/:id/eval", website_controller.website_eval);
 
 // PUT request to update a Page.
-router.put("/page/:id", page_controller.page_update);
+//router.put("/page/:id", page_controller.page_update);
+
+// PUT request to update a Page.
+router.put("/website/:id", website_controller.page_update);
 
 module.exports = router;
