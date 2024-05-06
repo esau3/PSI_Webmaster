@@ -104,8 +104,6 @@ exports.page_update = asyncHandler(async (req, res, next) => {
   
 
   await website.save();
-//necessario?
-  await page.save();
   
   res.redirect(page.url);
 });
