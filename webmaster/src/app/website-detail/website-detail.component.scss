@@ -74,3 +74,24 @@
       'GRAD' 0,
       'opsz' 24;
   }
+
+  .parentForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+.forms {
+    width: 26%;
+}
+
+#submitButton{
+    //nao consigo alinhar o botao no meio do form!!!
+}
+
+#addButton {
+    padding: 50px;
+    width: 15%;
+}

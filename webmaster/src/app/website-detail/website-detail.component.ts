@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { Website, Page } from '../types';
 import { WebsiteService } from '../services/websites.service';
 import { ActivatedRoute,Router } from '@angular/router';
+import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -16,14 +17,21 @@ export class WebsiteDetailComponent implements OnInit {
   website: Website | undefined;
   pages: Page[] | undefined;
   pageData: Page | undefined;
-
+  form: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private websiteService: WebsiteService,
     private location: Location,
-    private router: Router
-  ) {}
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+    this.form = this.fb.group({
+      url: ['', [Validators.required, Validators.pattern(reg)]]
+    });
+  }
   
   ngOnInit(): void {
     this.getWebsite();
@@ -103,5 +111,11 @@ export class WebsiteDetailComponent implements OnInit {
   
   goBack(): void {
     this.location.back();
+  }
+
+  submitForm() {
+    if (this.form.valid) {
+      console.log(this.form.value);
+    }
   }
 }
