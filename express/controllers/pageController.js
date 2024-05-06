@@ -47,29 +47,3 @@ exports.page_delete = asyncHandler(async (req, res, next) => {
   ).exec();
 });
 
-
-// Handle Update Pages on PUT.
-exports.page_update = asyncHandler(async (req, res, next) => {
-  
-  const website = await Website.findById(req.params.id).exec();
-  console.log("site:", website);
-  if (website === null) {
-    const err = new Error("Website not found");
-    err.status = 404;
-    return next(err);
-  }
-
-  const page = new page({
-    page_URL: req.body.url,
-    eval_date: req.body.eval_date,
-    monitor_state: req.body.monitor_state
-  });
-
-  console.log("Pagina criada", page);
-  website.pages.push(page); 
-
-  //necessario?
-  await page.save();
-
-  await website.save();
-});

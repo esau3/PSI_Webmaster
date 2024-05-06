@@ -99,14 +99,14 @@ exports.page_update = asyncHandler(async (req, res, next) => {
     monitor_state: req.body.monitor_state
   });
 
-  console.log("Pagina criada", page);
   website.pages.push(page); 
 
-  //necessario?
-  await page.save();
+  
 
   await website.save();
-
+//necessario?
+  await page.save();
+  
   res.redirect(page.url);
 });
 
