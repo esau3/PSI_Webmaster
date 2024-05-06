@@ -71,15 +71,15 @@ exports.website_create_post = [
 exports.website_delete = asyncHandler(async (req, res, next) => {
   // Get details of website and all their pages (in parallel)
   console.log(req.params.id);                                   //TODO pages tambem??
-  const website = await Website.findById(req.params.id).exec();
-  
+  //const website = await Website.findById(req.params.id).exec();
+  await Website.findByIdAndDelete(req.params.id);
 
   if (website === null) {
     const err = new Error("Website not found");
     err.status = 404;
     return next(err);
   } else {
-    await Website.findByIdAndDelete(req.params.id);
+    
     res.render("website_delete", {
       title: "Delete Website",
       website: website,
