@@ -54,8 +54,6 @@ export class WebsiteService {
   }
 
   postWebsite(websiteData: any): Observable<any> {
-
-    console.log(websiteData);
     return this.http.post(this.website, websiteData)
       .pipe(
         catchError(this.handleError)

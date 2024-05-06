@@ -87,7 +87,6 @@ export class WebsiteComponent {
         url: urlValue,
         page: pageValue
       };
-      console.log(websiteData);
       this.websiteService.postWebsite(websiteData).subscribe(response => {
             console.log( response);
           });
