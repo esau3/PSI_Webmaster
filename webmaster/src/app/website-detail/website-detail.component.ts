@@ -74,7 +74,7 @@ export class WebsiteDetailComponent implements OnInit {
       this.websiteService.putPage(page, id)
       .subscribe(
         () => {
-          this.router.navigate(['/websites-detail/' + id]);
+          this.router.navigate(['/website-detail/' + id]);
         }
       );
     }
