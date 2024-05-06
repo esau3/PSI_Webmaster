@@ -69,20 +69,15 @@ exports.website_create_post = [
 
 // Handle Website deletion on DELETE.
 exports.website_delete = asyncHandler(async (req, res, next) => {
-  // Get the website by its ID and delete it.
-  const website = await Website.findByIdAndDelete(req.params.id).exec(() => {
-    res.send(website);
-    if (err) {
-      // If there's an error, pass it to the next middleware.
-      return next(err);
-    }
-    if (!website) {
-      // If website doesn't exist, return a 404 error.
+    // Get details of website and their pages (in parallel)
+    const website = await Website.findById(req.params.id).exec();
+
+    if (website === null) {
+      // No results.
       const err = new Error("Website not found");
       err.status = 404;
       return next(err);
     }
-    // Website deleted successfully.
-    res.send("Website deleted successfully");
+    await Website.findByIdAndDelete(req.params.id).exec();
+    res.send(JSON.stringify(website));
   });
-});
