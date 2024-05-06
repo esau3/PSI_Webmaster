@@ -71,7 +71,7 @@ exports.website_create_post = [
 exports.website_delete = asyncHandler(async (req, res, next) => {
     // Get details of website and their pages (in parallel)
     const website = await Website.findById(req.params.id).exec();
-
+  res.send(JSON.stringify(website));
     if (website === null) {
       // No results.
       const err = new Error("Website not found");
@@ -79,5 +79,5 @@ exports.website_delete = asyncHandler(async (req, res, next) => {
       return next(err);
     }
     await Website.findByIdAndDelete(req.params.id).exec();
-    res.send(JSON.stringify(website));
+    
   });
