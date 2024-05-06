@@ -70,8 +70,8 @@ exports.website_create_post = [
 // Handle Website delete on DELETE.
 exports.website_delete = asyncHandler(async (req, res, next) => {
   // Get details of website and all their pages (in parallel)
-  console.log(req.params._id);                                   //TODO pages tambem??
-  const website = await Website.findById(req.params._id).exec();
+  console.log(req.params.id);                                   //TODO pages tambem??
+  const website = await Website.findById(req.params.id).exec();
   
 
   if (website === null) {
@@ -79,7 +79,7 @@ exports.website_delete = asyncHandler(async (req, res, next) => {
     err.status = 404;
     return next(err);
   } else {
-    await Website.findByIdAndDelete(req.params._id);
+    await Website.findByIdAndDelete(req.params.id);
     res.render("website_delete", {
       title: "Delete Website",
       website: website,
