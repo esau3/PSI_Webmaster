@@ -45,9 +45,10 @@ export class WebsiteDetailComponent implements OnInit {
   getWebsite(): void {
     const id = this.route.snapshot.paramMap.get('id');
     console.log(id);
-    if (id) {
+    if (id !== null) {
       this.websiteService.getWebsite(id)
         .subscribe((website: Website) => this.website = website);
+        console.log("dentro");
     }
   }
 
@@ -63,7 +64,6 @@ export class WebsiteDetailComponent implements OnInit {
   getPages(): void {
     this.getWebsite();
     if (this.website && this.website.pages.length === 0) {
-      console.log(this.website.pages);
       const pages = this.website.pages;
       
       for (const page of pages) {
