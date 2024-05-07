@@ -60,6 +60,7 @@ export class WebsiteDetailComponent implements OnInit {
     }
 
   getPages(): void {
+    this.getWebsite();
     if (this.website && this.website.pages.length === 0) {
       console.log(this.website.pages);
       const pages = this.website.pages;
