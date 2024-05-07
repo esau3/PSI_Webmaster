@@ -11,6 +11,7 @@ export class WebsiteService {
   private website = "http://10.101.151.25:3092/website";
   private websites = "http://10.101.151.25:3092/websites";
   private page = "http://10.101.151.25:3092/page";
+  private eval_page = "http://10.101.151.25:3092/eval/page";
   constructor(
     private http: HttpClient) { }
 
@@ -60,7 +61,7 @@ export class WebsiteService {
       );
   }
   startEvaluation(_id: string):Observable<any>{
-    return this.http.get<any>(this.page + '/' + _id)
+    return this.http.get<any>(this.eval_page + '/' + _id)
    .pipe(
      catchError(this.handleError)
    );
