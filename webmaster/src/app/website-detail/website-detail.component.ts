@@ -136,6 +136,7 @@ export class WebsiteDetailComponent implements OnInit {
     if (result === 'Sim') {
       this.deleteWebsite(id);
     }
+    console.log(result);
   });
   }
 }
