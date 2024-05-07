@@ -1,6 +1,8 @@
 const Page = require("../models/page");
 const Website = require("../models/website");
 const asyncHandler = require("express-async-handler");
+const { QualWeb } = require('@qualweb/core');
+
 
 // Display list of all Pages.
 exports.page_list = async (req, res, next) => {

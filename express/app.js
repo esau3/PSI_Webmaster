@@ -1,6 +1,5 @@
 var createError = require("http-errors");
 var express = require("express");
-
 const { QualWeb } = require('@qualweb/core');
 
 const plugins = {
@@ -17,7 +16,6 @@ const launchOptions = {
         '--ignore-certificate-errors']
     };
 
-const qualweb = new QualWeb(plugins);
 
 // Set up mongoose connection
 const mongoose = require("mongoose");
@@ -28,6 +26,7 @@ const mongoDB =
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
+  const qualweb = new QualWeb(plugins);
   await qualweb.start(clusterOptions, launchOptions);
 }
 
