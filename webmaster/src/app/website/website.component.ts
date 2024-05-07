@@ -90,6 +90,7 @@ export class WebsiteComponent {
       this.websiteService.postWebsite(websiteData).subscribe(response => {
             //console.log( response);
           });
+      location.reload();
   }
   
 
