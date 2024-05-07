@@ -75,8 +75,6 @@ export class WebsiteDetailComponent implements OnInit {
   updatePages() {
     const id = this.route.snapshot.paramMap.get('id');
     const urlValue: string = this.form.get('pageUrl')?.value;
-    console.log(id);
-    console.log(urlValue);
     const page = {
       url: urlValue,
       eval_date: new Date(0),
@@ -136,7 +134,6 @@ export class WebsiteDetailComponent implements OnInit {
     if (result === 'true') {
       this.deleteWebsite(id);
     }
-    console.log("O resultado foi: ", result);
   });
   }
 }

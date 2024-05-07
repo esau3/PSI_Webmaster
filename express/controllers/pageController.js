@@ -47,3 +47,31 @@ exports.page_delete = asyncHandler(async (req, res, next) => {
   ).exec();
 });
 
+
+// Handle Page evaluation on GET.
+exports.page_eval = asyncHandler(async (req, res, next) => {
+  // Get details of website and their pages (in parallel)
+  const page = await Page.findById(req.params.id).exec();
+  if (page === null) {
+    const err = new Error("Page not found");
+    err.status = 404;
+    return next(err);
+  }
+
+  //ir buscar o url correto
+  let toEval = page.url;
+  console.log("URL verdadeiro: ", toEval);
+  // especificar as opções, incluindo o url a avaliar
+  const qualwebOptions = {
+    url: toEval, // substituir pelo url a avaliar, /eval/page/id
+    output: 'json'
+  };
+
+  // executar a avaliação, recebendo o relatório
+  const report = await qualweb.evaluate(qualwebOptions);
+  res.json(report);
+  console.log(report);
+  // parar o avaliador e libertar recursos
+  await qualweb.stop();
+});
+

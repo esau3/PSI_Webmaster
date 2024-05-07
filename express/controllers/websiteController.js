@@ -133,6 +133,6 @@ exports.website_eval = asyncHandler(async (req, res, next) => {
   const report = await qualweb.evaluate(qualwebOptions);
 
   console.log(report);
-  // parar o avaliador
+  // parar o avaliador e libertar recursos
   await qualweb.stop();
 });
