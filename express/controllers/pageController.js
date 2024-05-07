@@ -70,6 +70,9 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
   const qualweb = new QualWeb(plugins);
   await qualweb.start(clusterOptions, launchOptions);
 
+  //ir buscar o url correto
+  let toEval = page.url;
+  console.log("URL verdadeiro: ", toEval);
 
   // Get details of website and their pages (in parallel)
   const page = await Page.findById(req.params.id).exec();
@@ -78,10 +81,7 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
     err.status = 404;
     return next(err);
   }
-
-  //ir buscar o url correto
-  let toEval = page.url;
-  console.log("URL verdadeiro: ", toEval);
+  
   // especificar as opções, incluindo o url a avaliar
   const qualwebOptions = {
     url: toEval, // substituir pelo url a avaliar, /eval/page/id
