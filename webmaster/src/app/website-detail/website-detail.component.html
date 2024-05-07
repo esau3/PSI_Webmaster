@@ -10,11 +10,25 @@
     <div class="info-item">Registration date: {{ website.register_date | date:'short' }}</div>
     <div class="info-item">Evaluation date: {{ website.eval_date | date:'short' }}</div>
     <div class="info-item">Monitoring state: <span class="monitor-state">{{ website.monitor_state }}</span></div>
-  <div align="left">
     <button mat-icon-button (click)="openDeleteDialog('0ms', '0ms', website._id)" class="back-button">
       <span class="material-symbols-outlined">delete</span>
     </button>
-  </div>
+
+    <div>
+      <form [formGroup]="form" (ngSubmit)="submitForm()" class="parentForm">
+        <mat-form-field appearance="fill" class="forms">
+          <mat-label>Insira o URL da página</mat-label>
+          <input type="text" matInput placeholder="Pagina" formControlName="pageUrl" required>
+          <mat-error *ngIf="form.get('pageUrl')?.hasError('required')">O URL da página é obrigatório</mat-error>
+          <mat-error *ngIf="form.get('pageUrl')?.hasError('pattern')">O URL da página não é válido</mat-error>
+        </mat-form-field>
+    
+        <button class="submitButton" mat-icon-button type="submit" color="primary" [disabled]="form.invalid">
+          <span class="material-symbols-outlined">add</span>
+        </button>
+      </form>
+    </div>
+
 </div>
   <div class="pages-menu">
     <h3>Pages</h3>
@@ -32,17 +46,3 @@
   </div>
 </div>
 </body>
-<div>
-  <form [formGroup]="form" (ngSubmit)="submitForm()" class="parentForm">
-    <mat-form-field appearance="fill" class="forms">
-      <mat-label>Insira o URL da página</mat-label>
-      <input type="text" matInput placeholder="Pagina" formControlName="pageUrl" required>
-      <mat-error *ngIf="form.get('pageUrl')?.hasError('required')">O URL da página é obrigatório</mat-error>
-      <mat-error *ngIf="form.get('pageUrl')?.hasError('pattern')">O URL da página não é válido</mat-error>
-    </mat-form-field>
-
-    <button class="submitButton" mat-icon-button type="submit" color="primary" [disabled]="form.invalid">
-      <span class="material-symbols-outlined">add</span>
-    </button>
-  </form>
-</div>
