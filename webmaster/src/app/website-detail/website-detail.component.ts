@@ -17,6 +17,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 
 export class WebsiteDetailComponent implements OnInit {
   website: Website | undefined;
+  //page: Page | undefined;
   pages: Page[] | undefined;
   pageData: Page | undefined;
   form: FormGroup;
@@ -60,6 +61,7 @@ export class WebsiteDetailComponent implements OnInit {
 
   getPages(): void {
     if (this.website && this.website.pages) {
+      console.log(this.website.pages);
       const pages = this.website.pages;
       
       for (const page of pages) {
