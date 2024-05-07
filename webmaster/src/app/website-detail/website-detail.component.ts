@@ -42,13 +42,13 @@ export class WebsiteDetailComponent implements OnInit {
     this.getPages();
   }
 
+  //o this.website apenas funciona aqui dentro, parece que nao propaga
   getWebsite(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id !== null) {
       this.websiteService.getWebsite(id)
         .subscribe((website: Website) => {
           this.website = website;
-          console.log("dentro: ", this.website); 
         });
     }
   }
@@ -102,7 +102,6 @@ export class WebsiteDetailComponent implements OnInit {
   startEvaluation(id:string):void{
     this.websiteService.startEvaluation(id);
     console.log("evaluation");
-    location.reload();
   }
 
   deletePage(id:string ):void{
