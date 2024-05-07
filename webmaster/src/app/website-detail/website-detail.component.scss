@@ -83,8 +83,10 @@
   }
 
   .forms {
-    width: 100%; // Ajusta a largura do formulário
-    margin-right: 10px; // Adiciona margem à direita para separar o campo de entrada do botão "Add"
+    display: flex;
+    align-items: center; // Centraliza verticalmente
+    margin-top: 20px; // Espaçamento entre o formulário e o botão
+    width: fit-content; // Adiciona margem à direita para separar o campo de entrada do botão "Add"
   }
 
   #addButton {
