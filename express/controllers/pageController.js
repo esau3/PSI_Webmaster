@@ -3,6 +3,24 @@ const Website = require("../models/website");
 const asyncHandler = require("express-async-handler");
 const { QualWeb } = require('@qualweb/core');
 
+const plugins = {
+      adBlock: true,
+      stealth: true
+    };
+
+const clusterOptions = {
+      timeout: 60 * 1000,
+    };
+
+const launchOptions = {
+  args: ['--no-sandbox',
+        '--ignore-certificate-errors']
+    };
+
+
+const qualweb = new QualWeb(plugins);
+await qualweb.start(clusterOptions, launchOptions);
+
 
 // Display list of all Pages.
 exports.page_list = async (req, res, next) => {
