@@ -7,5 +7,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   templateUrl: 'dialog.component.html'
 })
 export class DialogComponent {
-  constructor(public dialogRef: MatDialogRef<DialogComponent>) {}
+  constructor(public dialogRef: MatDialogRef<DialogComponent>) {
+
+  }
 }

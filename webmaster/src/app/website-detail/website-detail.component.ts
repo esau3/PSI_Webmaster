@@ -126,14 +126,14 @@ export class WebsiteDetailComponent implements OnInit {
   }
 
   openDeleteDialog(enterAnimationDuration: string, exitAnimationDuration: string, id: string): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
+    let dialogRef = this.dialog.open(DialogComponent, {
       width: '250px',
       enterAnimationDuration,
       exitAnimationDuration,
     });
 
-  dialogRef.afterClosed().subscribe(result => {
-    if (result === 'Sim') {
+  dialogRef.afterClosed().subscribe((result) => {
+    if (result === 'true') {
       this.deleteWebsite(id);
     }
     console.log("O resultado foi: ", result);
