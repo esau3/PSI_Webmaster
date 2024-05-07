@@ -13,6 +13,8 @@ const clusterOptions = {
     };
 
 const launchOptions = {
+  args: ['--no-sandbox',
+        '--ignore-certificate-errors']
     };
 
 const qualweb = new QualWeb(plugins);
