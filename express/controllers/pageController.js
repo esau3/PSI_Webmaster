@@ -17,11 +17,6 @@ const launchOptions = {
         '--ignore-certificate-errors']
     };
 
-
-const qualweb = new QualWeb(plugins);
-await qualweb.start(clusterOptions, launchOptions);
-
-
 // Display list of all Pages.
 exports.page_list = async (req, res, next) => {
   try {
@@ -70,6 +65,12 @@ exports.page_delete = asyncHandler(async (req, res, next) => {
 
 // Handle Page evaluation on GET.
 exports.page_eval = asyncHandler(async (req, res, next) => {
+
+  //inicializar
+  const qualweb = new QualWeb(plugins);
+  await qualweb.start(clusterOptions, launchOptions);
+
+
   // Get details of website and their pages (in parallel)
   const page = await Page.findById(req.params.id).exec();
   if (page === null) {
