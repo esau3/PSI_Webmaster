@@ -23,6 +23,9 @@ router.post("/website", website_controller.website_create_post);
 // DELETE request to delete Website.
 router.delete("/website/:id", website_controller.website_delete);
 
+// DELETE request to delete Page.
+router.delete("/page/:id", page_controller.page_delete);
+
 // GET request for list of all Page items.
 router.get("/pages", page_controller.page_list);
 
