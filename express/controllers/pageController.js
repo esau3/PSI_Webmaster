@@ -79,7 +79,7 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
   }
 
   //ir buscar o url correto
-  let toEval = page.url;
+  let toEval = page.page_URl;
   console.log("URL verdadeiro: ", toEval);
 
   // especificar as opções, incluindo o url a avaliar
