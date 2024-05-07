@@ -125,12 +125,14 @@ exports.website_eval = asyncHandler(async (req, res, next) => {
 
   // especificar as opções, incluindo o url a avaliar
   const qualwebOptions = {
-    url: req.params.url // substituir pelo url a avaliar
+    url: req.params.url, // substituir pelo url a avaliar
+    output: 'json'
   };
 
   // executar a avaliação, recebendo o relatório
   const report = await qualweb.evaluate(qualwebOptions);
 
+  console.log(report);
   // parar o avaliador
   await qualweb.stop();
 });
