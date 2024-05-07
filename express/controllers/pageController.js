@@ -31,8 +31,8 @@ exports.page_detail = async (req, res, next) => {
 exports.page_delete = asyncHandler(async (req, res, next) => {
 
   const page = await Page.findById(req.params.id).exec();
-
-  if (page === null) {
+  console.log(page);
+  if (!page) {
     // No results.
     const err = new Error("Page not found");
     err.status = 404;
