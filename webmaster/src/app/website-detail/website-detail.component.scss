@@ -78,20 +78,16 @@
   .parentForm {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: flex-start;
-}
+    margin-top: 20px; // Adiciona margem no topo para separar dos detalhes do website
+  }
 
+  .forms {
+    width: 100%; // Ajusta a largura do formulário
+    margin-right: 10px; // Adiciona margem à direita para separar o campo de entrada do botão "Add"
+  }
 
-.forms {
-    width: 26%;
-}
-
-#submitButton{
-    //nao consigo alinhar o botao no meio do form!!!
-}
-
-#addButton {
-    padding: 50px;
-    width: 15%;
-}
+  #addButton {
+    margin-top: 10px; // Adiciona margem no topo do botão "Add"
+    width: auto; // Ajusta a largura automaticamente
+  }
