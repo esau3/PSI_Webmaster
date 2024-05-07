@@ -29,20 +29,6 @@
       </button>
     </div>
   </div>
-  <div>
-  <form [formGroup]="form" (ngSubmit)="submitForm()" class="parentForm">
-    <mat-form-field appearance="fill" class="forms">
-      <mat-label>Insira o URL da página</mat-label>
-      <input type="text" matInput placeholder="Pagina" formControlName="pageUrl" required>
-      <mat-error *ngIf="form.get('pageUrl')?.hasError('required')">O URL da página é obrigatório</mat-error>
-      <mat-error *ngIf="form.get('pageUrl')?.hasError('pattern')">O URL da página não é válido</mat-error>
-    </mat-form-field>
-
-    <button class="submitButton" mat-icon-button type="submit" color="primary" [disabled]="form.invalid">
-      <span class="material-symbols-outlined">add</span>
-    </button>
-  </form>
-</div>
 </div>
 </body>
 <div>
