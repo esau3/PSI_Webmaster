@@ -12,7 +12,7 @@ exports.website_list = asyncHandler(async (req, res, next) => {
 // Display detail page for a specific Website.
 exports.website_detail = asyncHandler(async (req, res, next) => {
   // Get details of website and their pages (in parallel)
-  const website = await Website.findById(req.params.id).populate('pages', 'page_URL').exec();
+  const website = await Website.findById(req.params.id).exec();
 
   if (website === null) {
     // No results.
