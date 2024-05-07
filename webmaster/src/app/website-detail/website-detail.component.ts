@@ -62,8 +62,8 @@ export class WebsiteDetailComponent implements OnInit {
       );
     }
 
+    //este metodo ainda tem problemas, o this.website é sempre un.defined...
   getPages(): void {
-    this.getWebsite();
     if (this.website && this.website.pages.length === 0) {
       const pages = this.website.pages;
       
@@ -75,8 +75,6 @@ export class WebsiteDetailComponent implements OnInit {
           });
       }
     }
-    console.log('Website!: ', this.website);
-    console.log('Pages!: ', this.website?.pages[0]);
   }
 
   updatePages() {

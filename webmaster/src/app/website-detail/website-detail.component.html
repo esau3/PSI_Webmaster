@@ -36,7 +36,7 @@
     <div *ngFor="let page of website.pages" class="page-item">
       <div class="info-item">ID: {{ page._id }}</div>
       <div class="info-item">{{ page.page_URL }}</div>
-      <div class="info-item">Last evaluation date: {{ page.eval_date | date:'short' }}</div>
+      <div class="info-item">Last evaluation: {{ page.eval_date | date:'short' }}</div>
       <div class="info-item">Monitoring state: <span class="monitor-state">{{ page.monitor_state }}</span></div>
       <button mat-icon-button (click)="deletePage(page._id)">
         <span class="material-symbols-outlined">delete</span>
