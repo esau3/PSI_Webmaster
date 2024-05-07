@@ -12,8 +12,12 @@ exports.website_list = asyncHandler(async (req, res, next) => {
 // Display detail page for a specific Website.
 exports.website_detail = asyncHandler(async (req, res, next) => {
   // Get details of website and their pages (in parallel)
-  const website = await Website.findById(req.params.id).exec();
-
+  const website = await Website.findById(req.params.id)
+  .populate({
+    path: 'pages',
+    select: 'page_URL eval_date monitor_state'
+  })
+  .exec();
   if (website === null) {
     // No results.
     const err = new Error("Website not found");
