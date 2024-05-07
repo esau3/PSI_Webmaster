@@ -47,8 +47,10 @@ export class WebsiteDetailComponent implements OnInit {
     console.log(id);
     if (id !== null) {
       this.websiteService.getWebsite(id)
-        .subscribe((website: Website) => this.website = website);
-        console.log("dentro: ", this.website);
+        .subscribe((website: Website) => {
+          this.website = website;
+          console.log("dentro: ", this.website); 
+        });
     }
   }
 
