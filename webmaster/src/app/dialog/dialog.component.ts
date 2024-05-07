@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog',
-  standalone: true,
-  imports: [],
-  templateUrl: './dialog.component.html',
-  styleUrl: './dialog.component.scss'
+  styleUrl: 'dialog.component.scss',
+  templateUrl: 'dialog.component.html'
 })
 export class DialogComponent {
-
+  constructor(public dialogRef: MatDialogRef<DialogComponent>) {}
 }

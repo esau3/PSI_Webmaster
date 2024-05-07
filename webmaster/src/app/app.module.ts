@@ -26,6 +26,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import {MatSortModule} from '@angular/material/sort';
     SideNavComponent,
     WebsitesTableComponent,
     WebsiteDetailComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,12 @@ import {MatSortModule} from '@angular/material/sort';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogTitle,
+    MatDialogContent
   ],
   providers: [],
   bootstrap: [AppComponent]

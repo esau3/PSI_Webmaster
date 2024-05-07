@@ -5,6 +5,8 @@ import { Website, Page } from '../types';
 import { WebsiteService } from '../services/websites.service';
 import { ActivatedRoute,Router } from '@angular/router';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 
 @Component({
@@ -24,7 +26,8 @@ export class WebsiteDetailComponent implements OnInit {
     private websiteService: WebsiteService,
     private location: Location,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialog: MatDialog
   ) {
 
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
@@ -120,5 +123,13 @@ export class WebsiteDetailComponent implements OnInit {
       this.updatePages();
       //console.log(this.form.value);
     }
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(DialogComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 }
