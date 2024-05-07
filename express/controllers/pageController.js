@@ -80,7 +80,6 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
 
   //ir buscar o url correto
   let toEval = page.page_URL;
-  console.log("URL verdadeiro: ", toEval);
 
   // especificar as opções, incluindo o url a avaliar
   const qualwebOptions = {
