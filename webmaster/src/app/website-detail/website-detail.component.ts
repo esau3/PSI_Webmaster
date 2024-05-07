@@ -60,7 +60,7 @@ export class WebsiteDetailComponent implements OnInit {
     }
 
   getPages(): void {
-    if (this.website && this.website?.pages.length === 0) {
+    if (this.website && this.website.pages.length === 0) {
       console.log(this.website.pages);
       const pages = this.website.pages;
       
@@ -72,7 +72,8 @@ export class WebsiteDetailComponent implements OnInit {
           });
       }
     }
-    console.log('AQUI!: ', this.website?.pages.length);
+    console.log('Website!: ', this.website);
+    console.log('Pages!: ', this.website?.pages[0]);
   }
 
   updatePages() {
