@@ -35,7 +35,6 @@ export class WebsiteDetailComponent implements OnInit {
     this.form = this.fb.group({
       pageUrl: ['', [Validators.required, Validators.pattern(reg)]]
     });
-    this.getPages();
   }
   
   ngOnInit(): void {
@@ -73,6 +72,7 @@ export class WebsiteDetailComponent implements OnInit {
           });
       }
     }
+    console.log('AQUI!');
   }
 
   updatePages() {
