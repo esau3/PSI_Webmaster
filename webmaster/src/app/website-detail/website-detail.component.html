@@ -10,11 +10,10 @@
     <div class="info-item">Registration date: {{ website.register_date | date:'short' }}</div>
     <div class="info-item">Evaluation date: {{ website.eval_date | date:'short' }}</div>
     <div class="info-item">Monitoring state: <span class="monitor-state">{{ website.monitor_state }}</span></div>
-  </div>
   <button mat-icon-button (click)="openDeleteDialog('0ms', '0ms', website._id)" class="back-button">
     <span class="material-symbols-outlined">delete</span>
   </button>
-
+</div>
   <div class="pages-menu">
     <h3>Pages</h3>
     <div *ngFor="let page of website.pages" class="page-item">
