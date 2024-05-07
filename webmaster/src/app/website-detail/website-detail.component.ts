@@ -125,11 +125,17 @@ export class WebsiteDetailComponent implements OnInit {
     }
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(DialogComponent, {
+  openDeleteDialog(enterAnimationDuration: string, exitAnimationDuration: string, id: string): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
       width: '250px',
       enterAnimationDuration,
       exitAnimationDuration,
     });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result === true) {
+      this.deleteWebsite(id); // ou this.website?._id, dependendo da estrutura do objeto
+    }
+  });
   }
 }
