@@ -104,12 +104,12 @@ export class WebsiteDetailComponent implements OnInit {
     this.websiteService.deletePage(id).subscribe({
       next: (res) => {
         console.log("Page deleted successfully:", res);
-        location.reload();
       },
       error: (err) => {
         console.error("Error deleting page:", err);
       }
     });
+    location.reload();
   }
   
   goBack(): void {
