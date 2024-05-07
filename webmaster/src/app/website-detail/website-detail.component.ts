@@ -48,7 +48,7 @@ export class WebsiteDetailComponent implements OnInit {
     if (id !== null) {
       this.websiteService.getWebsite(id)
         .subscribe((website: Website) => this.website = website);
-        console.log("dentro");
+        console.log("dentro: ", this.website);
     }
   }
 
@@ -62,7 +62,6 @@ export class WebsiteDetailComponent implements OnInit {
     }
 
   getPages(): void {
-    this.getWebsite();
     if (this.website && this.website.pages.length === 0) {
       const pages = this.website.pages;
       
