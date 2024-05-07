@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 const { QualWeb } = require('@qualweb/core');
 
 const plugins = {
-      adBlock: true,
+      adBlock: false,
       stealth: true
     };
 
