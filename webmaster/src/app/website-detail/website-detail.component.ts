@@ -133,8 +133,8 @@ export class WebsiteDetailComponent implements OnInit {
     });
 
   dialogRef.afterClosed().subscribe(result => {
-    if (result === true) {
-      this.deleteWebsite(id); // ou this.website?._id, dependendo da estrutura do objeto
+    if (result === 'Sim') {
+      this.deleteWebsite(id);
     }
   });
   }
