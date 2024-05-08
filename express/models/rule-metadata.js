@@ -9,6 +9,7 @@ const RuleMetadataSchema = new Schema({
     warning: { type: Number, required: true},
     failed: { type: Number, required: true},
     inapplicable: { type: Number, required: true},
+    outcome: { type: String, required: true, maxLength: 50 },
     type: {
         type: [String],
         validate: {
