@@ -104,30 +104,39 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
   //const metadata = report.metadata;
   const metadata = report[toEval].metadata;
   const assertions = report[toEval].modules['act-rules'].assertions;
-  console.log(assertions);
+  //console.log(assertions);
 
   //console.log(metadata);
 
-  const reportMetadata = new ReportMetadata({
-    url: toEval,
-    total_passed: metadata.passed,
-    total_warning: metadata.warning,
-    total_failed: metadata.failed,
-    total_inapplicable: metadata.inapplicable,
-    rules: []
-  });
+  const rulesArray = [];
 
   for (const assertionKey in assertions) {
     if (assertions.hasOwnProperty(assertionKey)) {
         const assertion = assertions[assertionKey];
-        console.log("Name:", assertion.name);
-        console.log("Code:", assertion.code);
-        console.log("Mapping:", assertion.mapping);
-        console.log("Description:", assertion.description);
+        const ruleMetadata = new RuleMetadata ({
+          code: assertion.code,
+          name: assertion.name,
+          passed: assertion.passed,
+          warning: assertion.warning,
+          failed: assertion.failed,
+          inapplicable: assertion.inapplicable,
+          outcome: assertion.outcome,
+          type: []
+        })
+        rulesArray.push(ruleMetadata);
     }
 }
 
+console.log(rulesArray);
 
+const reportMetadata = new ReportMetadata({
+  url: toEval,
+  total_passed: metadata.passed,
+  total_warning: metadata.warning,
+  total_failed: metadata.failed,
+  total_inapplicable: metadata.inapplicable,
+  rules: rulesArray
+});
 
 
   res.send(report);
