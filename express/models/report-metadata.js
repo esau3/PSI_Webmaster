@@ -8,7 +8,14 @@ const ReportMetadataSchema = new Schema({
     warning: { type: Number, required: true},
     failed: { type: Number, required: true},
     inapplicable: { type: Number, required: true},
-    failed_type: { type: [String], maxLength: 4}
+    failed_type: {
+        type: [String],
+        validate: {
+          validator: function (v) {
+            return v.every(val => ["A", "AA", "AAA"].includes(val));
+          }
+        }
+    }
 });
 
 // Virtual for website's URL
