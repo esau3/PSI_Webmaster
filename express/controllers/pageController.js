@@ -1,3 +1,5 @@
+import { file } from "../663b48bf5ba7461b74c8abc6.json"
+//const file = require(../663b48bf5ba7461b74c8abc6.json)
 const Page = require("../models/page");
 const Website = require("../models/website");
 const ReportMetadata = require("../models/report-metadata");
@@ -100,10 +102,9 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
   // executar a avaliação, recebendo o relatório
   const report = await qualweb.evaluate(qualwebOptions);
 
-  // Extract metadata from the report
-  const reportJson = JSON.stringify(report);
-  const metadata = reportJson.metadata;
-
+  //const metadata = report.metadata;
+  const metadata = file.metadata;
+  console.log(file.lengh());
   console.log(metadata);
 
   /*const reportMetadata = new ReportMetadata({
