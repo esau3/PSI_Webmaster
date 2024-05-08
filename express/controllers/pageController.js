@@ -83,8 +83,7 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
 
   // especificar as opções, incluindo o url a avaliar
   const qualwebOptions = {
-    url: toEval, // substituir pelo url a avaliar, /eval/page/id
-    output: 'json'
+    url: toEval // substituir pelo url a avaliar, /eval/page/id
   };
 
   const earlOptions = {
