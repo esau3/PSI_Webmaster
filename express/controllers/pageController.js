@@ -103,19 +103,19 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
   const report = await qualweb.evaluate(qualwebOptions);
 
   //const metadata = report.metadata;
-  const metadata = file['https://qualweb.di.fc.ul.pt/evaluator/'].metadata;
+  const metadata = report[toEval].metadata;
   console.log(metadata);
 
-  /*const reportMetadata = new ReportMetadata({
-    url: report.url.completeUrl,
-    total_passed: report.metadata.passed,
-    total_warning: report.metadata.warning,
-    total_failed: report.metadata.failed,
-    total_inapplicable: metadata.metadata.inapplicable,
+  const reportMetadata = new ReportMetadata({
+    url: toEval,
+    total_passed: metadata.passed,
+    total_warning: metadata.warning,
+    total_failed: metadata.failed,
+    total_inapplicable: metadata.inapplicable,
     rules: []
   });
 
-  console.log(reportMetadata);*/
+  console.log(reportMetadata);
 
 
 
