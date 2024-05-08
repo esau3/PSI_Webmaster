@@ -15,6 +15,28 @@ export interface Page {
     page_URL: string;
     eval_date: Date;
     monitor_state: string;
+    report:Report;
+}
+
+export interface Report{
+    _id:string;
+    total_passed: number;
+    total_warning: number;
+    total_failed: number;
+    total_inapplicable: number;
+    rules:Rule[];
+}
+
+export  interface Rule{
+    _id:string;
+    code:string;
+    name:string;
+    passed: number;
+    warning: number;
+    failed: number;
+    inapplicable: number;
+    outcome:string;
+    type:string; //como o backend ja refere nao coloquei
 }
 
 export interface Options {
