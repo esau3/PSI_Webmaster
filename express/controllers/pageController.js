@@ -65,6 +65,21 @@ exports.page_delete = asyncHandler(async (req, res, next) => {
   ).exec();
 });
 
+/*
+// Display detail page for a specific ReportMetadata.
+exports.report_detail = async (req, res, next) => {
+  try {
+    const report_metadata = await ReportMetadata.findById(req.params.id).exec();
+    if (!report_metadata) {
+      const err = new Error("Report not found");
+      err.status = 404;
+      throw err;
+    }
+    res.send(JSON.stringify(report_metadata));
+  } catch (error) {
+    next(error);
+  }
+};*/
 
 // Handle Page evaluation on GET.
 exports.page_eval = asyncHandler(async (req, res, next) => {
@@ -125,27 +140,28 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
         })
         rulesArray.push(ruleMetadata);
     }
-}
+  }
 
-//console.log(rulesArray);
+  //console.log(rulesArray);
 
-const reportMetadata = new ReportMetadata({
-  url: toEval,
-  total_passed: metadata.passed,
-  total_warning: metadata.warning,
-  total_failed: metadata.failed,
-  total_inapplicable: metadata.inapplicable,
-  rules: rulesArray
-});
+  const reportMetadata = new ReportMetadata({
+    url: toEval,
+    total_passed: metadata.passed,
+    total_warning: metadata.warning,
+    total_failed: metadata.failed,
+    total_inapplicable: metadata.inapplicable,
+    rules: rulesArray
+  });
 
-  //res.send(report);
-  res.send(reportMetadata);
-  // parar o avaliador e libertar recursos
-  await qualweb.stop();
+    //res.send(report);
+    res.send(reportMetadata);
+    // parar o avaliador e libertar recursos
+    await qualweb.stop();
 
-  await reportMetadata.save();
-});
+    await reportMetadata.save();
 
+
+  });
 
 //funcao que retorna o level do teste
 function getErrorLevel(successCriteria) {
@@ -156,5 +172,13 @@ function getErrorLevel(successCriteria) {
   return Array.from(levels);
 }
 
-
-
+//fazer findWebsiteByPageID() para depois chamar o update_website()
+async function find_website_by_page_id(page_id) {
+  const website = await Website.findOne({ pages: page_id }).exec();   
+  if (website === null) {
+    const err = new Error("Website not found");
+    err.status = 404;
+    return next(err);
+  }
+  return website._id;
+}

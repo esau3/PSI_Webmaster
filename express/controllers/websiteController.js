@@ -140,3 +140,62 @@ exports.website_eval = asyncHandler(async (req, res, next) => {
   // parar o avaliador e libertar recursos
   await qualweb.stop();
 });
+
+async function update_website(websiteId) {
+  const website = await Website.findById(websiteId).exec();
+  if (website === null) {
+    const err = new Error("Website not found");
+    err.status = 404;
+    return next(err);
+  }
+
+  //using flags to determine website state
+  var none_eval_flag = true;
+  var all_eval_flag = true;
+  var all_during_flag = true;
+  var page_state;
+
+  for (let i = 0; i < website.pages.length; i++) {
+    page_state = website.pages[i].monitor_state;
+
+    if(page_state === "Erro na avaliação") {
+      await Website.findByIdAndUpdate(
+        websiteId,
+        { $set: { monitor_state: "Erro na avaliação" } },
+        { new: true }
+      )
+      break;
+    } else if(page_state === "Por avaliar") {
+      all_eval_flag = false;
+      all_during_flag = false;
+    } else if(page_state === "Conforme" || page_state === "Não Conforme") {
+      none_eval_flag = false;
+      all_during_flag = false;
+    } else if(page_state === "Em avaliação") {
+      all_eval_flag = false;
+      none_eval_flag = false;
+    }
+  }
+
+  //update website according to flags
+  if(all_during_flag || (!none_eval_flag && !all_eval_flag)) {
+    await Website.findByIdAndUpdate(
+      websiteId,
+      { $set: { monitor_state: "Em avaliação" } },
+      { new: true }
+    )
+  } else if(all_eval_flag) {
+    await Website.findByIdAndUpdate(
+      websiteId,
+      { $set: { monitor_state: "Avaliado" } },
+      { new: true }
+    )
+  } else if(none_eval_flag) {
+    await Website.findByIdAndUpdate(
+      websiteId,
+      { $set: { monitor_state: "Por avaliar" } },
+      { new: true }
+    )
+  }
+
+};
