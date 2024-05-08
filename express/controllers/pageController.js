@@ -103,16 +103,6 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
   // Extract metadata from the report
   const metadata = report.metadata;
 
-  const reportMetadata = new ReportMetadata({
-    url: metadata.url.completeUrl,
-    total_passed: metadata.metadata.passed,
-    total_warning: metadata.metadata.warning,
-    total_failed: metadata.metadata.failed,
-    total_inapplicable: metadata.metadata.inapplicable,
-    rules: []
-  });
-
-  console.log(reportMetadata);
 
 
 
