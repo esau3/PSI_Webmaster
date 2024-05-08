@@ -139,18 +139,18 @@ const reportMetadata = new ReportMetadata({
 });
 
 
-  res.send(report);
-
+  //res.send(report);
+  res.send(reportMetadata);
   // parar o avaliador e libertar recursos
   await qualweb.stop();
 });
 
 
+//funcao que retorna o level do teste
 function getErrorLevel(successCriteria) {
   const levels = new Set(); // Usamos um Set para garantir apenas um de cada nível
   for (const criteria of successCriteria) {
       levels.add(criteria.level);
-      console.log(criteria.level);
   }
   return Array.from(levels);
 }
