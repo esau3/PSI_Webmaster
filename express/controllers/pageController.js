@@ -83,7 +83,6 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
 
   //ir buscar o url correto
   let toEval = page.page_URL;
-  console.log(toEval);
 
   // especificar as opções, incluindo o url a avaliar
   const qualwebOptions = {
@@ -104,7 +103,10 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
 
   //const metadata = report.metadata;
   const metadata = report[toEval].metadata;
-  console.log(metadata);
+  const assertions = file[toEval]['modules']['act-rules']['assertions'];
+  console.log(assertions);
+
+  //console.log(metadata);
 
   const reportMetadata = new ReportMetadata({
     url: toEval,
@@ -115,8 +117,15 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
     rules: []
   });
 
-  console.log(reportMetadata);
-
+  for (const assertionKey in assertions) {
+    if (assertions.hasOwnProperty(assertionKey)) {
+        const assertion = assertions[assertionKey];
+        console.log("Name:", assertion.name);
+        console.log("Code:", assertion.code);
+        console.log("Mapping:", assertion.mapping);
+        console.log("Description:", assertion.description);
+    }
+}
 
 
 
