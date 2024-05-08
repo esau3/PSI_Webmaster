@@ -83,7 +83,16 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
 
   // especificar as opções, incluindo o url a avaliar
   const qualwebOptions = {
-    url: toEval // substituir pelo url a avaliar, /eval/page/id
+    url: toEval, // substituir pelo url a avaliar, /eval/page/id
+    "execute": {
+      // choose which modules to execute
+      // if this option is not specified, the default values below will be applied, otherwise unspecified values will default to false
+      "wappalyzer": false, // wappalyzer module (https://github.com/qualweb/wappalyzer)
+      "act": true, // act-rules module (https://github.com/qualweb/act-rules)
+      "wcag": true, // wcag-techniques module (https://github.com/qualweb/wcag-techniques)
+      "bp": false, // best-practices module (https://github.com/qualweb/best-practices)
+      "counter": false // counter module (https://github.com/qualweb/counter)
+    }
   };
 
   const earlOptions = {
