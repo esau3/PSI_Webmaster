@@ -4,19 +4,14 @@ const Schema = mongoose.Schema;
 
 const ReportMetadataSchema = new Schema({
     url: { type: String, required: true, maxLength: 500 },
-    passed: { type: Number, required: true},
-    warning: { type: Number, required: true},
-    failed: { type: Number, required: true},
-    inapplicable: { type: Number, required: true},
-    failed_type: {
-        type: [String],
-        validate: {
-          validator: function (v) {
-            return v.every(val => ["A", "AA", "AAA"].includes(val));
-          }
-        }
-    }
+    total_passed: { type: Number, required: true},
+    total_warning: { type: Number, required: true},
+    total_failed: { type: Number, required: true},
+    total_inapplicable: { type: Number, required: true},
+    rules: [{ type: Schema.Types.ObjectId, ref: "RuleMetadata" }]
 });
+
+
 
 // Virtual for website's URL
 WebsiteSchema.virtual("url").get(function () {
@@ -25,4 +20,4 @@ WebsiteSchema.virtual("url").get(function () {
 });
 
 // Export model
-module.exports = mongoose.model("Website", WebsiteSchema);
+module.exports = mongoose.model("ReportMetadata", ReportMetadataSchema);

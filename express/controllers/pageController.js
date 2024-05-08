@@ -1,5 +1,7 @@
 const Page = require("../models/page");
 const Website = require("../models/website");
+const ReportMetadata = require("../models/report-metadata");
+const RuleMetadata = require("../models/rule-metadata");
 const asyncHandler = require("express-async-handler");
 const { QualWeb } = require('@qualweb/core');
 
@@ -95,14 +97,33 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
     }
   };
 
-  const earlOptions = {
-  };
-
   // executar a avaliação, recebendo o relatório
   const report = await qualweb.evaluate(qualwebOptions);
-  //const earlReport = generateEARLReport(report, earlOptions);
+
+  // Extract metadata from the report
+  const metadata = report.metadata;
+
+  const reportMetadata = new ReportMetadata({
+    url: metadata.url.completeUrl,
+    total_passed: metadata.metadata.passed,
+    total_warning: metadata.metadata.warning,
+    total_failed: metadata.metadata.failed,
+    total_inapplicable: metadata.metadata.inapplicable,
+    rules: []
+  });
+
+  console.log(reportMetadata);
+
+
+
+
+
   res.send(report);
+
   // parar o avaliador e libertar recursos
   await qualweb.stop();
 });
+
+
+
 
