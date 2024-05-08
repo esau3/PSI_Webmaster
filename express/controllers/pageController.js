@@ -172,8 +172,8 @@ function getErrorLevel(successCriteria) {
   return Array.from(levels);
 }
 
-//fazer findWebsiteByPageID() para depois chamar o update_website()
-async function find_website_by_page_id(page_id) {
+// para depois poder chamar o website_controller.update_website()
+async function find_website_id(page_id) {
   const website = await Website.findOne({ pages: page_id }).exec();   
   if (website === null) {
     const err = new Error("Website not found");
