@@ -101,7 +101,7 @@ export class WebsiteDetailComponent implements OnInit {
 
   startEvaluation(id:string):void{
     this.websiteService.startEvaluation(id);
-    console.log("evaluation");
+    this.router.navigate(['/eval/' + id]);
   }
 
   deletePage(id:string ):void{
