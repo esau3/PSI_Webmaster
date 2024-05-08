@@ -101,7 +101,8 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
   const report = await qualweb.evaluate(qualwebOptions);
 
   // Extract metadata from the report
-  const metadata = report.metadata;
+  const reportJson = JSON.stringify(report);
+  const metadata = reportJson.metadata;
 
   console.log(metadata);
 
