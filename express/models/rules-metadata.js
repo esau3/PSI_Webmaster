@@ -22,7 +22,7 @@ const RuleMetadataSchema = new Schema({
 
 
 // Virtual for website's URL
-WebsiteSchema.virtual("url").get(function () {
+RuleMetadataSchema.virtual("url").get(function () {
   // We don't use an arrow function as we'll need the this object
   return `/rule-metadata/${this._id}`;
 });
