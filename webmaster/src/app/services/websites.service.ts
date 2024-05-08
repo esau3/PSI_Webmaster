@@ -11,7 +11,7 @@ export class WebsiteService {
   private website = "http://10.101.151.25:3092/website";
   private websites = "http://10.101.151.25:3092/websites";
   private page = "http://10.101.151.25:3092/page";
-  private eval_page = "http://10.101.151.25:3092/eval/page";
+  private eval_page = "http://10.101.151.25:3092/eval";
   constructor(
     private http: HttpClient) { }
 
