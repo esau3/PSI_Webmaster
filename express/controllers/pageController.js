@@ -102,7 +102,7 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
   const report = await qualweb.evaluate(qualwebOptions);
 
   //const metadata = report.metadata;
-  const metadata = file.metadata;
+  const metadata = file['https://qualweb.di.fc.ul.pt/evaluator/'].metadata;
   console.log(metadata);
 
   /*const reportMetadata = new ReportMetadata({
