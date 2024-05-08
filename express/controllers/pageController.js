@@ -138,11 +138,12 @@ const reportMetadata = new ReportMetadata({
   rules: rulesArray
 });
 
-
   //res.send(report);
   res.send(reportMetadata);
   // parar o avaliador e libertar recursos
   await qualweb.stop();
+
+  await reportMetadata.save();
 });
 
 
