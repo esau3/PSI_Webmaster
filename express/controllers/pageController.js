@@ -91,7 +91,7 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
       "act": true, // act-rules module (https://github.com/qualweb/act-rules)
       "wcag": true, // wcag-techniques module (https://github.com/qualweb/wcag-techniques)
       "bp": false, // best-practices module (https://github.com/qualweb/best-practices)
-      "counter": false // counter module (https://github.com/qualweb/counter)
+      "counter": true // counter module (https://github.com/qualweb/counter)
     }
   };
 
