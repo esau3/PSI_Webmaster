@@ -121,13 +121,13 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
           failed: assertion.metadata.failed,
           inapplicable: assertion.metadata.inapplicable,
           outcome: assertion.outcome,
-          type: []
+          type: getErrorLevel(assertion.metadata['success-criteria'])
         })
         rulesArray.push(ruleMetadata);
     }
 }
 
-console.log(rulesArray);
+//console.log(rulesArray);
 
 const reportMetadata = new ReportMetadata({
   url: toEval,
@@ -145,6 +145,15 @@ const reportMetadata = new ReportMetadata({
   await qualweb.stop();
 });
 
+
+function getErrorLevel(successCriteria) {
+  const levels = new Set(); // Usamos um Set para garantir apenas um de cada nível
+  for (const criteria of successCriteria) {
+      levels.add(criteria.level);
+      console.log(criteria.level);
+  }
+  return Array.from(levels);
+}
 
 
 
