@@ -103,7 +103,7 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
 
   //const metadata = report.metadata;
   const metadata = report[toEval].metadata;
-  const assertions = file[toEval].modules['act-rules'].assertions;
+  const assertions = report[toEval].modules['act-rules'].assertions;
   console.log(assertions);
 
   //console.log(metadata);
