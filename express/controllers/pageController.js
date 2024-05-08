@@ -103,7 +103,6 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
 
   //const metadata = report.metadata;
   const metadata = file.metadata;
-  console.log(file.lengh());
   console.log(metadata);
 
   /*const reportMetadata = new ReportMetadata({
