@@ -13,11 +13,12 @@ const ReportMetadataSchema = new Schema({
 
 
 
-// Virtual for website's URL
+// Define o caminho virtual para o URL
 ReportMetadataSchema.virtual("url").get(function () {
-  // We don't use an arrow function as we'll need the this object
-  return `/eval-metadata/${this._id}`;
-});
+    // Retorna o URL baseado no ID
+    return `/eval-metadata/${this._id}`;
+  });
+
 
 // Export model
 module.exports = mongoose.model("ReportMetadata", ReportMetadataSchema);
