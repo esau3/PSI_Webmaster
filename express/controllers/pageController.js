@@ -116,10 +116,10 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
         const ruleMetadata = new RuleMetadata ({
           code: assertion.code,
           name: assertion.name,
-          passed: assertion.passed,
-          warning: assertion.warning,
-          failed: assertion.failed,
-          inapplicable: assertion.inapplicable,
+          passed: assertion.metadata.passed,
+          warning: assertion.metadata.warning,
+          failed: assertion.metadata.failed,
+          inapplicable: assertion.metadata.inapplicable,
           outcome: assertion.outcome,
           type: []
         })
