@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ReportMetadataSchema = new Schema({
-    url: { type: String, required: true, maxLength: 500 },
+    page_url: { type: String, required: true, maxLength: 500 },
     total_passed: { type: Number, required: true},
     total_warning: { type: Number, required: true},
     total_failed: { type: Number, required: true},
