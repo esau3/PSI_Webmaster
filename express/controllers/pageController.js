@@ -92,8 +92,8 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
 
   // executar a avaliação, recebendo o relatório
   const report = await qualweb.evaluate(qualwebOptions);
-  const earlReport = generateEARLReport(report, earlOptions);
-  res.send(JSON.stringify(earlReport));
+  //const earlReport = generateEARLReport(report, earlOptions);
+  res.send(JSON.stringify(report));
   // parar o avaliador e libertar recursos
   await qualweb.stop();
 });
