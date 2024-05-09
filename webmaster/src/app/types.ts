@@ -18,8 +18,8 @@ export interface Page {
     report:Report;
 }
 
-export interface Report{
-    _id:string;
+export interface Report {
+    _id: string;
     total_passed: number;
     total_warning: number;
     total_failed: number;
@@ -27,16 +27,16 @@ export interface Report{
     rules:Rule[];
 }
 
-export  interface Rule{
-    _id:string;
-    code:string;
-    name:string;
+export interface Rule {
+    _id: string;
+    code: string;
+    name: string;
     passed: number;
     warning: number;
     failed: number;
     inapplicable: number;
-    outcome:string;
-    type:[string]; //como o backend ja refere nao coloquei
+    outcome: string;
+    type: [string]; //como o backend ja refere nao coloquei
 }
 
 export interface Options {
