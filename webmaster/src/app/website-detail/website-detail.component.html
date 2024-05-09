@@ -41,8 +41,11 @@
       <button mat-icon-button (click)="deletePage(page._id)">
         <span class="material-symbols-outlined">delete</span>
       </button>
-      <button mat-icon-button (click)="startEvaluation(page._id)">
+      <button mat-icon-button routerLink="/report-detail/{{page._id}}" (click)="startEvaluation(page._id)">
         <span class="material-symbols-outlined">start</span>
+      </button>
+      <button mat-icon-button routerLink="/report-detail/{{page._id}}">
+        <span class="material-symbols-outlined" id="visibility">visibility</span>
       </button>
     </div>
   </div>
