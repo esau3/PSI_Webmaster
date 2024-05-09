@@ -28,6 +28,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
+import { ReportDetailComponent } from './report-detail/report-detail.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { DialogComponent } from './dialog/dialog.component';
     SideNavComponent,
     WebsitesTableComponent,
     WebsiteDetailComponent,
-    DialogComponent
+    DialogComponent,
+    ReportDetailComponent
   ],
   imports: [
     BrowserModule,
