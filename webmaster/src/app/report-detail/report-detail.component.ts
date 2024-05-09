@@ -414,11 +414,10 @@ interface RuleNode {
 }
 
 const TREE_DATA: RuleNode[] = 
-  array.map((rule: { code: string; name: string; type: string[]; _id: string; }) => ({
+  array.map((rule: { code: string; name: string; type: string[];}) => ({
   name: rule.code,
   children: [
-      { name: 'Name', value: rule.name },
-      { name: 'Type', value: rule.type },
-      { name: '_id', value: rule._id }
+      { name: 'Rule name ', value: rule.name },
+      { name: 'Type ', value: rule.type },
   ]
 }));
