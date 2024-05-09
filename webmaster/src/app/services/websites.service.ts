@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of,catchError,throwError } from 'rxjs';
 import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
-import { Page, Website } from '../types';
+import { Page, Report, Rule, Website } from '../types';
 //import { WEBSITES } from '../mock-websites';
 
 @Injectable({ providedIn: 'root' })
@@ -79,6 +79,34 @@ export class WebsiteService {
   putPage(pageData: any, id: string) {
     return this.http.put<Page>(this.website + '/' + id, pageData)
     //return this.http.put<Page>(this.page + '/' + id , pageData)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getReport(id:string):Observable<Report>{
+    return this.http.get<Report>(this.page + '/report/' + id)
+   .pipe(
+     catchError(this.handleError)
+   );
+  }
+
+  getReports():Observable<Report[]>{
+    return this.http.get<Report[]>(this.page + '/report')
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getRules():Observable<Rule[]>{
+    return this.http.get<Rule[]>(this.page + '/rule')
+   .pipe(
+     catchError(this.handleError)
+   );
+  }
+
+  getRule(id:string):Observable<Rule>{
+    return this.http.get<Rule>(this.page + '/rule/'+id)
     .pipe(
       catchError(this.handleError)
     );
