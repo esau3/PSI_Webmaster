@@ -26,12 +26,12 @@
               <mat-icon class="mat-icon-rtl-mirror">
                 {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
               </mat-icon>
+            </button>
             <span>{{node.name}}</span>
-          </button>
           </div>
           <!-- There is inline padding applied to this div using styles.
               This padding value depends on the mat-icon-button width.  -->
-              <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
+          <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
               role="group">
             <ng-container *ngFor="let child of node.children">
               <mat-tree-node>
