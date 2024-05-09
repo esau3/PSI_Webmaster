@@ -8,7 +8,7 @@
     font-size: larger;
   }
   
-  .website-info {
+  .page-info {
     flex: 1;
     padding-left: 30px;
   }
@@ -98,5 +98,6 @@
   }
 
   .node-name {
-    font-size: 18px; /* Tamanho da fonte desejado */
+    font-size: 18px;
+    color: #333;
 }
