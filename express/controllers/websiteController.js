@@ -141,6 +141,7 @@ exports.website_eval = asyncHandler(async (req, res, next) => {
   await qualweb.stop();
 });
 
+//funcao que atualiza os estados conforme o report
 async function update_website(websiteId) {
   const website = await Website.findById(websiteId).exec();
   if (website === null) {
