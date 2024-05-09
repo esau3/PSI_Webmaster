@@ -8,12 +8,7 @@
         <div class="info-item">ID: {{  page._id }}</div>
         <div class="info-item">Evaluation date: {{ page.eval_date | date:'short' }}</div>
         <div class="info-item">State: <span class="monitor-state">{{ page.monitor_state }}</span></div>
-        <div>
-          <button mat-icon-button (click)="openDeleteDialog('0ms', '0ms', page._id)" class="back-button">
-            <span class="material-symbols-outlined">delete</span>
-          </button>
-        </div>
-        </div>
+      </div>
     </div>
 </body>
     
