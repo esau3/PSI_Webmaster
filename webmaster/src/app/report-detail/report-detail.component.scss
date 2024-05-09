@@ -1,0 +1,71 @@
+.page-details {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    font-size: larger;
+  }
+  
+  .website-info {
+    flex: 1;
+    padding-left: 30px;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .info-item {
+    margin-bottom: 10px;
+  }
+  
+  .monitor-state {
+    font-weight: bold;
+    color: #ff6600; /* Laranja para estado de monitorização */
+  }
+  
+  .page-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  
+    .info-item {
+      margin-bottom: 5px;
+    }
+  
+    .monitor-state {
+      font-weight: bold;
+      color: #ff6600; /* Laranja para estado de monitorização */
+    }
+  }
+  
+  
+
+  .back-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 6px 6px;
+    padding-bottom: 2px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
+  .material-symbols-outlined {
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24;
+  }
