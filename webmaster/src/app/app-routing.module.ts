@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'websites-table', component: WebsitesTableComponent },
   { path: 'website-detail/:id', component: WebsiteDetailComponent },
   { path: 'report-detail/:id', component: ReportDetailComponent },
+  { path: 'report-detail', component: ReportDetailComponent },
 ];
 
 @NgModule({
