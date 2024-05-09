@@ -417,7 +417,7 @@ const TREE_DATA: RuleNode[] =
   array.map((rule: { code: string; name: string; type: string[];}) => ({
     name: rule.code,
     children: [
-        { name: 'Rule name', value: rule.name },
-        rule.type.length > 0 ? { name: 'Type', value: rule.type } : null,
+        { name: 'Rule name ', value: rule.name },
+        rule.type.length > 0 ? { name: 'Type ', value: rule.type } : null,
     ].filter(child => child !== null) as RuleNode[] // Converte para RuleNode[]
 }));
