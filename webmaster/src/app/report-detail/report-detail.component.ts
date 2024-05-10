@@ -945,14 +945,34 @@ export class ReportDetailComponent implements OnInit{
  */
 interface RuleNode {
   name: string;
+  value?: string;
   children?: RuleNode[];
 }
 
-const TREE_DATA: RuleNode[] = 
-  array.map((rule: { code: string; name: string; type: string[];}) => ({
-    name: rule.name,
-    children: [
-        { name: "Rule code", value: rule.code },
-        rule.type.length > 0 ? { name: 'Type', value: rule.type.join(', ') } : null,
-    ].filter(child => child !== null) as RuleNode[] // Converte para RuleNode[]
-}));
+const TREE_DATA: RuleNode[] = array.map((rule: any) => {
+  const children = [
+      { name: "Rule code", value: rule.code },
+      rule.type.length > 0 ? { name: 'Type', value: rule.type.join(', ') } : null,
+  ].filter(child => child !== null) as RuleNode[]; // Converte para RuleNode[]
+
+  if (rule.passed > 0) {
+      children.push({ name: "Passed", value: rule.passed.toString() });
+  }
+
+  if (rule.warning > 0) {
+      children.push({ name: "Warning", value: rule.warning.toString() });
+  }
+
+  if (rule.failed > 0) {
+      children.push({ name: "Failed", value: rule.failed.toString() });
+  }
+
+  if (rule.inapplicable > 0) {
+      children.push({ name: "Inapplicable", value: rule.inapplicable.toString() });
+  }
+
+  return {
+      name: rule.name,
+      children: children,
+  };
+});
