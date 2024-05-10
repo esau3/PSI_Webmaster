@@ -36,15 +36,16 @@ export class ReportDetailComponent implements OnInit{
       this.getPage();
   }
 
-    getPage(): void {
-      const id = this.route.snapshot.paramMap.get('id');
-      if (id !== null) {
-        this.websiteService.getPage(id)
-          .subscribe((page: Page) => {
-            this.page = page;
-          });
-      }
+  getPage(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id !== null) {
+      this.websiteService.getPage(id)
+        .subscribe((page: Page) => {
+          this.page = page;
+          console.log(this.page);
+        });
     }
+  }
 
     deletePage(id:string ):void{
       this.websiteService.deletePage(id).subscribe({
@@ -940,7 +941,7 @@ interface RuleNode {
   children?: RuleNode[];
 }
 
-const TREE_DATA: RuleNode[] = array.map((rule: any) => {
+const TREE_DATA: RuleNode[] = this.page.rules.map((rule: any) => {
   const children = [
       rule.type.length > 0 ? { name: 'Type', value: rule.type.join(', ') } : null,
   ].filter(child => child !== null) as RuleNode[]; // Converte para RuleNode[]
