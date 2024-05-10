@@ -12,6 +12,7 @@ const PageSchema = new Schema({
     enum: ["Por avaliar", "Em avaliação", "Conforme", "Não Conforme", "Erro na avaliação"],
     default: "Por avaliar",
   },
+  report: { type: Schema.Types.ObjectId, ref: "ReportMetadata" }
 });
 
 // Virtual for page's URL
