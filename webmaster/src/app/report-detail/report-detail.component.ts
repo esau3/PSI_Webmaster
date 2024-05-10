@@ -119,7 +119,7 @@ export class ReportDetailComponent implements OnInit{
         this.websiteService.getReport(id)
           .subscribe((report: Report) => {
             this.report = report;
-            console.log(this.report);
+            console.log("DETails",this.report);
           });
       }
     }

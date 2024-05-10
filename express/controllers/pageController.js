@@ -96,7 +96,7 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
   //se ja existir um report feito a essa pagina
   if(page.report) {
     const reportMetadata = page.report;
-    console.log(page);
+    console.log("controller",page);
 
     res.send(reportMetadata);
   } else {
@@ -174,7 +174,7 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
   res.send(reportMetadata);
   
   await qualweb.stop();
-  
+
   }});
 
 //funcao que retorna o level do teste
