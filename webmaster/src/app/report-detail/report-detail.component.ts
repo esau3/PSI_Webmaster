@@ -55,9 +55,10 @@ export class ReportDetailComponent implements OnInit{
                 children.push({ name: 'Type', value: rule.type.join(', ') });
               }
             
+              const code = rule.code ? rule.code.replace('QW-', '') : '';
               return {
                   name: rule.name,
-                  code: rule.code.replace('QW-', ''),
+                  code: code,
                   children: children,
               };
           });
@@ -78,7 +79,7 @@ export class ReportDetailComponent implements OnInit{
       this.websiteService.getPage(id)
         .subscribe((page: Page) => {
           this.page = page;
-          console.log(this.page);
+          //console.log(this.page);
           this.buildTree();
         });
     }
