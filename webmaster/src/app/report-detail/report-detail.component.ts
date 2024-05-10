@@ -31,7 +31,7 @@ export class ReportDetailComponent implements OnInit{
     }
 
     buildTree(): void {
-      if (this.page) {
+      if (this.page && this.page.report && this.page.report.rules) {
           const TREE_DATA: RuleNode[] = this.page. report.rules.map((rule: any) => {
               const children = [
                   rule.type.length > 0 ? { name: 'Type', value: rule.type.join(', ') } : null,
