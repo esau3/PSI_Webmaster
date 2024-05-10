@@ -28,10 +28,12 @@ export class ReportDetailComponent implements OnInit{
       private location: Location,
       private router: Router,
       public dialog: MatDialog
-    ) {
-    }
+    ) {}
 
     buildTree(): void {
+      console.log("log1:", this.page);
+      console.log("log2:", this.report);
+      console.log("log3:", this.page?.report.rules);
       if (this.page && this.page.report && this.page.report.rules) {
           const TREE_DATA: RuleNode[] = this.page. report.rules.map((rule: any) => {
               const children = [].filter(child => child !== null) as RuleNode[]; // Converte para RuleNode[]
@@ -122,6 +124,7 @@ export class ReportDetailComponent implements OnInit{
           .subscribe((report: Report) => {
             this.report = report;
             console.log("DETails",this.report);
+            this.buildTree();
           });
       }
     }
@@ -129,7 +132,7 @@ export class ReportDetailComponent implements OnInit{
     getReports(): void {
       this.websiteService.getReports().subscribe(reports => {
         this.reports = reports;
-        console.log(this.reports);
+        //console.log(this.reports);
       });
     }
 
