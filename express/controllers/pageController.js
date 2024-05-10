@@ -142,7 +142,7 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
     }
   }
 
-  console.log(rulesArray);
+  //console.log(rulesArray);
 
   const reportMetadata = new ReportMetadata({
     url: toEval,
