@@ -33,8 +33,22 @@ export class ReportDetailComponent implements OnInit{
     hasChild = (_: number, node: RuleNode) => !!node.children && node.children.length > 0;
 
     ngOnInit(): void {
-      this.getPage();
+      //this.getPage();
+      this.page = {
+        _id: "0",
+        page_URL: "https://www.netflix.com/home",
+        eval_date: new Date(),
+        monitor_state: 'Por avaliar',
+        report: {
+          _id: "00",
+          total_passed: 8,
+          total_warning: 10,
+          total_failed: 15,
+          total_inapplicable: 0,
+          rules: []
+        }
     }
+  }
 
     getPage(): void {
       const id = this.route.snapshot.paramMap.get('id');
@@ -415,9 +429,9 @@ interface RuleNode {
 
 const TREE_DATA: RuleNode[] = 
   array.map((rule: { code: string; name: string; type: string[];}) => ({
-    name: rule.code,
+    name: rule.name,
     children: [
-        { name: 'Rule name ', value: rule.name },
-        rule.type.length > 0 ? { name: 'Type ', value: rule.type } : null,
+        { name: "Rule code", value: rule.code },
+        rule.type.length > 0 ? { name: 'Type', value: rule.type.join(', ') } : null,
     ].filter(child => child !== null) as RuleNode[] // Converte para RuleNode[]
 }));

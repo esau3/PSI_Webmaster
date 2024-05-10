@@ -8,6 +8,16 @@
         <div class="info-item">ID: {{  page._id }}</div>
         <div class="info-item">Evaluation date: {{ page.eval_date | date:'short' }}</div>
         <div class="info-item">State: <span class="monitor-state">{{ page.monitor_state }}</span></div>
+        <div class="info-group">
+          <div class="info-item-line passed">
+            <span class="material-symbols-outlined">done_all</span> Passed: {{ page.report.total_passed }}</div>
+          <div class="info-item-line failed">
+            <span class="material-symbols-outlined">cancel</span> Failed: {{ page.report.total_failed }}</div>
+          <div class="info-item-line warning">
+            <span class="material-symbols-outlined">report</span> Warnings: {{ page.report.total_warning }}</div>
+          <div class="info-item-line inapplicable">
+            <span class="material-symbols-outlined">search_off</span> Inapplicable: {{ page.report.total_inapplicable }}</div>
+      </div>
       </div>
     </div>
 
@@ -20,8 +30,8 @@
 
       <!-- This is the tree node template for expandable nodes -->
       <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-          <div class="mat-tree-node">
-            <button mat-icon-button matTreeNodeToggle
+        <div [class]="node.children ? 'mat-tree-node main-node' : 'mat-tree-node'">
+          <button mat-icon-button matTreeNodeToggle
                     [attr.aria-label]="'Toggle ' + node.code">
               <mat-icon class="mat-icon-rtl-mirror">
                 {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}

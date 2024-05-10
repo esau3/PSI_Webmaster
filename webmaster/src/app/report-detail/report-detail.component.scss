@@ -21,6 +21,7 @@
   
   .info-item {
     margin-bottom: 10px;
+    font-size: 18px;
   }
   
   .monitor-state {
@@ -28,11 +29,11 @@
     color: #ff6600; /* Laranja para estado de monitorização */
   }
   
-  .page-item, .mat-tree-node{
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  .mat-tree-node.main-node {
     padding: 10px;
     margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
   
     .info-item {
       margin-bottom: 5px;
@@ -100,4 +101,32 @@
   .node-name {
     font-size: 18px;
     color: #333;
+}
+
+.info-group {
+  display: inline-flex;
+}
+
+.info-item-line {
+  margin-right: 25px;
+  margin-bottom: 10px;
+  margin-top: 38px;
+  font-size: 22px;
+}
+
+
+.passed {
+  color: rgb(0, 161, 0);
+}
+
+.failed {
+  color: red;
+}
+
+.warning {
+  color: rgb(220, 220, 0);
+}
+
+.inapplicable {
+  color: grey;
 }
