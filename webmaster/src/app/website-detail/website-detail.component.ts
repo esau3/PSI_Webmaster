@@ -131,8 +131,6 @@ export class WebsiteDetailComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    this.message.value = "Evaluation of the page has started!";
-    this.action.value = "Click on view!";
     this._snackBar.open(message, action);
   }
 
