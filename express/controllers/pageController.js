@@ -49,7 +49,7 @@ exports.page_detail = async (req, res, next) => {
 exports.page_delete = asyncHandler(async (req, res, next) => {
 
   const page = await Page.findById(req.params.id).exec();
-  console.log(page);
+  //console.log(page);
   if (!page) {
     // No results.
     const err = new Error("Page not found");
@@ -152,13 +152,17 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
     total_inapplicable: metadata.inapplicable,
     rules: rulesArray
   });
+  
 
-    //res.send(report);
-    res.send(reportMetadata);
-    // parar o avaliador e libertar recursos
-    await qualweb.stop();
+  await reportMetadata.save();
 
-    await reportMetadata.save();
+  page.report = reportMetadata;
+  await page.save();
+  
+  //res.send(report);
+  res.send(reportMetadata);
+  
+  await qualweb.stop();
 
 
   });
