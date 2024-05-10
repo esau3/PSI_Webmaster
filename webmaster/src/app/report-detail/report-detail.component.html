@@ -4,7 +4,8 @@
         <span class="material-symbols-outlined">arrow_back</span>
       </button>
       <div class="page-info">
-        <h2>{{ page.page_URL }} details</h2>
+        <h2>{{ page.page_URL }} QualWeb Report details</h2>
+        <h2> URL: {{ page.page_URL }}</h2>
         <div class="info-item">ID: {{  page._id }}</div>
         <div class="info-item">Evaluation date: {{ page.eval_date | date:'short' }}</div>
         <div class="info-item">State: <span class="monitor-state">{{ page.monitor_state }}</span></div>
