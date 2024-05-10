@@ -22,8 +22,8 @@ export class WebsiteDetailComponent implements OnInit {
   pages: Page[] | undefined;
   pageData: Page | undefined;
   form: FormGroup;
-  message: any;
-  action: any;
+  message: any = "Evaluation of the page has started!";
+  action: any = "Click on view!";
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +34,9 @@ export class WebsiteDetailComponent implements OnInit {
     public dialog: MatDialog,
     private _snackBar: MatSnackBar
   ) {
+
+    this.message.value = "Evaluation of the page has started!";
+    this.action.value = "Click on view!";
 
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.form = this.fb.group({
