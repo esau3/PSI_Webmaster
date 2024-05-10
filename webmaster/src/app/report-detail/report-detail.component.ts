@@ -31,10 +31,8 @@ export class ReportDetailComponent implements OnInit{
     ) {}
 
     buildTree(): void {
-      console.log(this.report);
-      console.log(this.page?.report);
       if (this.page && this.report) {
-          const TREE_DATA: RuleNode[] = this.page.report.rules.map((rule: any) => {
+          const TREE_DATA: RuleNode[] = this.report.rules.map((rule: any) => {
               const children = [].filter(child => child !== null) as RuleNode[]; // Converte para RuleNode[]
             
               if (rule.passed > 0) {
@@ -74,6 +72,7 @@ export class ReportDetailComponent implements OnInit{
   ngOnInit(): void {
       this.getPage();
       this.getReport();
+      this.buildTree();
   }
 
   getPage(): void {
