@@ -93,6 +93,17 @@ exports.page_report = asyncHandler(async (req, res, next) => {
     return next(err);
   }
 
+  console.log("controller 1",page.report);
+
+  //se ja existir um report feito a essa pagina
+  if(page.report) {
+    const reportMetadata = page.report;
+    console.log("controller 2",reportMetadata);
+
+    res.send(reportMetadata);
+  } else {
+
+
   //inicializar
   const qualweb = new QualWeb(plugins);
   await qualweb.start(clusterOptions, launchOptions);
@@ -167,7 +178,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   
   await qualweb.stop();
 
-  });
+  }});
 
 //funcao que retorna o level do teste
 function getErrorLevel(successCriteria) {
