@@ -31,11 +31,8 @@ export class ReportDetailComponent implements OnInit{
     ) {}
 
     buildTree(): void {
-      console.log("log1:", this.page);
-      console.log("log2:", this.report);
-      console.log("log3:", this.page?.report.rules);
       if (this.page && this.page.report && this.page.report.rules) {
-          const TREE_DATA: RuleNode[] = this.page. report.rules.map((rule: any) => {
+          const TREE_DATA: RuleNode[] = this.page.report.rules.map((rule: any) => {
               const children = [].filter(child => child !== null) as RuleNode[]; // Converte para RuleNode[]
             
               if (rule.passed > 0) {
@@ -67,7 +64,7 @@ export class ReportDetailComponent implements OnInit{
           });
 
           this.dataSource.data = TREE_DATA;
-      } else console.log("out");
+      }
   }
 
   hasChild = (_: number, node: RuleNode) => !!node.children && node.children.length > 0;
@@ -118,12 +115,10 @@ export class ReportDetailComponent implements OnInit{
 
     getReport(): void {
       const id = this.route.snapshot.paramMap.get('id');
-      console.log(id);
       if (id !== null) {
         this.websiteService.getReport(id)
           .subscribe((report: Report) => {
             this.report = report;
-            console.log("DETails",this.report);
             this.buildTree();
           });
       }
@@ -132,7 +127,6 @@ export class ReportDetailComponent implements OnInit{
     getReports(): void {
       this.websiteService.getReports().subscribe(reports => {
         this.reports = reports;
-        //console.log(this.reports);
       });
     }
 
