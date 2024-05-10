@@ -31,7 +31,9 @@ export class ReportDetailComponent implements OnInit{
     ) {}
 
     buildTree(): void {
-      if (this.page && this.page.report && this.page.report.rules) {
+      console.log(this.report);
+      console.log(this.page?.report);
+      if (this.page && this.report) {
           const TREE_DATA: RuleNode[] = this.page.report.rules.map((rule: any) => {
               const children = [].filter(child => child !== null) as RuleNode[]; // Converte para RuleNode[]
             
@@ -80,8 +82,6 @@ export class ReportDetailComponent implements OnInit{
       this.websiteService.getPage(id)
         .subscribe((page: Page) => {
           this.page = page;
-          //console.log(this.page);
-          this.buildTree();
         });
     }
   }
@@ -95,7 +95,6 @@ export class ReportDetailComponent implements OnInit{
           console.error("Error deleting page:", err);
         }
       });
-      this.getReports();
       location.reload();
     }
 
