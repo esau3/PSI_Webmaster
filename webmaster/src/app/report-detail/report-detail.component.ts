@@ -71,6 +71,7 @@ export class ReportDetailComponent implements OnInit{
 
   ngOnInit(): void {
       this.getPage();
+      this.getReport();
   }
 
   getPage(): void {
@@ -109,6 +110,18 @@ export class ReportDetailComponent implements OnInit{
         this.deletePage(id);
       }
     });
+    }
+
+    getReport(): void {
+      const id = this.route.snapshot.paramMap.get('id');
+      console.log(id);
+      if (id !== null) {
+        this.websiteService.getReport(id)
+          .subscribe((report: Report) => {
+            this.report = report;
+            console.log(this.report);
+          });
+      }
     }
 
     goBack(): void {

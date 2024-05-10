@@ -84,17 +84,26 @@ exports.report_detail = async (req, res, next) => {
 // Handle Page evaluation on GET.
 exports.page_eval = asyncHandler(async (req, res, next) => {
 
-  //inicializar
-  const qualweb = new QualWeb(plugins);
-  await qualweb.start(clusterOptions, launchOptions);
-
   // Get details of website and their pages (in parallel)
   const page = await Page.findById(req.params.id).exec();
+
   if (page === null) {
     const err = new Error("Page not found");
     err.status = 404;
     return next(err);
   }
+
+  //se ja existir um report feito a essa pagina
+  if(page.report) {
+    const reportMetadata = page.report;
+    console.log(page);
+
+    res.send(reportMetadata);
+  } else {
+
+  //inicializar
+  const qualweb = new QualWeb(plugins);
+  await qualweb.start(clusterOptions, launchOptions);
 
   //ir buscar o url correto
   let toEval = page.page_URL;
@@ -165,9 +174,8 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
   res.send(reportMetadata);
   
   await qualweb.stop();
-
-
-  });
+  
+  }});
 
 //funcao que retorna o level do teste
 function getErrorLevel(successCriteria) {
