@@ -64,7 +64,7 @@ export class ReportDetailComponent implements OnInit{
           });
 
           this.dataSource.data = TREE_DATA;
-      }
+      } else console.log("out");
   }
 
   hasChild = (_: number, node: RuleNode) => !!node.children && node.children.length > 0;
