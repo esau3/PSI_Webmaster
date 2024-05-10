@@ -157,8 +157,9 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
   await reportMetadata.save();
 
   page.report = reportMetadata;
+  console.log(page);
   await page.save();
-  
+
   //res.send(report);
   res.send(reportMetadata);
   
