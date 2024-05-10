@@ -129,7 +129,7 @@ export class WebsiteDetailComponent implements OnInit {
   }
 
   openSnackBar() {
-    this._snackBar.open("Evaluation of the page has started!");
+    this._snackBar.open("Evaluation of the page has started!", "Close", {duration: 5000});
   }
 
   openDeleteDialog(enterAnimationDuration: string, exitAnimationDuration: string, id: string): void {
