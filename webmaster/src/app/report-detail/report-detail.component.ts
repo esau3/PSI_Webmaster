@@ -72,7 +72,6 @@ export class ReportDetailComponent implements OnInit{
   ngOnInit(): void {
       this.getPage();
       this.getReport();
-      this.buildTree();
   }
 
   getPage(): void {
@@ -117,6 +116,7 @@ export class ReportDetailComponent implements OnInit{
         this.websiteService.getReport(id)
           .subscribe((report: Report) => {
             this.report = report;
+            this.buildTree();
           });
       }
     }
