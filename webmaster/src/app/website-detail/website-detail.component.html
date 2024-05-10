@@ -41,7 +41,7 @@
       <button mat-icon-button (click)="deletePage(page._id)">
         <span class="material-symbols-outlined">delete</span>
       </button>
-      <button mat-icon-button (click)="openSnackBar()" (click)="startEvaluation(page._id)">
+      <button mat-icon-button (click)="openSnackBar('Evaluation of the page has started!')" (click)="startEvaluation(page._id)">
         <span class="material-symbols-outlined">start</span>
       </button>
       <button mat-icon-button routerLink="/report-detail/{{page._id}}">

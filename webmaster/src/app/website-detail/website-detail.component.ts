@@ -102,7 +102,17 @@ export class WebsiteDetailComponent implements OnInit {
   }
 
   startEvaluation(id:string):void{
-    this.websiteService.startEvaluation(id);
+    this.websiteService.startEvaluation(id).subscribe({
+      next: () => {
+        // Avaliação concluída com sucesso
+        // Chame o método openSnackBar() para exibir a notificação
+        this.openSnackBar("Evaluation of the page has started!");
+      },
+      error: (error) => {
+        // Tratar erros, se necessário
+        console.error("Error during page evaluation:", error);
+      }
+    });
   }
 
   deletePage(id:string ):void{
@@ -128,8 +138,8 @@ export class WebsiteDetailComponent implements OnInit {
     }
   }
 
-  openSnackBar() {
-    this._snackBar.open("Evaluation of the page has started!", "Close", {duration: 5000});
+  openSnackBar(message: string) {
+    this._snackBar.open(message, "Close", {duration: 5000});
   }
 
   openDeleteDialog(enterAnimationDuration: string, exitAnimationDuration: string, id: string): void {
