@@ -20,6 +20,7 @@ export class ReportDetailComponent implements OnInit{
     rules: Rule[] |undefined;
     treeControl = new NestedTreeControl<RuleNode>(node => node.children);
     dataSource = new MatTreeNestedDataSource<RuleNode>();
+    reports: Report[] | undefined;
   
     constructor(
       private route: ActivatedRoute,
@@ -95,6 +96,7 @@ export class ReportDetailComponent implements OnInit{
           console.error("Error deleting page:", err);
         }
       });
+      this.getReports();
       location.reload();
     }
 
@@ -122,6 +124,13 @@ export class ReportDetailComponent implements OnInit{
             console.log("DETails",this.report);
           });
       }
+    }
+
+    getReports(): void {
+      this.websiteService.getReports().subscribe(reports => {
+        this.reports = reports;
+        console.log(this.reports);
+      });
     }
 
     goBack(): void {
