@@ -82,7 +82,7 @@ exports.report_detail = async (req, res, next) => {
 };*/
 
 // Handle Page evaluation on GET.
-exports.page_eval = asyncHandler(async (req, res, next) => {
+exports.page_report = asyncHandler(async (req, res, next) => {
 
   // Get details of website and their pages (in parallel)
   const page = await Page.findById(req.params.id).exec();
@@ -96,7 +96,7 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
   //se ja existir um report feito a essa pagina
   if(page.report) {
     const reportMetadata = page.report;
-    console.log("controller",page);
+    console.log("controller",reportMetadata);
 
     res.send(reportMetadata);
   } else {
@@ -196,3 +196,13 @@ async function find_website_id(page_id) {
   }
   return website._id;
 }
+
+// Display list of all Pages.
+exports.reports_list = async (req, res, next) => {
+  try {
+    const allReports = await Page.report.find().exec();
+    res.send(JSON.stringify(allReports));
+  } catch (error) {
+    next(error);
+  }
+};
