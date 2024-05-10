@@ -93,14 +93,11 @@ exports.page_report = asyncHandler(async (req, res, next) => {
     return next(err);
   }
 
-  console.log("controller 1",page.report);
-
-  //se ja existir um report feito a essa pagina
+  //se ja existir um report feito a essa pagina,
+  //lembrando que é passado o id em page.report
   if(page.report.lenght === 1) {
 
     const reportMetadata = await ReportMetadata.findById(page.report).exec();
-    console.log("controller 2",reportMetadata);
-
     res.send(reportMetadata);
   } else {
 
@@ -171,7 +168,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   await reportMetadata.save();
 
   page.report = reportMetadata;
-  console.log(page);
+  //console.log(page);
   await page.save();
 
   //res.send(report);
@@ -204,7 +201,7 @@ async function find_website_id(page_id) {
 // Display list of all Pages.
 exports.reports_list = async (req, res, next) => {
   try {
-    const allReports = await Page.report.find().exec();
+    const allReports = await ReportMetadata.find().exec();
     res.send(JSON.stringify(allReports));
   } catch (error) {
     next(error);
