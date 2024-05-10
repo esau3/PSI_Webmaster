@@ -30,6 +30,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import {MatTreeModule} from '@angular/material/tree';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import {MatTreeModule} from '@angular/material/tree';
     MatDialogClose,
     MatDialogTitle,
     MatDialogContent,
-    MatTreeModule
+    MatSnackBarModule,
+    MatTreeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

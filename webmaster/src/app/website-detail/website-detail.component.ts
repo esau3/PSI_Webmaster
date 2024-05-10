@@ -7,6 +7,7 @@ import { ActivatedRoute,Router } from '@angular/router';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -21,6 +22,8 @@ export class WebsiteDetailComponent implements OnInit {
   pages: Page[] | undefined;
   pageData: Page | undefined;
   form: FormGroup;
+  message: any;
+  action: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,7 +31,8 @@ export class WebsiteDetailComponent implements OnInit {
     private location: Location,
     private router: Router,
     private fb: FormBuilder,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar
   ) {
 
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
@@ -124,6 +128,10 @@ export class WebsiteDetailComponent implements OnInit {
       this.updatePages();
       //console.log(this.form.value);
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 
   openDeleteDialog(enterAnimationDuration: string, exitAnimationDuration: string, id: string): void {
