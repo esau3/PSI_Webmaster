@@ -9,6 +9,7 @@
         <div class="info-item">ID: {{  page._id }}</div>
         <div class="info-item">Evaluation date: {{ page.eval_date | date:'short' }}</div>
         <div class="info-item">State: <span class="monitor-state">{{ page.monitor_state }}</span></div>
+        <div *ngIf="report">
         <div class="info-group">
           <div class="info-item-line passed">
             <span class="material-symbols-outlined">done_all</span> Passed: {{ page.report.total_passed }}</div>
@@ -20,8 +21,9 @@
             <span class="material-symbols-outlined">search_off</span> Inapplicable: {{ page.report.total_inapplicable }}</div>
       </div>
       </div>
+      </div>
     </div>
-    <div *ngIf="report">
+  
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
       <!-- This is the tree node template for leaf nodes -->
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
@@ -54,6 +56,5 @@
         </div>
       </mat-nested-tree-node>
     </mat-tree>
-  </div>
 </body>
     
