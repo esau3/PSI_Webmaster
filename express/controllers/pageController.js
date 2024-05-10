@@ -135,7 +135,7 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
           warning: assertion.metadata.warning,
           failed: assertion.metadata.failed,
           inapplicable: assertion.metadata.inapplicable,
-          outcome: assertion.outcome,
+          outcome: assertion.metadata.outcome,
           type: getErrorLevel(assertion.metadata['success-criteria'])
         })
         rulesArray.push(ruleMetadata);
