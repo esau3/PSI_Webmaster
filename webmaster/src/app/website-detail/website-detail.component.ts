@@ -35,9 +35,6 @@ export class WebsiteDetailComponent implements OnInit {
     private _snackBar: MatSnackBar
   ) {
 
-    this.message.value = "Evaluation of the page has started!";
-    this.action.value = "Click on view!";
-
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.form = this.fb.group({
       pageUrl: ['', [Validators.required, Validators.pattern(reg)]]
