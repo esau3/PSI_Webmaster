@@ -22,8 +22,6 @@ export class WebsiteDetailComponent implements OnInit {
   pages: Page[] | undefined;
   pageData: Page | undefined;
   form: FormGroup;
-  message: any = "Evaluation of the page has started!";
-  action: any = "Click on view!";
 
   constructor(
     private route: ActivatedRoute,
@@ -130,8 +128,8 @@ export class WebsiteDetailComponent implements OnInit {
     }
   }
 
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
+  openSnackBar() {
+    this._snackBar.open("Evaluation of the page has started!");
   }
 
   openDeleteDialog(enterAnimationDuration: string, exitAnimationDuration: string, id: string): void {
