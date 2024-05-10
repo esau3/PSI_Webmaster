@@ -30,28 +30,10 @@ export class ReportDetailComponent implements OnInit{
         this.dataSource.data = TREE_DATA;
     }
 
-    toggleNode(node: RuleNode): void {
-      this.treeControl.toggle(node);
-    }
-
     hasChild = (_: number, node: RuleNode) => !!node.children && node.children.length > 0;
 
     ngOnInit(): void {
-      //this.getPage();
-      this.page = {
-        _id: "0",
-        page_URL: "https://www.netflix.com/home",
-        eval_date: new Date(),
-        monitor_state: 'Por avaliar',
-        report: {
-          _id: "00",
-          total_passed: 8,
-          total_warning: 10,
-          total_failed: 15,
-          total_inapplicable: 0,
-          rules: []
-        }
-    }
+      this.getPage();
   }
 
     getPage(): void {
@@ -92,6 +74,10 @@ export class ReportDetailComponent implements OnInit{
 
     goBack(): void {
       this.location.back();
+    }
+
+    toggleNode(node: RuleNode): void {
+      this.treeControl.toggle(node);
     }
   }
 
