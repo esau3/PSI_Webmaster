@@ -95,12 +95,18 @@ exports.page_report = asyncHandler(async (req, res, next) => {
 
   //se ja existir um report feito a essa pagina,
   //lembrando que é passado o id em page.report
-  if(page.report && page.report.lenght === 1) {
+  if(page.report && page.report.length === 1) {
 
     const reportMetadata = await ReportMetadata.findById(page.report).exec();
     res.send(reportMetadata);
   } else {
 
+  //atualizar estado da pagina
+  await Page.findByIdAndUpdate(
+    page_id,
+    { $set: { monitor_state: "Em avaliação" } },
+    { new: true }
+  )
 
   //inicializar
   const qualweb = new QualWeb(plugins);
@@ -199,7 +205,43 @@ async function find_website_id(page_id) {
 }
 
 async function update_page_state(page_id) {
+  const page = await Page.findById(page_id).exec();
+  if (page === null) {
+    const err = new Error("Page not found");
+    err.status = 404;
+    return next(err);
+  }
+
+  if (page.report === null) {
+    return null;                  // assim? 
+  }
   
+  const err_types = [];
+  const rules = page.report.rules;
+
+  for (let i = 0; i < rules.length; i++) {
+    if (rules[i].failed > 0) {
+      for (let j = 0; j < rules[i].rule_type.length; j++) {
+        if (err_types.indexOf(rules[i].rule_type[j]) === -1) {
+          err_types.push(rules[i].rule_type[j]);
+        }
+      }
+    }
+  }
+
+  if (err_types.indexOf("A") != -1 || err_types.indexOf("AA") != -1) {
+    await Page.findByIdAndUpdate(
+      page_id,
+      { $set: { monitor_state: "Não conforme" } },
+      { new: true }
+    )
+  } else {
+    await Page.findByIdAndUpdate(
+      page_id,
+      { $set: { monitor_state: "Conforme" } },
+      { new: true }
+    )
+  }
 }
 
 // Display list of all Pages.

@@ -9,7 +9,7 @@ const PageSchema = new Schema({
   monitor_state: {
     type: String,
     required: true,
-    enum: ["Por avaliar", "Em avaliação", "Conforme", "Não Conforme", "Erro na avaliação"],
+    enum: ["Por avaliar", "Em avaliação", "Conforme", "Não conforme", "Erro na avaliação"],
     default: "Por avaliar",
   },
   report: { type: Schema.Types.ObjectId, ref: "ReportMetadata" }
