@@ -30,6 +30,10 @@ export class ReportDetailComponent implements OnInit{
         this.dataSource.data = TREE_DATA;
     }
 
+    toggleNode(node: RuleNode): void {
+      this.treeControl.toggle(node);
+    }
+
     hasChild = (_: number, node: RuleNode) => !!node.children && node.children.length > 0;
 
     ngOnInit(): void {
@@ -945,18 +949,18 @@ export class ReportDetailComponent implements OnInit{
  */
 interface RuleNode {
   name: string;
+  code?: string;
   value?: string;
   children?: RuleNode[];
 }
 
 const TREE_DATA: RuleNode[] = array.map((rule: any) => {
   const children = [
-      { name: "Rule code", value: rule.code },
       rule.type.length > 0 ? { name: 'Type', value: rule.type.join(', ') } : null,
   ].filter(child => child !== null) as RuleNode[]; // Converte para RuleNode[]
 
   if (rule.passed > 0) {
-      children.push({ name: "Passed", value: rule.passed.toString() });
+      children.push({ name: "Passed", value: rule.passed.toString()});
   }
 
   if (rule.warning > 0) {
@@ -973,6 +977,7 @@ const TREE_DATA: RuleNode[] = array.map((rule: any) => {
 
   return {
       name: rule.name,
+      code: rule.code.replace('QW-', ''),
       children: children,
   };
 });

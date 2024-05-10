@@ -14,20 +14,20 @@
 <body>
   <mat-drawer-container autosize>
     <mat-drawer #drawer opened="true" mode="side" position="start" style="background-color: rgba(226, 219, 219, 0.556)">
-    <mat-nav-list>
-        <mat-list-item>
+      <mat-nav-list>
+        <mat-list-item class="menu-item">
             <button routerLink="/" mat-button><mat-icon>home</mat-icon> Webmaster</button>
         </mat-list-item>
-        <mat-list-item>
-          <button routerLink="/website" mat-button><mat-icon>add</mat-icon> Add Website</button>
-      </mat-list-item>
-      <mat-list-item>
-        <button routerLink="/websites-table" mat-button><mat-icon>analytics</mat-icon> View Websites</button>
-    </mat-list-item>
-        <mat-list-item>
+        <mat-list-item class="menu-item">
+            <button routerLink="/website" mat-button><mat-icon>add</mat-icon> Add Website</button>
+        </mat-list-item>
+        <mat-list-item class="menu-item">
+            <button routerLink="/websites-table" mat-button><mat-icon>analytics</mat-icon> View Websites</button>
+        </mat-list-item>
+        <mat-list-item class="menu-item">
             <button mat-button><mat-icon>settings</mat-icon> Settings</button>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item class="menu-item">
             <button mat-button><mat-icon>help</mat-icon> Help</button>
         </mat-list-item>
     </mat-nav-list>

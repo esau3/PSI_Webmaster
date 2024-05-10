@@ -31,27 +31,27 @@
 
       <!-- This is the tree node template for expandable nodes -->
       <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-        <div [class]="node.children ? 'mat-tree-node main-node' : 'mat-tree-node'">
-          <button mat-icon-button matTreeNodeToggle
-                    [attr.aria-label]="'Toggle ' + node.code">
-              <mat-icon class="mat-icon-rtl-mirror">
-                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-              </mat-icon>
-            </button>
-            <span class="node-name">{{node.name}}</span>
-          </div>
-          <!-- There is inline padding applied to this div using styles.
-              This padding value depends on the mat-icon-button width.  -->
-          <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
-              role="group">
-            <ng-container *ngFor="let child of node.children">
-              <mat-tree-node>
-                <div class="mat-tree-node">
-                  <span>{{child.name}}</span>: <span>{{child.value}}</span>
-                </div>
-              </mat-tree-node>
-            </ng-container>
-          </div>
+        <div [class]="node.children ? 'mat-tree-node main-node' : 'mat-tree-node'" (click)="toggleNode(node)">
+          <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.code">
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+          <span class="node-name">{{ node.name }}</span>
+          <!-- Adicionando o código da regra -->
+          <span class="node-code">{{ node.code }}</span>
+        </div>
+        <!-- There is inline padding applied to this div using styles.
+            This padding value depends on the mat-icon-button width.  -->
+        <div [class.example-tree-invisible]="!treeControl.isExpanded(node)" role="group">
+          <ng-container *ngFor="let child of node.children">
+            <mat-tree-node>
+              <div class="mat-tree-node">
+                <span>{{ child.name }}</span>: <span>{{ child.value }}</span>
+              </div>
+            </mat-tree-node>
+          </ng-container>
+        </div>
       </mat-nested-tree-node>
     </mat-tree>
 </body>

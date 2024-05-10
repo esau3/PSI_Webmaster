@@ -30,7 +30,7 @@
   }
   
   .mat-tree-node.main-node {
-    padding: 10px;
+    padding: 5px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -43,9 +43,25 @@
       font-weight: bold;
       color: #ff6600; /* Laranja para estado de monitorização */
     }
+
+    .node-name {
+      margin-right: 8px; // Espaçamento entre o nome e o código
+    }
+  
+    .node-code {
+      font-size: 17px;
+      position: absolute;
+      right: 0;
+      padding-right: 10px;
+    }
   }
   
-  
+ 
+/* Mudar o cursor para pointer (mão) */
+.mat-tree-node:hover {
+  cursor: pointer;
+  background-color: transparent;
+}
 
   .back-button {
     background-color: #007bff;
