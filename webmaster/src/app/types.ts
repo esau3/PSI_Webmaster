@@ -36,7 +36,7 @@ export interface Rule {
     failed: number;
     inapplicable: number;
     outcome: string;
-    type: [string]; //como o backend ja refere nao coloquei
+    rule_type: [string]; //como o backend ja refere nao coloquei
 }
 
 export interface Options {

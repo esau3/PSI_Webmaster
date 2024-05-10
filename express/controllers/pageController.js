@@ -198,6 +198,10 @@ async function find_website_id(page_id) {
   return website._id;
 }
 
+async function update_page_state(page_id) {
+  
+}
+
 // Display list of all Pages.
 exports.reports_list = async (req, res, next) => {
   try {
