@@ -33,9 +33,7 @@ export class ReportDetailComponent implements OnInit{
     buildTree(): void {
       if (this.page && this.page.report && this.page.report.rules) {
           const TREE_DATA: RuleNode[] = this.page. report.rules.map((rule: any) => {
-              const children = [
-                  rule.type.length > 0 ? { name: 'Type', value: rule.type.join(', ') } : null,
-              ].filter(child => child !== null) as RuleNode[]; // Converte para RuleNode[]
+              const children = [].filter(child => child !== null) as RuleNode[]; // Converte para RuleNode[]
             
               if (rule.passed > 0) {
                   children.push({ name: "Passed", value: rule.passed.toString()});
@@ -51,6 +49,10 @@ export class ReportDetailComponent implements OnInit{
             
               if (rule.inapplicable > 0) {
                   children.push({ name: "Inapplicable", value: rule.inapplicable.toString() });
+              }
+
+              if (rule.type && rule.type.length > 0) {
+                children.push({ name: 'Type', value: rule.type.join(', ') });
               }
             
               return {
