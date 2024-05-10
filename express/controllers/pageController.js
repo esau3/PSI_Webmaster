@@ -96,8 +96,9 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   console.log("controller 1",page.report);
 
   //se ja existir um report feito a essa pagina
-  if(page.report) {
-    const reportMetadata = page.report;
+  if(page.report.lenght === 0) {
+
+    const reportMetadata = await ReportMetadata.findById(page.report).exec();
     console.log("controller 2",reportMetadata);
 
     res.send(reportMetadata);
