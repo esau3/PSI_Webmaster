@@ -146,7 +146,7 @@ exports.page_eval = asyncHandler(async (req, res, next) => {
   //console.log(rulesArray);
 
   const reportMetadata = new ReportMetadata({
-    url: toEval,
+    page_url: toEval,
     total_passed: metadata.passed,
     total_warning: metadata.warning,
     total_failed: metadata.failed,
