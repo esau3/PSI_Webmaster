@@ -63,6 +63,7 @@ export class ReportDetailComponent implements OnInit{
           });
 
           this.dataSource.data = TREE_DATA;
+          console.log(this.dataSource);
       }
   }
 
