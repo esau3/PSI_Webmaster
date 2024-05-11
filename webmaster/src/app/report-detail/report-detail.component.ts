@@ -33,7 +33,6 @@ export class ReportDetailComponent implements OnInit{
       public dialog: MatDialog
     ) {
       this.buildTree();
-      console.log(this.TREE_DATA);
     }
 
     buildTree(): void {
@@ -62,6 +61,7 @@ export class ReportDetailComponent implements OnInit{
 
         TREE_DATA.push(root, data);
       }
+      console.log(this.TREE_DATA);
     }
 
   hasChild = (_: number, node: RuleNode) => node.expandable;
