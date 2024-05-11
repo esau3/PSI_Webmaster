@@ -74,6 +74,12 @@ export class ReportDetailComponent implements OnInit{
       this.getReport();
   }
 
+  refreshTree(){
+    let _data = this.dataSource.data;
+    this.dataSource.data = [];
+    this.dataSource.data = _data;
+    }
+
   getPage(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id !== null) {
@@ -116,7 +122,7 @@ export class ReportDetailComponent implements OnInit{
         this.websiteService.getReport(id)
           .subscribe((report: Report) => {
             this.report = report;
-            this.buildTree();
+            this.refreshTree();
           });
       }
     }
