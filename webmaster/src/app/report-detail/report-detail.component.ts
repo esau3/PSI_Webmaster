@@ -35,9 +35,21 @@ export class ReportDetailComponent implements OnInit{
 
     buildTree(): void {
       if (this.page && this.report) {
-        const rules = this.report?.rules;
+        //const rules = this.report?.rules;
+        const rule: Rule = {
+          _id: "eadvaevadbeadjova",
+          name: "Test Rule",
+          code: "QW-TEST-001",
+          passed: 5,
+          warning: 3,
+          failed: 2,
+          inapplicable: 1,
+          outcome: "passed",
+          rule_type: ["AAA"]
+      };
 
-        for (const rule of rules) {
+        if(rule){
+        //for (const rule of rules) {
             const root: any = {
                 name: rule.name,
                 code: rule.code,
