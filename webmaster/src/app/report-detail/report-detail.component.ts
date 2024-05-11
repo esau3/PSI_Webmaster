@@ -57,8 +57,8 @@ export class ReportDetailComponent implements OnInit{
             };
 
           this.TREE_DATA.push(root, data);
-          console.log(this.TREE_DATA);
         }
+        console.log(this.TREE_DATA);
       }
     }
 
