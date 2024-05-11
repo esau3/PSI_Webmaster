@@ -141,7 +141,6 @@ export class ReportDetailComponent implements OnInit{
       if (result === 'true') {
         this.deletePage(id);
       }
-      console.log(this.dataSource);
     });
     }
 
@@ -163,6 +162,7 @@ export class ReportDetailComponent implements OnInit{
     }
 
     goBack(): void {
+      console.log(this.dataSource);
       this.location.back();
     }
 
