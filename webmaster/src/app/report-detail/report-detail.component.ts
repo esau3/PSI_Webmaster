@@ -71,7 +71,6 @@ export class ReportDetailComponent implements OnInit{
 
     for (let i = nodeIndex - 1; i >= 0; i--) {
       if (this.TREE_DATA[i].level === node.level - 1) {
-        console.log("dentro do get node");
         return this.TREE_DATA[i];
       }
     }
@@ -83,12 +82,10 @@ export class ReportDetailComponent implements OnInit{
     let parent = this.getParentNode(node);
     while (parent) {
       if (!parent.isExpanded) {
-        console.log("dentro do while do render");
         return false;
       }
       parent = this.getParentNode(parent);
     }
-    console.log("dentro do render");
     return true;
   }
 
@@ -151,7 +148,6 @@ export class ReportDetailComponent implements OnInit{
     }
 
     goBack(): void {
-      console.log(this.dataSource);
       this.location.back();
     }
 

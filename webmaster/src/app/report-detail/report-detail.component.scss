@@ -29,7 +29,7 @@
     color: #ff6600; /* Laranja para estado de monitorização */
   }
   
-  .mat-tree-node.main-node {
+  .example-tree {
     padding: 5px;
     margin-bottom: 5px;
     border: 1px solid #ccc;
@@ -57,12 +57,12 @@
   }
   
 
-.mat-tree-node {
+.example-tree-node {
     font-size: 15px;
 }
 
 /* Mudar o cursor para pointer (mão) */
-.mat-tree-node:hover {
+.example-tree-node:hover {
   cursor: pointer;
   background-color: transparent;
 }
