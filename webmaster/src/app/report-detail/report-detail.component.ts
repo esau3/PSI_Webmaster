@@ -33,6 +33,7 @@ export class ReportDetailComponent implements OnInit{
       public dialog: MatDialog
     ) {
       this.buildTree();
+      console.log(this.TREE_DATA);
     }
 
     buildTree(): void {
