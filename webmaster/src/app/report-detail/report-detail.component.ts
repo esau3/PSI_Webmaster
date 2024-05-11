@@ -50,8 +50,8 @@ export class ReportDetailComponent implements OnInit{
                   children.push({ name: "Inapplicable", value: rule.inapplicable.toString() });
               }
 
-              if (rule.type && rule.type.length > 0) {
-                children.push({ name: 'Type', value: rule.type.join(', ') });
+              if (rule.rule_type && rule.rule_type.length > 0) {
+                children.push({ name: 'Type', value: rule.rule_type.join(', ') });
               }
             
               const code = rule.code ? rule.code.replace('QW-', '') : '';
