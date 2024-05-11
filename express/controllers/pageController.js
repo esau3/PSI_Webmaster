@@ -161,7 +161,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
           failed: assertion.metadata.failed,
           inapplicable: assertion.metadata.inapplicable,
           outcome: assertion.metadata.outcome,
-          type: getErrorLevel(assertion.metadata['success-criteria'])
+          rule_type: getErrorLevel(assertion.metadata['success-criteria'])
         })
         rulesArray.push(ruleMetadata);
     }
