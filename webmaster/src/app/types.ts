@@ -36,7 +36,15 @@ export interface Rule {
     failed: number;
     inapplicable: number;
     outcome: string;
-    rule_type: [string]; //como o backend ja refere nao coloquei
+    rule_type: string; //como o backend ja refere nao coloquei
+}
+export interface errorProb{
+    errorNoProb:number;
+    errorProb:number;
+    errorAProb:number;
+    errorAAProb:number;
+    errorAAAProb:number;
+    commonError:[string,number][];
 }
 
 export interface Options {

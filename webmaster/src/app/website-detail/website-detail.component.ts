@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
-import { Website, Page } from '../types';
+import { Website, Page, Report, errorProb } from '../types';
 import { WebsiteService } from '../services/websites.service';
 import { ActivatedRoute,Router } from '@angular/router';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -22,6 +22,9 @@ export class WebsiteDetailComponent implements OnInit {
   pages: Page[] | undefined;
   pageData: Page | undefined;
   form: FormGroup;
+  
+  reports:Report[] | undefined;
+  errorProb: errorProb|undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -42,6 +45,8 @@ export class WebsiteDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getWebsite();
     this.getPages();
+    this.getReports();
+    this.calculateProb();
   }
 
   //o this.website apenas funciona aqui dentro, parece que nao propaga
@@ -156,4 +161,85 @@ export class WebsiteDetailComponent implements OnInit {
     }
   });
   }
+
+  getReports(): void {
+    if (this.pages && this.pages.length === 0 ) {
+      for (const page of this.pages) {
+        this.websiteService.getReport(page.report._id)
+          .subscribe((report: Report) => {
+            console.log('Página obtida:', report);
+
+            if(this.reports){
+            this.reports.push(report); 
+            }
+
+          });
+      }
+    }
+  }
+
+  calculateProb():void{
+    var presentAError;
+    var presentAAError;
+    var presentAAAError;
+    var noError=0;
+    var errorAReport=0;
+    var errorAAReport=0;
+    var errorAAAReport=0;
+    let hashMap = new Map<string, number>();
+
+    if(this.reports && this.reports.length === 0 )
+    for(const report of this.reports){
+
+      presentAError=true;
+      presentAAError=true;
+      presentAAAError=true;
+
+      for(const rule of report.rules){
+
+        if(rule.type==='A'&&rule.outcome==='Failed'&&presentAError){
+          presentAError=false;
+          errorAReport++;
+        }else if(rule.type==='AA'&&rule.outcome==='Failed'&&presentAAError){
+          presentAAError=false;
+          errorAAReport++;
+        }else if(rule.type==='AAA'&&rule.outcome==='Failed'&&presentAAAError){
+          presentAAAError=false;
+          errorAAAReport++;
+        }
+
+        if(presentAError&&presentAAError&&presentAAAError){
+          noError++;
+        }
+
+        if(hashMap.has(rule.code)){
+          const value=hashMap.get(rule.code)
+          if(value)
+          hashMap.set(rule.code,rule.failed+value);
+
+        }else{
+          hashMap.set(rule.code,rule.failed);
+        }
+      }
+
+    }
+
+    const mapEntries = Array.from(hashMap.entries());
+
+// Sort the array based on values
+    mapEntries.sort((a, b) => a[1] - b[1]);
+
+    if(this.reports && this.reports.length && this.errorProb)
+    this.errorProb={errorNoProb:(this.reports.length-noError)/this.reports.length,
+      errorProb:noError/this.reports.length,
+      errorAProb:errorAReport/this.reports.length,
+      errorAAProb:errorAAReport/this.reports.length,
+      errorAAAProb:errorAAAReport/this.reports.length,
+      commonError:mapEntries.slice(0,10)
+  };
+
+    
+  }
 }
+
+

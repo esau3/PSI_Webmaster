@@ -54,7 +54,7 @@ export class ReportDetailComponent implements OnInit{
               }
 
               if (rule.rule_type && rule.rule_type.length > 0) {
-                children.push({ name: 'Type', value: rule.rule_type.join(', ') });
+                children.push({ name: 'Type', value: rule.rule_type});
               }
             
               const code = rule.code ? rule.code.replace('QW-', '') : '';
