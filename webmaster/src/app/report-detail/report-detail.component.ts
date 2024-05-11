@@ -31,9 +31,7 @@ export class ReportDetailComponent implements OnInit{
       private websiteService: WebsiteService,
       private location: Location,
       public dialog: MatDialog
-    ) {
-      this.buildTree();
-    }
+    ) {}
 
     buildTree(): void {
 
@@ -97,6 +95,7 @@ export class ReportDetailComponent implements OnInit{
   ngOnInit(): void {
       this.getPage();
       this.getReport();
+      this.buildTree();
   }
 
   getPage(): void {
