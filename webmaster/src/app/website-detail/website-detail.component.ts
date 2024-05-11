@@ -113,6 +113,7 @@ export class WebsiteDetailComponent implements OnInit {
         console.error("Error during page evaluation:", error);
       }
     });
+    location.reload();
   }
 
   deletePage(id:string ):void{
