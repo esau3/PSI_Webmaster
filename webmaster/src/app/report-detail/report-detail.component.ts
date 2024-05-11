@@ -71,7 +71,7 @@ export class ReportDetailComponent implements OnInit, OnDestroy {
         return {
           name: rule.name,
           code: code,
-          children: children
+          children: children.length ? children : []
         };
       });
 
