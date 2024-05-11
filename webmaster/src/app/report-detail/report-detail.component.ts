@@ -50,6 +50,7 @@ export class ReportDetailComponent implements OnInit{
                   children.push({ name: "Inapplicable", value: rule.inapplicable.toString() });
               }
 
+              console.log(rule.rule_type);
               if (rule.rule_type && rule.rule_type.length > 0) {
                 children.push({ name: 'Type', value: rule.rule_type.join(', ') });
               }
@@ -63,7 +64,6 @@ export class ReportDetailComponent implements OnInit{
           });
 
           this.dataSource.data = TREE_DATA;
-          console.log(this.dataSource);
       }
   }
 
