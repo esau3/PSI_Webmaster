@@ -70,7 +70,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatDialogTitle,
     MatDialogContent,
     MatSnackBarModule,
-    CdkTreeModule
+    CdkTreeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
