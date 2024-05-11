@@ -37,31 +37,35 @@ export class ReportDetailComponent implements OnInit{
 
     buildTree(): void {
 
-      const rules = this.report?.rules || [];
-      const TREE_DATA: RuleNode[] = [];
+      console.log(this.page);
+      console.log(this.report);
+      if (this.page && this.report) {
+        const rules = this.report?.rules;
 
-      for (const rule of rules) {
-          const root: any = {
-              name: rule.name,
-              code: rule.code,
-              expandable: true,
-              level: 0,
-          };
+        for (const rule of rules) {
+            const root: any = {
+                name: rule.name,
+                code: rule.code,
+                expandable: true,
+                level: 0,
+            };
 
-          const data: RuleNode = {
-              expandable: false,
-              level: 1,
-              passed: rule.passed,
-              warning: rule.warning,
-              failed: rule.failed,
-              inapplicable: rule.inapplicable,
-              outcome: rule.outcome,
-              rule_type: rule.rule_type,
-          };
+            const data: RuleNode = {
+                expandable: false,
+                level: 1,
+                passed: rule.passed,
+                warning: rule.warning,
+                failed: rule.failed,
+                inapplicable: rule.inapplicable,
+                outcome: rule.outcome,
+                rule_type: rule.rule_type,
+            };
 
-        TREE_DATA.push(root, data);
+          this.TREE_DATA.push(root, data);
+        }
+        console.log(this.TREE_DATA);
       }
-      console.log(this.TREE_DATA);
+      console.log("depois");
     }
 
   hasChild = (_: number, node: RuleNode) => node.expandable;
