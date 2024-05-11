@@ -197,13 +197,13 @@ export class WebsiteDetailComponent implements OnInit {
 
       for(const rule of report.rules){
 
-        if(rule.type==='A'&&rule.outcome==='Failed'&&presentAError){
+        if(rule.rule_type==='A'&&rule.outcome==='Failed'&&presentAError){
           presentAError=false;
           errorAReport++;
-        }else if(rule.type==='AA'&&rule.outcome==='Failed'&&presentAAError){
+        }else if(rule.rule_type==='AA'&&rule.outcome==='Failed'&&presentAAError){
           presentAAError=false;
           errorAAReport++;
-        }else if(rule.type==='AAA'&&rule.outcome==='Failed'&&presentAAAError){
+        }else if(rule.rule_type==='AAA'&&rule.outcome==='Failed'&&presentAAAError){
           presentAAAError=false;
           errorAAAReport++;
         }
