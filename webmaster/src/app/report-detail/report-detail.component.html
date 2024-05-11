@@ -43,7 +43,7 @@
         </div>
         <!-- There is inline padding applied to this div using styles.
             This padding value depends on the mat-icon-button width.  -->
-        <div [class.example-tree-invisible]="!treeControl.isExpanded(node)" role="group">
+        <div *ngIf="treeControl.isExpanded(node)" role="group">
           <ng-container *ngFor="let child of node.children">
             <mat-tree-node>
               <div class="mat-tree-node">
