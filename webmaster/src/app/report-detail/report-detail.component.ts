@@ -28,7 +28,9 @@ export class ReportDetailComponent implements OnInit, OnDestroy {
     private websiteService: WebsiteService,
     private location: Location,
     public dialog: MatDialog
-  ) {}
+  ) {
+    this.buildTree();
+  }
 
   ngOnInit(): void {
     this.getPage();
@@ -121,7 +123,6 @@ export class ReportDetailComponent implements OnInit, OnDestroy {
     if (id !== null) {
       this.websiteService.getReport(id).subscribe((report: Report) => {
         this.report = report;
-        this.buildTree();
       });
     }
   }
