@@ -141,6 +141,7 @@ export class ReportDetailComponent implements OnInit{
       if (result === 'true') {
         this.deletePage(id);
       }
+      console.log(this.dataSource);
     });
     }
 
