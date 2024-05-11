@@ -34,9 +34,6 @@ export class ReportDetailComponent implements OnInit{
     ) {}
 
     buildTree(): void {
-
-      console.log(this.page);
-      console.log(this.report);
       if (this.page && this.report) {
         const rules = this.report?.rules;
 
@@ -61,9 +58,7 @@ export class ReportDetailComponent implements OnInit{
 
           this.TREE_DATA.push(root, data);
         }
-        console.log(this.TREE_DATA);
       }
-      console.log("depois");
     }
 
   hasChild = (_: number, node: RuleNode) => node.expandable;
