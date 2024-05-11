@@ -1,53 +1,57 @@
 <body>
-    <div *ngIf="page" class="page-details">
-      <button mat-icon-button (click)="goBack()" class="back-button">
-        <span class="material-symbols-outlined">arrow_back</span>
-      </button>
-      <div class="page-info">
-        <h2>QualWeb Report details</h2>
-        <h2> URL: {{ page.page_URL }}</h2>
-        <div class="info-item">ID: {{  page._id }}</div>
-        <div class="info-item">Evaluation date: {{ page.eval_date | date:'short' }}</div>
-        <div class="info-item">State: <span class="monitor-state">{{ page.monitor_state }}</span></div>
-        <div class="info-group">
-          <div class="info-item-line passed">
-            <span class="material-symbols-outlined">done_all</span> Passed: {{ page.report.total_passed }}</div>
-          <div class="info-item-line failed">
-            <span class="material-symbols-outlined">cancel</span> Failed: {{ page.report.total_failed }}</div>
-          <div class="info-item-line warning">
-            <span class="material-symbols-outlined">report</span> Warnings: {{ page.report.total_warning }}</div>
-          <div class="info-item-line inapplicable">
-            <span class="material-symbols-outlined">search_off</span> Inapplicable: {{ page.report.total_inapplicable }}</div>
-      </div>
-      </div>
+  <div *ngIf="page" class="page-details">
+    <button mat-icon-button (click)="goBack()" class="back-button">
+      <span class="material-symbols-outlined">arrow_back</span>
+    </button>
+    <div class="page-info">
+      <h2>QualWeb Report details</h2>
+      <h2> URL: {{ page.page_URL }}</h2>
+      <div class="info-item">ID: {{  page._id }}</div>
+      <div class="info-item">Evaluation date: {{ page.eval_date | date:'short' }}</div>
+      <div class="info-item">State: <span class="monitor-state">{{ page.monitor_state }}</span></div>
+      <div class="info-group">
+        <div class="info-item-line passed">
+          <span class="material-symbols-outlined">done_all</span> Passed: {{ page.report.total_passed }}</div>
+        <div class="info-item-line failed">
+          <span class="material-symbols-outlined">cancel</span> Failed: {{ page.report.total_failed }}</div>
+        <div class="info-item-line warning">
+          <span class="material-symbols-outlined">report</span> Warnings: {{ page.report.total_warning }}</div>
+        <div class="info-item-line inapplicable">
+          <span class="material-symbols-outlined">search_off</span> Inapplicable: {{ page.report.total_inapplicable }}</div>
     </div>
-  
-    <!-- A partir daqui é onde a árvore deve ser renderizada -->
-  <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
-    <!-- Este é o template de nó da árvore -->
-    <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding
-      [style.display]="shouldRender(node) ? 'flex' : 'none'"
-      class="example-tree-node">
-      <!-- Use um botão desabilitado para fornecer preenchimento para a folha da árvore -->
-      <button mat-icon-button disabled></button>
-      {{node.name}}
-    </cdk-tree-node>
+    </div>
+  </div>
 
-    <!-- Este é o template de nó expansível -->
-    <cdk-tree-node *cdkTreeNodeDef="let node; when: hasChild" cdkTreeNodePadding
-      [style.display]="shouldRender(node) ? 'flex' : 'none'"
-      class="example-tree-node">
-      <button mat-icon-button cdkTreeNodeToggle
-        [attr.aria-label]="'Toggle ' + node.name"
-        (click)="node.isExpanded = !node.isExpanded"
-        [style.visibility]="node.expandable ? 'visible' : 'hidden'">
-        <mat-icon class="mat-icon-rtl-mirror">
-          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-        </mat-icon>
-      </button>
-      <span>{{ node.name }}</span>
-      <span class="node-code">{{ node.code }}</span>
-    </cdk-tree-node>
-  </cdk-tree>
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+    <!-- This is the tree node template for leaf nodes -->
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+        {{node.code}}
+        <span *ngIf="node.children && node.children.length" class="caret">▼</span>
+    </mat-tree-node>
+
+    <!-- This is the tree node template for expandable nodes -->
+    <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+      <div [class]="node.children ? 'mat-tree-node main-node' : 'mat-tree-node'" (click)="toggleNode(node)">
+        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.code">
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        </button>
+        <span class="node-name">{{ node.name }}</span>
+        <!-- Adicionando o código da regra -->
+        <span class="node-code">{{ node.code }}</span>
+      </div>
+      <!-- There is inline padding applied to this div using styles.
+          This padding value depends on the mat-icon-button width.  -->
+      <div [class.example-tree-invisible]="!treeControl.isExpanded(node)" role="group">
+        <ng-container *ngFor="let child of node.children">
+          <mat-tree-node>
+            <div class="mat-tree-node">
+              <span>{{ child.name }}</span>: <span>{{ child.value }}</span>
+            </div>
+          </mat-tree-node>
+        </ng-container>
+      </div>
+    </mat-nested-tree-node>
+  </mat-tree>
 </body>
-    

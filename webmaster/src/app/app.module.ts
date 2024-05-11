@@ -29,7 +29,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
-import {CdkTreeModule} from '@angular/cdk/tree';
+import {MatTree, MatTreeModule} from '@angular/material/tree';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
@@ -70,7 +70,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatDialogTitle,
     MatDialogContent,
     MatSnackBarModule,
-    CdkTreeModule,
+    MatTreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

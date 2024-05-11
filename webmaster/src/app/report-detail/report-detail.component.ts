@@ -3,11 +3,11 @@ import { Location } from '@angular/common';
 
 import { Page, Rule, Report } from '../types';
 import { WebsiteService } from '../services/websites.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
-import { FlatTreeControl } from '@angular/cdk/tree';
-import { ArrayDataSource } from '@angular/cdk/collections';
+import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatTreeNestedDataSource } from '@angular/material/tree';
 
 @Component({
   selector: 'app-report-detail',
@@ -18,12 +18,8 @@ export class ReportDetailComponent implements OnInit{
     page: Page | undefined;
     report: Report | undefined;
     rules: Rule[] |undefined;
-    treeControl = new FlatTreeControl<RuleNode>(
-      node => node.level,
-      node => node.expandable,
-    );
-    TREE_DATA: RuleNode[] = []; // Declaração de TREE_DATA
-    dataSource = new ArrayDataSource(this.TREE_DATA);
+    treeControl = new NestedTreeControl<RuleNode>(node => node.children);
+    dataSource = new MatTreeNestedDataSource<RuleNode>();
     reports: Report[] | undefined;
   
     constructor(
@@ -35,59 +31,42 @@ export class ReportDetailComponent implements OnInit{
 
     buildTree(): void {
       if (this.page && this.report) {
-        const rules = this.report?.rules;
+          const TREE_DATA: RuleNode[] = this.report.rules.map((rule: any) => {
+              const children = [].filter(child => child !== null) as RuleNode[]; // Converte para RuleNode[]
+            
+              if (rule.passed > 0) {
+                  children.push({ name: "Passed", value: rule.passed.toString()});
+              }
+            
+              if (rule.warning > 0) {
+                  children.push({ name: "Warning", value: rule.warning.toString() });
+              }
+            
+              if (rule.failed > 0) {
+                  children.push({ name: "Failed", value: rule.failed.toString() });
+              }
+            
+              if (rule.inapplicable > 0) {
+                  children.push({ name: "Inapplicable", value: rule.inapplicable.toString() });
+              }
 
-        for (const rule of rules) {
-            const root: any = {
-                name: rule.name,
-                code: rule.code,
-                expandable: true,
-                level: 0,
-            };
+              if (rule.type && rule.type.length > 0) {
+                children.push({ name: 'Type', value: rule.type.join(', ') });
+              }
+            
+              const code = rule.code ? rule.code.replace('QW-', '') : '';
+              return {
+                  name: rule.name,
+                  code: code,
+                  children: children,
+              };
+          });
 
-            const data: RuleNode = {
-                expandable: false,
-                level: 1,
-                passed: rule.passed,
-                warning: rule.warning,
-                failed: rule.failed,
-                inapplicable: rule.inapplicable,
-                outcome: rule.outcome,
-                rule_type: rule.rule_type,
-            };
-
-          this.TREE_DATA.push(root, data);
-        }
-        this.dataSource = new ArrayDataSource(this.TREE_DATA);
-        console.log(this.dataSource);
+          this.dataSource.data = TREE_DATA;
       }
-    }
-
-  hasChild = (_: number, node: RuleNode) => node.expandable;
-
-
-  getParentNode(node: RuleNode) {
-    const nodeIndex = this.TREE_DATA.indexOf(node);
-
-    for (let i = nodeIndex - 1; i >= 0; i--) {
-      if (this.TREE_DATA[i].level === node.level - 1) {
-        return this.TREE_DATA[i];
-      }
-    }
-
-    return null;
   }
 
-  shouldRender(node: RuleNode) {
-    let parent = this.getParentNode(node);
-    while (parent) {
-      if (!parent.isExpanded) {
-        return false;
-      }
-      parent = this.getParentNode(parent);
-    }
-    return true;
-  }
+  hasChild = (_: number, node: RuleNode) => !!node.children && node.children.length > 0;
 
   ngOnInit(): void {
       this.getPage();
@@ -160,13 +139,8 @@ export class ReportDetailComponent implements OnInit{
  * Each node has a name and an optional list of children.
  */
 interface RuleNode {
-  expandable: boolean;
-  level: number;
-  isExpanded?: boolean;
-  passed: number,
-  warning: number,
-  failed: number,
-  inapplicable: number,
-  outcome: string,
-  rule_type: [string],
+  name: string;
+  code?: string;
+  value?: string;
+  children?: RuleNode[];
 }
