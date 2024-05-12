@@ -165,6 +165,7 @@ export class WebsiteDetailComponent implements OnInit {
 
   getReports(): void {
     //console.log("get reports: ", this.pages);
+    console.log(this.pages?.[0]?.report?._id);
     if (this.pages) {
       const reportObservables = this.pages.map(page =>
         this.websiteService.getReport(page.report._id)
