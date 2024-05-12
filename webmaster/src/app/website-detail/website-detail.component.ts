@@ -83,7 +83,7 @@ export class WebsiteDetailComponent implements OnInit {
               this.pages = [];
             }
             this.pages.push(pageData);
-            //console.log("get pages", this.pages);
+            console.log("get pages", this.pages);
             //console.log("id do report?", pageData.report);
             
           });
