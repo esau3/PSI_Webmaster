@@ -77,11 +77,12 @@ export class WebsiteDetailComponent implements OnInit {
         this.websiteService.getPage(page._id)
           .subscribe((pageData: Page) => {
             //console.log('Página obtida:', pageData);
+            //quando this.pages é undefined o push n e chamado
             if (this.pages === undefined) {
-              this.pages = []; // Se this.pages for undefined, cria um novo array
+              this.pages = [];
             }
             this.pages.push(pageData);
-            console.log("get pages", this.pages);
+            //console.log("get pages", this.pages);
             //console.log("get pages", pageData.report);
             this.getReport(String(pageData.report)); 
           });
@@ -170,14 +171,15 @@ export class WebsiteDetailComponent implements OnInit {
   }
 
   getReport(id: string): void {
-    console.log(this.pages);
+    //console.log(this.pages);
     if (id) {
         this.websiteService.getReport(id)
           .subscribe((report: Report) => {
-            if(report && this.reports){
-              this.reports.push(report); 
-              console.log(this.reports);
+            if (this.reports === undefined) {
+              this.reports = [];
             }
+            this.reports.push(report); 
+            console.log(this.reports);
           });
     }
   }
