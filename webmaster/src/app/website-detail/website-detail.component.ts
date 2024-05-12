@@ -233,8 +233,8 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
         //console.log(report);
             pagesEvaluated++;
             noError = 0;
-            for (const rule of report.rules) {
 
+            for (const rule of report.rules) {
               
               presentAError = true;
               presentAAError = true;
