@@ -33,7 +33,7 @@ exports.page_list = async (req, res, next) => {
 // Display detail page for a specific Page.
 exports.page_detail = async (req, res, next) => {
   try {
-    const page = await Page.findById(req.params.id).populate('report').exec();
+    const page = await Page.findById(req.params.id).populate().exec();
     if (!page) {
       const err = new Error("Page not found");
       err.status = 404;
