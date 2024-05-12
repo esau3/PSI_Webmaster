@@ -203,7 +203,7 @@ export class WebsiteDetailComponent implements OnInit {
 }*/
 
   calculateProb(): void {
-    
+
     let presentAError = true;
     let presentAAError = true;
     let presentAAAError = true;
@@ -213,11 +213,12 @@ export class WebsiteDetailComponent implements OnInit {
     let errorAAAReport = 0;
     const hashMap = new Map<string, number>();
 
-    console.log("Probabilidades", this.reports);
+    //demora mas chega
+    //console.log("Probabilidades", this.reports);
 
     if (this.reports) {
         for (const report of this.reports) {
-            console.log(report);
+            //console.log(report);
 
             presentAError = true;
             presentAAError = true;
@@ -251,6 +252,7 @@ export class WebsiteDetailComponent implements OnInit {
 
     const mapEntries = Array.from(hashMap.entries());
 
+    console.log(mapEntries);
     // Ordenar o array com base nos valores
     mapEntries.sort((a, b) => b[1] - a[1]);
 
@@ -263,8 +265,8 @@ export class WebsiteDetailComponent implements OnInit {
             errorAAAProb: errorAAAReport / this.reports.length,
             commonError: mapEntries.slice(0, 10)
         };
-        console.log(this.errorProb);
     }
+    console.log(this.errorProb);
   }
 }
 
