@@ -90,7 +90,11 @@
   }
 
   .submit-button{
-    margin-top: 10px; // Adiciona margem no topo do botão "Add"
+    margin-top: 5px; // Adiciona margem no topo do botão "Add"
     width: auto; // Ajusta a largura automaticamente
     align-self: center;
+
+    &:hover {
+      background-color: #3a99ff;
+    }
   }
