@@ -221,16 +221,13 @@ export class WebsiteDetailComponent implements OnInit {
         for (const report of this.reports) {
             //console.log(report);
             count++;
-            presentAError = true;
-            presentAAError = true;
-            presentAAAError = true;
 
             for (const rule of report.rules) {
-              console.log("A", rule.rule_type.includes('A'));
-              console.log("AA", rule.rule_type.includes('AA'));
-              console.log("AAA", rule.rule_type.includes('AAA'));
-              console.log(rule.outcome === 'Failed');
-              console.log(presentAError);
+
+              presentAError = true;
+              presentAAError = true;
+              presentAAAError = true;
+
                 if (rule.rule_type.includes('A') && rule.outcome === 'Failed' && presentAError) {
                     presentAError = false;
                     console.log("Inc: A");
@@ -250,7 +247,7 @@ export class WebsiteDetailComponent implements OnInit {
                 }
 
                 //tirar o QW- de antes da string, pode-se tira o ACT- tb
-                const code = rule.code.startsWith("QW-") ? rule.code.slice(3) : rule.code;
+                const code = rule.code.startsWith("QW-ACT-") ? rule.code.slice(3) : rule.code;
                 const value = hashMap.get(code);
                 if (value !== undefined) {
                     hashMap.set(code, rule.failed + value);
