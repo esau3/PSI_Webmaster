@@ -104,13 +104,9 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   //lembrando que é passado o id em page.report
   //console.log(page.report);
   //ISTO AINDA NAO ESTA A FUNCIONAR, NETAO VAMOS FZR UM NOVO REPORT SEMPRE
-  if(page.report) {
+  if(page.report && false) {
 
-    const reportMetadata = await ReportMetadata.findById(page.report)
-    .populate({
-      path: 'report',
-      select: 'rules'
-    }).exec()
+    const reportMetadata = await ReportMetadata.findById(page.report).populate().exec()
   
     console.log(reportMetadata);
     res.send(reportMetadata);
@@ -190,6 +186,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
 
   //await update_page_state(page._id);
  
+  //console.log(page._id);
   await Page.findByIdAndUpdate(
     page._id,
     { 

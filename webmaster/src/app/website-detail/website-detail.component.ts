@@ -56,7 +56,7 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
     this.calculateProb();*/
     this.getWebsite();
     this.getReports();
-    this.calculateProb();
+    //this.calculateProb();
   }
 
   //o this.website apenas funciona aqui dentro, parece que nao propaga
@@ -222,6 +222,7 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
     let errorAAReport = 0;
     let errorAAAReport = 0;
     let pagesEvaluated = 0;
+    let pageHasNoError = 0;
     const hashMap = new Map<string, number>();
 
     //demora mas chega
@@ -231,9 +232,10 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
         for (const report of this.reports) {
         //console.log(report);
             pagesEvaluated++;
-
+            noError = 0;
             for (const rule of report.rules) {
 
+              
               presentAError = true;
               presentAAError = true;
               presentAAAError = true;
@@ -266,6 +268,7 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
                     hashMap.set(code, rule.failed);
                 }
             }
+            pageHasNoError = (68 - noError) === 0 ? pageHasNoError + 1 : pageHasNoError;
         }
     }
 
@@ -278,9 +281,12 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
     if (this.reports) {
       //numero de rules avaliadas
         //const nRules = 68;
+
+      
+
         this.error = {
-            noError: noError,
-            errors: pagesEvaluated - noError,
+            noError: pageHasNoError,
+            errors: pagesEvaluated - pageHasNoError,
             errorA: errorAReport,
             errorAA: errorAAReport,
             errorAAA: errorAAAReport,
