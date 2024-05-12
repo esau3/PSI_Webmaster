@@ -227,30 +227,19 @@ export class WebsiteDetailComponent implements OnInit {
               presentAError = true;
               presentAAError = true;
               presentAAAError = true;
-              /*
-              console.log("A", rule.rule_type.includes('A'));
-              console.log("PresentAERROR: ", presentAError);
-              console.log("AA", rule.rule_type.includes('AA'));
-              console.log("PresentAAERROR: ", presentAAError);
-              console.log("AAA", rule.rule_type.includes('AAA'));
-              console.log("PresentAAAERROR: ", presentAAAError);
-              console.log("Failed: ", rule.outcome === 'failed');
-              console.log("Outcome data: ", rule.outcome);*/
+            
                 if (rule.rule_type.includes('A') && rule.outcome === 'failed' && presentAError) {
                     presentAError = false;
-                    console.log("Inc: A");
                     errorAReport++;
                 }
 
                 if (rule.rule_type.includes('AA') && rule.outcome === 'failed' && presentAAError) {
                     presentAAError = false;
-                    console.log("Inc: AA");
                     errorAAReport++;
                 }
 
                 if (rule.rule_type.includes('AAA') && rule.outcome === 'failed' && presentAAAError) {
                     presentAAAError = false;
-                    console.log("Inc: AAA");
                     errorAAAReport++;
                 }
 
@@ -282,12 +271,14 @@ export class WebsiteDetailComponent implements OnInit {
     console.log(noError);
 
     if (this.reports) {
+      //numero de rules avaliadas
+        const nRules = 68;
         this.errorProb = {
-            errorNoProb: (this.reports.length - noError) / this.reports.length,
-            errorProb: noError / this.reports.length,
-            errorAProb: errorAReport / this.reports.length,
-            errorAAProb: errorAAReport / this.reports.length,
-            errorAAAProb: errorAAAReport / this.reports.length,
+            errorNoProb: ((nRules - noError) / nRules) * 100,
+            errorProb: (noError / nRules) * 100,
+            errorAProb: (errorAReport / nRules) * 100,
+            errorAAProb: (errorAAReport / nRules) * 100,
+            errorAAAProb: (errorAAAReport / nRules) * 100,
             commonError: mapEntries.slice(0, 10)
         };
     }
