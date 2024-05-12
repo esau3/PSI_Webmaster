@@ -211,7 +211,7 @@ export class WebsiteDetailComponent implements OnInit {
     let errorAReport = 0;
     let errorAAReport = 0;
     let errorAAAReport = 0;
-    let count = 0;
+    let pagesEvaluated = 0;
     const hashMap = new Map<string, number>();
 
     //demora mas chega
@@ -220,7 +220,7 @@ export class WebsiteDetailComponent implements OnInit {
     if (this.reports) {
         for (const report of this.reports) {
             //console.log(report);
-            count++;
+            pagesEvaluated++;
 
             for (const rule of report.rules) {
 
@@ -279,10 +279,11 @@ export class WebsiteDetailComponent implements OnInit {
             errorAProb: (errorAReport / nRules) * 100,
             errorAAProb: (errorAAReport / nRules) * 100,
             errorAAAProb: (errorAAAReport / nRules) * 100,
-            commonError: mapEntries.slice(0, 10)
+            commonError: mapEntries.slice(0, 10),
+            pagesEvaluated: pagesEvaluated
         };
     }
-    console.log(count);
+    console.log(pagesEvaluated);
     console.log(this.errorProb);
   }
 }

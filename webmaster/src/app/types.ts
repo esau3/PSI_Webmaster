@@ -45,6 +45,7 @@ export interface errorProb{
     errorAAProb:number;
     errorAAAProb:number;
     commonError:[string,number][];
+    pagesEvaluated: number;
 }
 
 export interface Options {
