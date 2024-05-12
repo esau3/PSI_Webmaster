@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Location } from '@angular/common';
 
-import { Website, Page, Report, errorProb } from '../types';
+import { Website, Page, Report, error } from '../types';
 import { WebsiteService } from '../services/websites.service';
 import { ActivatedRoute,Router } from '@angular/router';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -26,7 +26,7 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
   form: FormGroup;
   
   reports:Report[] | undefined;
-  errorProb: errorProb|undefined;
+  error: error | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -49,7 +49,11 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
   
   override ngOnInit(): void {
     super.ngOnInit();
-    this.getWebsite();
+    this.website = websiteMock;
+    this.pages = [pageMock1, pageMock2];
+    this.reports = [reportMock1, reportMock2];
+    this.calculateProb();
+    //this.getWebsite();
     //this.getReports();
     //this.calculateProb();
   }
@@ -258,7 +262,7 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
                 const value = hashMap.get(code);
                 if (value !== undefined) {
                     hashMap.set(code, rule.failed + value);
-                } else {
+                } else if (rule.failed !== 0) {
                     hashMap.set(code, rule.failed);
                 }
             }
@@ -279,25 +283,24 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
     if (this.reports) {
       //numero de rules avaliadas
         const nRules = 68;
-        this.errorProb = {
-            errorNoProb: ((nRules - noError) / nRules) * 100,
-            errorProb: (noError / nRules) * 100,
-            errorAProb: (errorAReport / nRules) * 100,
-            errorAAProb: (errorAAReport / nRules) * 100,
-            errorAAAProb: (errorAAAReport / nRules) * 100,
-            commonError: mapEntries.slice(0, 10),
-            pagesEvaluated: pagesEvaluated
+        this.error = {
+            noError: (nRules - (errorAReport + errorAAReport + errorAAAReport)),
+            errors: errorAReport + errorAAReport + errorAAAReport,
+            errorA: errorAReport,
+            errorAA: errorAAReport,
+            errorAAA: errorAAAReport,
+            commonErrors: mapEntries.slice(0, 10),
+            pagesEvaluated: pagesEvaluated,
+            nRules: 68
         };
     }
     console.log(pagesEvaluated);
-    console.log(this.errorProb);
+    console.log(this.error);
   }
 }
 
 
-
 const reportMock1: Report = {
-  "page_url": "https://www.google.com/maps",
   "total_passed": 30,
   "total_warning": 5,
   "total_failed": 5,
@@ -1147,12 +1150,10 @@ const reportMock1: Report = {
       "_id": "6640cfd50b988c7fe55904c7"
     }
   ],
-  "_id": "6640cfd50b988c7fe55904c8",
-  "__v": 0
+  "_id": "6640cfd50b988c7fe55904c8"
 }
 
 const reportMock2: Report = {
-  "page_url": "https://fenix.ciencias.ulisboa.pt/home",
   "total_passed": 14,
   "total_warning": 1,
   "total_failed": 5,
@@ -2002,6 +2003,32 @@ const reportMock2: Report = {
       "_id": "664091cca48c9e3172559004"
     }
   ],
-  "_id": "664091cca48c9e3172559005",
-  "__v": 0
+  "_id": "664091cca48c9e3172559005"
 }
+
+const pageMock1: Page = {
+  _id: "1",
+  page_URL: "https://www.example.com/page1",
+  eval_date: new Date(),
+  monitor_state: "Active",
+  report: reportMock1
+};
+
+const pageMock2: Page = {
+  _id: "2",
+  page_URL: "https://www.example2.com/page2",
+  eval_date: new Date(),
+  monitor_state: "Active",
+  report: reportMock2
+};
+
+// Mock de um website
+const websiteMock: Website = {
+  _id: "1",
+  name: "Example Website",
+  URL: "https://www.example.com",
+  pages: [pageMock1, pageMock2],
+  register_date: new Date(),
+  eval_date: new Date(),
+  monitor_state: "Em avaliação"
+};
