@@ -105,7 +105,8 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   console.log(page.report);
   if(page.report) {
 
-    const reportMetadata = await ReportMetadata.findById(page.report).exec();
+    const reportMetadata = await ReportMetadata.findById(page.report).populate('rules').exec();
+    
     console.log(reportMetadata);
     console.log("Nao fez nova eval, ja existia uma!");
     res.send(reportMetadata);
