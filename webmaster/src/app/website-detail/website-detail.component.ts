@@ -169,9 +169,11 @@ export class WebsiteDetailComponent implements OnInit {
     console.log(this.pages?.[0]);
     console.log(this.pages?.[0]?.report);
     if (this.pages) {
-      const reportObservables = this.pages.map(page =>
-        this.websiteService.getReport(page.report._id)
-      );
+      const reportObservables = this.pages
+        .filter(page => page.report) // Filtra páginas com report definido
+        .map(page =>
+          this.websiteService.getReport(page.report._id)
+        );
   
       forkJoin(reportObservables).subscribe((reports: Report[]) => {
         this.reports = reports;
@@ -179,6 +181,7 @@ export class WebsiteDetailComponent implements OnInit {
       });
     }
   }
+  
 
 /*
   getReport(id: string): void {
