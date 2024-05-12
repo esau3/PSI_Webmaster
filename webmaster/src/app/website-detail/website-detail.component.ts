@@ -171,6 +171,7 @@ export class WebsiteDetailComponent implements OnInit {
   }
 
   getReports(): void {
+    console.log("get reports: ", this.pages);
     if (this.pages) {
       for (const page of this.pages) {
         this.websiteService.getReport(page.report._id)
@@ -185,7 +186,7 @@ export class WebsiteDetailComponent implements OnInit {
     }
   }
 
-
+/*
   getReport(id: string): void {
     console.log(id);
     if (id) {
@@ -198,7 +199,7 @@ export class WebsiteDetailComponent implements OnInit {
             console.log(this.reports);
           });
     }
-}
+}*/
 
   calculateProb():void{
 
@@ -266,8 +267,7 @@ export class WebsiteDetailComponent implements OnInit {
       errorAAAProb:errorAAAReport/this.reports.length,
       commonError:mapEntries.slice(0,10)
   };
-
-  console.log(this.errorProb);
+  //console.log(this.errorProb);
 
     
   }
