@@ -53,7 +53,6 @@ export class WebsiteDetailComponent implements OnInit {
       this.websiteService.getWebsite(id)
         .subscribe((website: Website) => {
           this.website = website;
-          console.log("DENTRO do getwebsite", this.website.pages);
           this.getPages();
         });
     }
@@ -171,7 +170,7 @@ export class WebsiteDetailComponent implements OnInit {
   }
 
   getReport(id: string): void {
-    //console.log(this.pages);
+    console.log(id);
     if (id) {
         this.websiteService.getReport(id)
           .subscribe((report: Report) => {
