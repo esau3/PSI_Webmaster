@@ -44,7 +44,6 @@ export class WebsiteDetailComponent implements OnInit {
   
   ngOnInit(): void {
     this.getWebsite();
-    this.getReports();
   }
 
   //o this.website apenas funciona aqui dentro, parece que nao propaga
@@ -81,6 +80,7 @@ export class WebsiteDetailComponent implements OnInit {
             pages.push(pageData); 
           });
       }
+      this.getReports();
     }
   }
 
