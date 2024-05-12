@@ -78,8 +78,8 @@ export class WebsiteDetailComponent implements OnInit {
           .subscribe((pageData: Page) => {
             console.log('Página obtida:', pageData);
             this.pages?.push(pageData);
-            console.log("get pages", this.pageData?.report);
-            //this.getReport(pageData.report._id); 
+            console.log("get pages", pageData.report);
+            //this.getReport(pageData.report); 
           });
       }
       
