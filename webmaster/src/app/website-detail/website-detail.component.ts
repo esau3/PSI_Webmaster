@@ -232,11 +232,15 @@ export class WebsiteDetailComponent implements OnInit {
                     presentAError = false;
                     console.log("Inc: A");
                     errorAReport++;
-                } else if (rule.rule_type.includes('AA') && rule.outcome === 'Failed' && presentAAError) {
+                }
+                
+                if (rule.rule_type.includes('AA') && rule.outcome === 'Failed' && presentAAError) {
                     presentAAError = false;
                     console.log("Inc: AA");
                     errorAAReport++;
-                } else if (rule.rule_type.includes('AAA') && rule.outcome === 'Failed' && presentAAAError) {
+                }
+
+                if (rule.rule_type.includes('AAA') && rule.outcome === 'Failed' && presentAAAError) {
                     presentAAAError = false;
                     console.log("Inc: AAA");
                     errorAAAReport++;
@@ -247,7 +251,7 @@ export class WebsiteDetailComponent implements OnInit {
                 }
 
                 //tirar o QW- de antes da string, pode-se tira o ACT- tb
-                const code = rule.code.startsWith("QW-ACT-") ? rule.code.slice(3) : rule.code;
+                const code = rule.code.slice(7);
                 const value = hashMap.get(code);
                 if (value !== undefined) {
                     hashMap.set(code, rule.failed + value);
