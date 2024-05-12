@@ -164,32 +164,17 @@ export class WebsiteDetailComponent implements OnInit {
   }
 
   getReports(): void {
-    //console.log("get reports: ", this.pages);
-    console.log(this.pages);
-    console.log(this.pages?.[0]);
-    console.log(this.pages?.[0]?.report);
     if (this.pages) {
-      const reportObservables = this.pages
-        .filter(page => page.report) // Filtra páginas com report definido
-        .map(page =>
-          this.websiteService.getReport(page.report._id)
+        const reportObservables = this.pages.map(page =>
+            this.websiteService.getReport(page.report._id)
         );
-        console.log("Obsv", reportObservables);
-  
-        forkJoin(reportObservables).subscribe({
-          next: (reports: Report[]) => {
-              this.reports = reports.filter(report => report !== null);
-              console.log("get reports", this.reports);
-          },
-          error: (error) => {
-              console.error('Error in forkJoin:', error);
-          },
-          complete: () => {
-              console.log('forkJoin completed');
-          }
-      });
+
+        forkJoin(reportObservables).subscribe((reports: Report[]) => {
+            this.reports = reports;
+            console.log("get reports", this.reports);
+        });
     }
-  }
+}
   
 
 /*
