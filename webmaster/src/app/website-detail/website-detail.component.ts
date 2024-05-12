@@ -84,9 +84,10 @@ export class WebsiteDetailComponent implements OnInit {
             this.pages.push(pageData);
             //console.log("get pages", this.pages);
             //console.log("id do report?", pageData.report);
-            //this.getReport(String(pageData.report)); 
+            
           });
       }
+      this.getReports(); 
       
     }
   }
@@ -168,6 +169,22 @@ export class WebsiteDetailComponent implements OnInit {
     }
   });
   }
+
+  getReports(): void {
+    if (this.pages) {
+      for (const page of this.pages) {
+        this.websiteService.getReport(page.report._id)
+          .subscribe((report: Report) => {
+            console.log('Página obtida:', report);
+            if (this.reports === undefined) {
+              this.reports = []; 
+            }
+            this.reports.push(report);
+          });
+      }
+    }
+  }
+
 
   getReport(id: string): void {
     console.log(id);
