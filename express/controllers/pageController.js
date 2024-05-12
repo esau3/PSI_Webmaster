@@ -185,7 +185,9 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   //atualizar estado da pagina
   await Page.findByIdAndUpdate(
     page._id,
-    { $set: { monitor_state: "Conforme" } },
+    { $set: { monitor_state: "Conforme" }, 
+              eval_date: Date.now()
+    },
     { new: true }
   )
 
