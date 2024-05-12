@@ -82,8 +82,8 @@ export class WebsiteDetailComponent implements OnInit {
             }
             this.pages.push(pageData);
             //console.log("get pages", this.pages);
-            console.log("id do report?", pageData.report);
-            this.getReport(String(pageData.report)); 
+            //console.log("id do report?", pageData.report);
+            //this.getReport(String(pageData.report)); 
           });
       }
       
