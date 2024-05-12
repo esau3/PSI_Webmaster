@@ -164,7 +164,7 @@ export class WebsiteDetailComponent implements OnInit {
   }
 
   getReports(): void {
-    console.log("get reports: ", this.pages);
+    //console.log("get reports: ", this.pages);
     if (this.pages) {
       const reportObservables = this.pages.map(page =>
         this.websiteService.getReport(page.report._id)
@@ -203,7 +203,7 @@ export class WebsiteDetailComponent implements OnInit {
     var errorAAAReport=0;
     let hashMap = new Map<string, number>();
 
-    console.log(this.reports);
+    console.log("Probabilidades", this.reports);
 
     if(this.reports)
     for(const report of this.reports){
