@@ -72,13 +72,12 @@ export class WebsiteDetailComponent implements OnInit {
   getPages(): void {
     console.log(this.website?.pages);
     if (this.website) {
-      const pages = this.website.pages;
       
-      for (const page of pages) {
+      for (const page of this.website.pages) {
         this.websiteService.getPage(page._id)
           .subscribe((pageData: Page) => {
             console.log('Página obtida:', pageData);
-            pages.push(pageData); 
+            this.pages?.push(pageData); 
           });
       }
       this.getReports();
