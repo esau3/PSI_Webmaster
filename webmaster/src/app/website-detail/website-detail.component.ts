@@ -163,11 +163,15 @@ export class WebsiteDetailComponent implements OnInit {
   }
 
   getReports(): void {
-    if (this.pages && this.pages.length === 0 ) {
+    console.log(this.pages);
+    if (this.pages) {
       for (const page of this.pages) {
-        this.websiteService.getReports()
-          .subscribe((reports: Report[]) => {
-            this.reports = reports;
+        this.websiteService.getReport(page.report._id)
+          .subscribe((report: Report) => {
+            if(report && this.reports){
+              this.reports.push(report); 
+              console.log(this.reports);
+            }
           });
       }
     }
