@@ -171,6 +171,7 @@ export class WebsiteDetailComponent implements OnInit {
             this.reports = []; 
           }
           this.reports.push(report);
+          console.log(this.reports);
         });
     }
   }
