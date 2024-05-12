@@ -2,7 +2,7 @@
 <form [formGroup]="form" (ngSubmit)="submitForm()" class="parentForm">
   <mat-form-field appearance="fill" class="forms">
     <mat-label>Insira o nome do website</mat-label>
-    <input type="text" matInput placeholder="Nome" formControlName="nome" required>
+    <input class="focus" type="text" matInput placeholder="Nome" formControlName="nome" required>
     <mat-error *ngIf="form.get('nome')?.hasError('required')">O nome é obrigatório</mat-error>
   </mat-form-field>
 
