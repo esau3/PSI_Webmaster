@@ -45,7 +45,7 @@ export class WebsiteDetailComponent implements OnInit {
   
   ngOnInit(): void {
     this.getWebsite();
-    this.getReports();
+    //this.getReports();
     this.calculateProb();
   }
 
