@@ -32,7 +32,7 @@ export class ReportDetailComponent implements OnInit{
     buildTree(): void {
       if (this.page && this.report) {
 
-        const rules = this.report.rules;
+        const rules = this.report.rules.slice(0, 25);
 
           const TREE_DATA: RuleNode[] = rules.map((rule: any) => {
               const children = [].filter(child => child !== null) as RuleNode[]; // Converte para RuleNode[]
