@@ -88,6 +88,7 @@ export class WebsiteDetailComponent implements OnInit {
             
           });
       }
+      console.log("fora do get pages", this.pages);
       this.getReports(); 
       
     }
