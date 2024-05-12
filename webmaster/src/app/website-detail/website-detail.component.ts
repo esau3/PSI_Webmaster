@@ -47,7 +47,6 @@ export class WebsiteDetailComponent implements OnInit {
     this.getPages();
     this.getReports();
     this.calculateProb();
-    console.log(this.errorProb);
   }
 
   //o this.website apenas funciona aqui dentro, parece que nao propaga
@@ -180,6 +179,7 @@ export class WebsiteDetailComponent implements OnInit {
   }
 
   calculateProb():void{
+
     var presentAError;
     var presentAAError;
     var presentAAAError;
@@ -189,14 +189,20 @@ export class WebsiteDetailComponent implements OnInit {
     var errorAAAReport=0;
     let hashMap = new Map<string, number>();
 
+    console.log(this.reports?.length);
+
     if(this.reports && this.reports.length === 0 )
     for(const report of this.reports){
+
+      console.log(report);
 
       presentAError=true;
       presentAAError=true;
       presentAAAError=true;
 
       for(const rule of report.rules){
+
+        console.log(rule.rule_type);
 
         if(rule.rule_type==='A'&&rule.outcome==='Failed'&&presentAError){
           presentAError=false;
@@ -238,6 +244,8 @@ export class WebsiteDetailComponent implements OnInit {
       errorAAAProb:errorAAAReport/this.reports.length,
       commonError:mapEntries.slice(0,10)
   };
+
+  console.log(this.errorProb);
 
     
   }
