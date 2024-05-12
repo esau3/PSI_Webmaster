@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Location } from '@angular/common';
 
 import { Website, Page, Report, errorProb } from '../types';
@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { forkJoin } from 'rxjs';
+import { arrowComponent } from '../arrow.component';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { forkJoin } from 'rxjs';
   styleUrl: './website-detail.component.scss'
 })
 
-export class WebsiteDetailComponent implements OnInit {
+export class WebsiteDetailComponent extends arrowComponent implements OnInit {
   website: Website | undefined;
   //page: Page | undefined;
   pages: Page[] | undefined;
@@ -34,8 +35,11 @@ export class WebsiteDetailComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     public dialog: MatDialog,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,private renderer2: Renderer2, 
+    private elRef2: ElementRef
+    
   ) {
+    super(renderer2,elRef2);
 
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.form = this.fb.group({
@@ -43,7 +47,8 @@ export class WebsiteDetailComponent implements OnInit {
     });
   }
   
-  ngOnInit(): void {
+  override ngOnInit(): void {
+    super.ngOnInit();
     this.getWebsite();
     //this.getReports();
     //this.calculateProb();

@@ -8,19 +8,19 @@
 
   <mat-form-field appearance="fill" class="forms">
     <mat-label>Insira o URL do website</mat-label>
-    <input type="text" matInput placeholder="URL" formControlName='url' required>
+    <input class="focus" type="text" matInput placeholder="URL" formControlName='url' required>
     <mat-error *ngIf="form.get('url')?.hasError('required')">O URL é obrigatório</mat-error>
     <mat-error *ngIf="form.get('url')?.hasError('pattern')">O URL não é válido</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="forms">
     <mat-label>Insira o URL de uma página do website</mat-label>
-    <input type="text" matInput placeholder="Pagina" formControlName='page' required>
+    <input class="focus" type="text" matInput placeholder="Pagina" formControlName='page' required>
     <mat-error *ngIf="form.get('page')?.hasError('required')">O URL da página é obrigatório</mat-error>
     <mat-error *ngIf="form.get('page')?.hasError('pattern')">O URL da página não é válido</mat-error>
   </mat-form-field>
 
-  <button class="submitButton" (click)="sendWebsite()" mat-raised-button type="submit" color="primary" [disabled]="form.invalid">Submeter</button>
+  <button class="submitButton focus" (click)="sendWebsite()" mat-raised-button type="submit" color="primary" [disabled]="form.invalid">Submeter</button>
 </form>
 <router-outlet></router-outlet>
 

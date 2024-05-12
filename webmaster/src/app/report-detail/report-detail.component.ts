@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Location } from '@angular/common';
 
 import { Page, Rule, Report } from '../types';
@@ -8,13 +8,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { arrowComponent } from '../arrow.component';
 
 @Component({
   selector: 'app-report-detail',
   templateUrl: './report-detail.component.html',
   styleUrl: './report-detail.component.scss'
 })
-export class ReportDetailComponent implements OnInit{
+export class ReportDetailComponent extends arrowComponent implements OnInit {
     page: Page | undefined;
     report: Report | undefined;
     rules: Rule[] |undefined;
@@ -23,11 +24,14 @@ export class ReportDetailComponent implements OnInit{
     reports: Report[] | undefined;
   
     constructor(
+      private renderer2: Renderer2, private elRef2: ElementRef,
       private route: ActivatedRoute,
       private websiteService: WebsiteService,
       private location: Location,
       public dialog: MatDialog
-    ) {}
+    ) {
+      super(renderer2,elRef2);
+    }
 
     buildTree(): void {
       if (this.page && this.report) {
@@ -71,7 +75,8 @@ export class ReportDetailComponent implements OnInit{
 
   hasChild = (_: number, node: RuleNode) => !!node.children && node.children.length > 0;
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
+    super.ngOnInit();
       this.getPage();
       this.getReport();
   }

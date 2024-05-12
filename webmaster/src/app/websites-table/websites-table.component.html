@@ -44,11 +44,11 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let website">
-      <button mat-icon-button routerLink="/website-detail/{{website._id}}">
+      <button class="focus" mat-icon-button routerLink="/website-detail/{{website._id}}">
         <span class="material-symbols-outlined" id="visibility">visibility</span>
       </button>
-      <button mat-icon-button (click)="deleteWebsite(website._id)">
-        <span  class="material-symbols-outlined" id="delete">delete</span>
+      <button class="focus" mat-icon-button (click)="deleteWebsite(website._id)">
+        <span class="material-symbols-outlined" id="delete">delete</span>
       </button>
     </td>
   </ng-container>
@@ -61,5 +61,5 @@
     <td class="mat-cell no-data" [attr.colspan]="displayedColumns.length">No data matching the filter "{{input.value}}"</td>
   </tr>
 </table>
-<mat-paginator class="mat-paginator" [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+<mat-paginator class="mat-paginator focus" [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
 <router-outlet></router-outlet>
