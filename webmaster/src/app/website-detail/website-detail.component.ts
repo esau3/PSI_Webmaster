@@ -46,7 +46,6 @@ export class WebsiteDetailComponent implements OnInit {
     this.getWebsite();
     this.getPages();
     this.getReports();
-    this.calculateProb();
   }
 
   //o this.website apenas funciona aqui dentro, parece que nao propaga
@@ -134,6 +133,7 @@ export class WebsiteDetailComponent implements OnInit {
   }
   
   goBack(): void {
+    this.calculateProb();
     this.location.back();
   }
 
