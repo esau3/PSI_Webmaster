@@ -102,7 +102,8 @@ exports.page_report = asyncHandler(async (req, res, next) => {
 
   //se ja existir um report feito a essa pagina,
   //lembrando que é passado o id em page.report
-  console.log(page.report);
+  //console.log(page.report);
+  //ISTO AINDA NAO ESTA A FUNCIONAR, NETAO VAMOS FZR UM NOVO REPORT SEMPRE
   if(page.report && false) {
 
     const reportMetadata = await ReportMetadata.findById(page.report).populate('rules').exec();
@@ -200,7 +201,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   await page.save();
 
   //res.send(report);
-  console.log(reportMetadata);
+  //console.log(reportMetadata);
   res.send(reportMetadata);
   
   await qualweb.stop();
