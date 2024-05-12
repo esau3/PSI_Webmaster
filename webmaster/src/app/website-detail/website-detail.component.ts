@@ -44,6 +44,7 @@ export class WebsiteDetailComponent implements OnInit {
   
   ngOnInit(): void {
     this.getWebsite();
+    this.calculateProb();
   }
 
   //o this.website apenas funciona aqui dentro, parece que nao propaga
@@ -140,7 +141,6 @@ export class WebsiteDetailComponent implements OnInit {
   }
   
   goBack(): void {
-    this.calculateProb();
     this.location.back();
   }
 
