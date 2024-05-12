@@ -228,12 +228,20 @@ export class WebsiteDetailComponent implements OnInit {
               presentAAError = true;
               presentAAAError = true;
 
+              console.log("A", rule.rule_type.includes('A'));
+              console.log("PresentAERROR: ", presentAError);
+              console.log("AA", rule.rule_type.includes('AA'));
+              console.log("PresentAAERROR: ", presentAAError);
+              console.log("AAA", rule.rule_type.includes('AAA'));
+              console.log("PresentAAAERROR: ", presentAAAError);
+              console.log("Failed: ", rule.outcome === 'Failed');
+              console.log("Outcome data: ", rule.outcome);
                 if (rule.rule_type.includes('A') && rule.outcome === 'Failed' && presentAError) {
                     presentAError = false;
                     console.log("Inc: A");
                     errorAReport++;
                 }
-                
+
                 if (rule.rule_type.includes('AA') && rule.outcome === 'Failed' && presentAAError) {
                     presentAAError = false;
                     console.log("Inc: AA");
