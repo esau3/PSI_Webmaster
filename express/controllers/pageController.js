@@ -200,6 +200,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   await page.save();
 
   //res.send(report);
+  console.log(reportMetadata);
   res.send(reportMetadata);
   
   await qualweb.stop();
