@@ -168,7 +168,6 @@ export class WebsiteDetailComponent implements OnInit {
     console.log(this.pages);
     console.log(this.pages?.[0]);
     console.log(this.pages?.[0]?.report);
-    console.log(this.pages?.[0]?.report?._id);
     if (this.pages) {
       const reportObservables = this.pages.map(page =>
         this.websiteService.getReport(page.report._id)
