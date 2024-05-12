@@ -175,13 +175,13 @@ export class WebsiteDetailComponent implements OnInit {
         this.websiteService.getReport(id)
           .subscribe((report: Report) => {
             if (this.reports === undefined) {
-              this.reports = [];
+              this.reports = []; 
             }
-            this.reports.push(report); 
+            this.reports.push(report);
             console.log(this.reports);
           });
     }
-  }
+}
 
   calculateProb():void{
 
