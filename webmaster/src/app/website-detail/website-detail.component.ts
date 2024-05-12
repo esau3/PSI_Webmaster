@@ -276,11 +276,6 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
     // Ordenar o array com base nos valores
     mapEntries.sort((a, b) => b[1] - a[1]);
 
-    console.log(errorAAAReport);
-    console.log(errorAAReport);
-    console.log(errorAReport);
-    console.log(noError);
-
     if (this.reports) {
       //numero de rules avaliadas
         const nRules = 68;
@@ -295,8 +290,6 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
             nRules: 68
         };
     }
-    console.log(pagesEvaluated);
-    console.log(this.error);
   }
 }
 
