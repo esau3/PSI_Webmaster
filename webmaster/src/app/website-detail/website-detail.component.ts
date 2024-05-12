@@ -166,7 +166,7 @@ export class WebsiteDetailComponent implements OnInit {
   getReports(): void {
     if (this.pages) {
         const reportObservables = this.pages.map(page =>
-            this.websiteService.getReport(page.report._id)
+            this.websiteService.getReport(page._id)
         );
 
         forkJoin(reportObservables).subscribe((reports: Report[]) => {
