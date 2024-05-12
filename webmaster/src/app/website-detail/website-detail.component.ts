@@ -70,14 +70,18 @@ export class WebsiteDetailComponent implements OnInit {
 
     //este metodo ainda tem problemas, o this.website é sempre un.defined...
   getPages(): void {
-    console.log(this.website?.pages);
+    //console.log(this.website?.pages);
     if (this.website) {
       
       for (const page of this.website.pages) {
         this.websiteService.getPage(page._id)
           .subscribe((pageData: Page) => {
-            console.log('Página obtida:', pageData);
-            this.pages?.push(pageData);
+            //console.log('Página obtida:', pageData);
+            if (this.pages === undefined) {
+              this.pages = []; // Se this.pages for undefined, cria um novo array
+            }
+            this.pages.push(pageData);
+            console.log("get pages", this.pages);
             //console.log("get pages", pageData.report);
             this.getReport(String(pageData.report)); 
           });
