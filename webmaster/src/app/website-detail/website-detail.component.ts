@@ -79,7 +79,7 @@ export class WebsiteDetailComponent implements OnInit {
     
         forkJoin(pageObservables).subscribe((pagesData: Page[]) => {
           this.pages = pagesData;
-          console.log("get pages", this.pages);
+          //console.log("get pages", this.pages);
           this.getReports(); 
         });
       }
@@ -177,11 +177,11 @@ export class WebsiteDetailComponent implements OnInit {
   
   getReports(): void {
     this.reports = [];
-    console.log(this.pages);
+    //console.log(this.pages);
     if (this.pages) {
       this.pages.forEach(page => {
-        console.log(page.report._id);
-        this.getReport(page.report._id);
+        console.log(page._id);
+        this.getReport(page._id);
       });
     }
   }
