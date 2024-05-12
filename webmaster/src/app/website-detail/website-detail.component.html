@@ -10,6 +10,18 @@
     <div class="info-item">Registration date: {{ website.register_date | date:'short' }}</div>
     <div class="info-item">Evaluation date: {{ website.eval_date | date:'short' }}</div>
     <div class="info-item">Monitoring state: <span class="monitor-state">{{ website.monitor_state }}</span></div>
+    
+    <div *ngIf="errorProb" class="info-group">
+      <div class="info-item-line passed">
+        <span class="material-symbols-outlined">done_all</span> Most common errors: {{ errorProb.commonError }}</div>
+      <div class="info-item-line failed">
+        <span class="material-symbols-outlined">cancel</span> Failed: {{ errorProb.errorAAAProb }}</div>
+      <div class="info-item-line warning">
+        <span class="material-symbols-outlined">report</span> Warnings: {{ errorProb.errorAAProb }}</div>
+      <div class="info-item-line inapplicable">
+        <span class="material-symbols-outlined">search_off</span> Inapplicable: {{ errorProb.errorAProb }}</div>
+  </div>
+    
     <div>
       <button mat-icon-button (click)="openDeleteDialog('0ms', '0ms', website._id)" class="delete-button">
         <span class="material-symbols-outlined">delete</span>

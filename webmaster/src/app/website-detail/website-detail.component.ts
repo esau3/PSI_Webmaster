@@ -252,11 +252,16 @@ export class WebsiteDetailComponent implements OnInit {
 
     const mapEntries = Array.from(hashMap.entries());
 
-    console.log(mapEntries);
+    //console.log(mapEntries);
     // Ordenar o array com base nos valores
     mapEntries.sort((a, b) => b[1] - a[1]);
 
-    if (this.reports && this.errorProb) {
+    console.log(errorAAAReport);
+    console.log(errorAAReport);
+    console.log(errorAReport);
+    console.log(noError);
+
+    if (this.reports) {
         this.errorProb = {
             errorNoProb: (this.reports.length - noError) / this.reports.length,
             errorProb: noError / this.reports.length,
