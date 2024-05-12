@@ -77,10 +77,12 @@ export class WebsiteDetailComponent implements OnInit {
         this.websiteService.getPage(page._id)
           .subscribe((pageData: Page) => {
             console.log('Página obtida:', pageData);
-            this.pages?.push(pageData); 
+            this.pages?.push(pageData);
+            console.log("get pages", this.pageData?.report);
+            //this.getReport(pageData.report._id); 
           });
       }
-      this.getReports();
+      
     }
   }
 
@@ -163,18 +165,16 @@ export class WebsiteDetailComponent implements OnInit {
   });
   }
 
-  getReports(): void {
+  getReport(id: string): void {
     console.log(this.pages);
-    if (this.pages) {
-      for (const page of this.pages) {
-        this.websiteService.getReport(page.report._id)
+    if (id) {
+        this.websiteService.getReport(id)
           .subscribe((report: Report) => {
             if(report && this.reports){
               this.reports.push(report); 
               console.log(this.reports);
             }
           });
-      }
     }
   }
 
