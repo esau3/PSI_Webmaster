@@ -18,6 +18,7 @@ exports.website_detail = asyncHandler(async (req, res, next) => {
     select: 'page_URL eval_date monitor_state'
   })
   .exec();
+
   if (website === null) {
     // No results.
     const err = new Error("Website not found");
@@ -74,7 +75,7 @@ exports.website_create_post = [
 // Handle Website deletion on DELETE.
 exports.website_delete = asyncHandler(async (req, res, next) => {
   const website = await Website.findById(req.params.id).exec();
-  res.send(JSON.stringify(website));
+  //res.send(JSON.stringify(website));
     if (website === null) {
       const err = new Error("Website not found");
       err.status = 404;

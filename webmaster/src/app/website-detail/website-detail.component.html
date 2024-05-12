@@ -13,19 +13,19 @@
     
     <div *ngIf="error" class="info-group">
       <div class="info-item-line passed">
-          <span class="material-symbols-outlined">done_all</span> Pages without errors: {{ error.noError }} || {{ (error.noError / error.nRules) * 100 | number: '1.2-2' }}%
+          <span class="material-symbols-outlined">done_all</span> Pages without errors: {{ error.noError }} || {{ (error.noError / error.pagesEvaluated) * 100 | number: '1.2-2' }}%
       </div>
       <div class="info-item-line passed">
-          <span class="material-symbols-outlined">cancel</span> Percentage of Pages with errors: {{ error.errors }} || {{ (error.errors / error.nRules) * 100 | number: '1.2-2' }}%
+          <span class="material-symbols-outlined">cancel</span> Percentage of Pages with errors: {{ error.errors }} || {{ (error.errors / error.pagesEvaluated) * 100 | number: '1.2-2' }}%
       </div>
       <div class="info-item-line failed">
-          <span class="material-symbols-outlined">counter_1</span> Pages with A level errors: {{ error.errorA }} || {{ (error.errorA / error.nRules) * 100 | number: '1.2-2' }}%
+          <span class="material-symbols-outlined">counter_1</span> Pages with A level errors: {{ error.errorA }} || {{ (error.errorA / error.pagesEvaluated) * 100 | number: '1.2-2' }}%
       </div>
       <div class="info-item-line warning">
-          <span class="material-symbols-outlined">counter_2</span> Pages with AA level errors: {{ error.errorAA }} || {{ (error.errorAA / error.nRules) * 100 | number: '1.2-2' }}%
+          <span class="material-symbols-outlined">counter_2</span> Pages with AA level errors: {{ error.errorAA }} || {{ (error.errorAA / error.pagesEvaluated) * 100 | number: '1.2-2' }}%
       </div>
       <div class="info-item-line inapplicable">
-          <span class="material-symbols-outlined">counter_3</span> Pages with AAA level errors: {{ error.errorAAA }} || {{ (error.errorAAA / error.nRules) * 100 | number: '1.2-2' }}%
+          <span class="material-symbols-outlined">counter_3</span> Pages with AAA level errors: {{ error.errorAAA }} || {{ (error.errorAAA / error.pagesEvaluated) * 100 | number: '1.2-2' }}%
       </div>
       <div class="info-item-line common-errors">
           <span class="material-symbols-outlined">emergency_heat</span> Most common errors: {{ error.commonErrors }}

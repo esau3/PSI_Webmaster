@@ -277,10 +277,10 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
 
     if (this.reports) {
       //numero de rules avaliadas
-        const nRules = 68;
+        //const nRules = 68;
         this.error = {
-            noError: (nRules - (errorAReport + errorAAReport + errorAAAReport)),
-            errors: errorAReport + errorAAReport + errorAAAReport,
+            noError: noError,
+            errors: pagesEvaluated - noError,
             errorA: errorAReport,
             errorAA: errorAAReport,
             errorAAA: errorAAAReport,

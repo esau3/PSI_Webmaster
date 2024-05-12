@@ -5,8 +5,8 @@ var express = require("express");
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB =
-  "mongodb://psi042:psi042@0.0.0.0:27017/psi042?retryWrites=true&authSource=psi042";
+const mongoDB = "mongodb+srv://franciscomoz:pHSB9pEt2vzOrvjE@cluster0.r3cn25x.mongodb.net/psi_04?retryWrites=true&w=majority&appName=Cluster0";
+//"mongodb://psi042:psi042@0.0.0.0:27017/psi042?retryWrites=true&authSource=psi042";
 
 main().catch((err) => console.log(err));
 async function main() {
