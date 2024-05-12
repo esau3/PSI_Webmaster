@@ -47,6 +47,7 @@ export class WebsiteDetailComponent implements OnInit {
     this.getPages();
     this.getReports();
     this.calculateProb();
+    console.log(this.errorProb);
   }
 
   //o this.website apenas funciona aqui dentro, parece que nao propaga
