@@ -118,7 +118,6 @@ export class ReportDetailComponent implements OnInit{
         this.websiteService.getReport(id)
           .subscribe((report: Report) => {
             this.report = report;
-            console.log(this.page?.report);
             this.buildTree();
           });
       }
