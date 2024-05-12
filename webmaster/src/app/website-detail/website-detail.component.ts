@@ -175,9 +175,17 @@ export class WebsiteDetailComponent implements OnInit {
           this.websiteService.getReport(page.report._id)
         );
   
-      forkJoin(reportObservables).subscribe((reports: Report[]) => {
-        this.reports = reports;
-        console.log("get reports", this.reports);
+        forkJoin(reportObservables).subscribe({
+          next: (reports: Report[]) => {
+              this.reports = reports.filter(report => report !== null);
+              console.log("get reports", this.reports);
+          },
+          error: (error) => {
+              console.error('Error in forkJoin:', error);
+          },
+          complete: () => {
+              console.log('forkJoin completed');
+          }
       });
     }
   }
