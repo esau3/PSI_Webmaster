@@ -102,6 +102,8 @@ exports.page_report = asyncHandler(async (req, res, next) => {
 
   //se ja existir um report feito a essa pagina,
   //lembrando que é passado o id em page.report
+  console.log(page.report);
+  console.log(page.report.length);
   if(page.report && page.report.length === 1) {
 
     const reportMetadata = await ReportMetadata.findById(page.report).exec();
