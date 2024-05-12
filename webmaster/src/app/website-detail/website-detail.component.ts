@@ -79,7 +79,7 @@ export class WebsiteDetailComponent implements OnInit {
     
         forkJoin(pageObservables).subscribe((pagesData: Page[]) => {
           this.pages = pagesData;
-          //console.log("get pages", this.pages);
+          console.log("get pages", this.pages);
           this.getReports(); 
         });
       }
@@ -163,19 +163,28 @@ export class WebsiteDetailComponent implements OnInit {
   });
   }
 
-  getReports(): void {
-    if (this.pages) {
-        const reportObservables = this.pages.map(page =>
-            this.websiteService.getReport(page._id)
-        );
-
-        forkJoin(reportObservables).subscribe((reports: Report[]) => {
-            this.reports = reports;
-            console.log("get reports", this.reports);
+  getReport(id: string): void {
+    if (id !== null) {
+      this.websiteService.getReport(id)
+        .subscribe((report: Report) => {
+          if (this.reports === undefined) {
+            this.reports = []; 
+          }
+          this.reports.push(report);
         });
     }
-}
+  }
   
+  getReports(): void {
+    this.reports = [];
+    console.log(this.pages);
+    if (this.pages) {
+      this.pages.forEach(page => {
+        console.log(page.report._id);
+        this.getReport(page.report._id);
+      });
+    }
+  }
 
 /*
   getReport(id: string): void {
