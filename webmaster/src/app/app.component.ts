@@ -10,7 +10,6 @@ export class AppComponent {
 
   drawer = true;
 
-  
   selectedIndex = 0;
   items:NodeListOf<Element>|undefined;
 
@@ -18,7 +17,6 @@ export class AppComponent {
 
   ngOnInit(){
     this.items= this.elRef.nativeElement.querySelectorAll('.focus');
-    
   }
 
   toggleDrawer() {
@@ -29,7 +27,7 @@ export class AppComponent {
     return this.drawer;
   }
 
-
+/* nao deixa escrever em lado nenhum
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
     if(this.items){
@@ -42,6 +40,6 @@ export class AppComponent {
       this.selectedIndex = Math.min(this.items.length - 1, this.selectedIndex + 1);
     }
     (this.items[this.selectedIndex] as HTMLElement).focus();
-  }
-  }
+    }
+    }*/
   }
