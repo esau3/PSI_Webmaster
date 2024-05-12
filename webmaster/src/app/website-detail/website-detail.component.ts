@@ -70,6 +70,7 @@ export class WebsiteDetailComponent implements OnInit {
 
     //este metodo ainda tem problemas, o this.website é sempre un.defined...
   getPages(): void {
+    console.log(this.website?.pages);
     if (this.website && this.website.pages.length === 0) {
       const pages = this.website.pages;
       
