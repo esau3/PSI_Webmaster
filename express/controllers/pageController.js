@@ -182,14 +182,16 @@ exports.page_report = asyncHandler(async (req, res, next) => {
 
   await reportMetadata.save();
 
-  //atualizar estado da pagina
   await Page.findByIdAndUpdate(
     page._id,
-    { $set: { monitor_state: "Conforme" }, 
-              eval_date: Date.now()
+    { 
+      $set: { 
+        monitor_state: "Conforme",
+        eval_date: Date.now()
+      }
     },
     { new: true }
-  )
+  );
 
   page.report = reportMetadata;
   //console.log(page);
