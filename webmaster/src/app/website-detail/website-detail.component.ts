@@ -46,7 +46,7 @@ export class WebsiteDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getWebsite();
     //this.getReports();
-    this.calculateProb();
+    //this.calculateProb();
   }
 
   //o this.website apenas funciona aqui dentro, parece que nao propaga
@@ -171,7 +171,7 @@ export class WebsiteDetailComponent implements OnInit {
             this.reports = []; 
           }
           this.reports.push(report);
-          console.log(this.reports);
+          this.calculateProb();
         });
     }
   }
