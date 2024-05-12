@@ -53,6 +53,7 @@ export class WebsiteDetailComponent implements OnInit {
       this.websiteService.getWebsite(id)
         .subscribe((website: Website) => {
           this.website = website;
+          console.log("DENTRO do getwebsite", this.website.pages);
           this.getPages();
         });
     }

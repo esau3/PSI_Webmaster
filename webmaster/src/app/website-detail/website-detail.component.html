@@ -33,7 +33,7 @@
 </div>
   <div class="pages-menu">
     <h3>Pages</h3>
-    <div *ngFor="let page of website.pages" class="page-item">
+    <div *ngFor="let page of pages" class="page-item">
       <div class="info-item">ID: {{ page._id }}</div>
       <div class="info-item">{{ page.page_URL }}</div>
       <div class="info-item">Last evaluation: {{ page.eval_date | date:'short' }}</div>
