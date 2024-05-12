@@ -104,7 +104,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   //lembrando que é passado o id em page.report
   console.log(page.report);
   console.log(page.report.length);
-  if(page.report && page.report.length === 1) {
+  if(page.report) {
 
     const reportMetadata = await ReportMetadata.findById(page.report).exec();
     console.log("Nao fez nova eval, ja existia uma!");
