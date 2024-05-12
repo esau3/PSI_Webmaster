@@ -8,6 +8,7 @@ import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { forkJoin } from 'rxjs';
 
 
 @Component({
@@ -70,29 +71,19 @@ export class WebsiteDetailComponent implements OnInit {
     }
 
     //este metodo ainda tem problemas, o this.website é sempre un.defined...
-  getPages(): void {
-    //console.log(this.website?.pages);
-    if (this.website) {
-      
-      for (const page of this.website.pages) {
-        this.websiteService.getPage(page._id)
-          .subscribe((pageData: Page) => {
-            //console.log('Página obtida:', pageData);
-            //quando this.pages é undefined o push n e chamado
-            if (this.pages === undefined) {
-              this.pages = [];
-            }
-            this.pages.push(pageData);
-            console.log("get pages", this.pages);
-            //console.log("id do report?", pageData.report);
-            
-          });
+    getPages(): void {
+      if (this.website) {
+        const pageObservables = this.website.pages.map(page =>
+          this.websiteService.getPage(page._id)
+        );
+    
+        forkJoin(pageObservables).subscribe((pagesData: Page[]) => {
+          this.pages = pagesData;
+          console.log("get pages", this.pages);
+          this.getReports(); 
+        });
       }
-      console.log("fora do get pages", this.pages);
-      this.getReports(); 
-      
     }
-  }
 
   updatePages() {
     const id = this.route.snapshot.paramMap.get('id');
