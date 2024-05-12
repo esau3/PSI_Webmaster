@@ -226,7 +226,6 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
 
     //demora mas chega
     //console.log("Probabilidades", this.reports);
-    this.reports = [reportMock1, reportMock2]
 
     if (this.reports) {
         for (const report of this.reports) {
