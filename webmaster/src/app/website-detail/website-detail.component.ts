@@ -181,7 +181,7 @@ export class WebsiteDetailComponent implements OnInit {
     //console.log(this.pages);
     if (this.pages) {
       this.pages.forEach(page => {
-        console.log(page._id);
+        //console.log(page._id);
         this.getReport(page._id);
       });
     }
@@ -226,6 +226,11 @@ export class WebsiteDetailComponent implements OnInit {
             presentAAAError = true;
 
             for (const rule of report.rules) {
+              console.log("A", rule.rule_type.includes('A'));
+              console.log("AA", rule.rule_type.includes('AA'));
+              console.log("AAA", rule.rule_type.includes('AAA'));
+              console.log(rule.outcome === 'Failed');
+              console.log(presentAError);
                 if (rule.rule_type.includes('A') && rule.outcome === 'Failed' && presentAError) {
                     presentAError = false;
                     console.log("Inc: A");
@@ -244,11 +249,13 @@ export class WebsiteDetailComponent implements OnInit {
                     noError++;
                 }
 
-                const value = hashMap.get(rule.code);
+                //tirar o QW- de antes da string, pode-se tira o ACT- tb
+                const code = rule.code.startsWith("QW-") ? rule.code.slice(3) : rule.code;
+                const value = hashMap.get(code);
                 if (value !== undefined) {
-                    hashMap.set(rule.code, rule.failed + value);
+                    hashMap.set(code, rule.failed + value);
                 } else {
-                    hashMap.set(rule.code, rule.failed);
+                    hashMap.set(code, rule.failed);
                 }
             }
         }
