@@ -211,6 +211,7 @@ export class WebsiteDetailComponent implements OnInit {
     let errorAReport = 0;
     let errorAAReport = 0;
     let errorAAAReport = 0;
+    let count = 0;
     const hashMap = new Map<string, number>();
 
     //demora mas chega
@@ -219,7 +220,7 @@ export class WebsiteDetailComponent implements OnInit {
     if (this.reports) {
         for (const report of this.reports) {
             //console.log(report);
-
+            count++;
             presentAError = true;
             presentAAError = true;
             presentAAAError = true;
@@ -227,12 +228,15 @@ export class WebsiteDetailComponent implements OnInit {
             for (const rule of report.rules) {
                 if (rule.rule_type.includes('A') && rule.outcome === 'Failed' && presentAError) {
                     presentAError = false;
+                    console.log("Inc: A");
                     errorAReport++;
                 } else if (rule.rule_type.includes('AA') && rule.outcome === 'Failed' && presentAAError) {
                     presentAAError = false;
+                    console.log("Inc: AA");
                     errorAAReport++;
                 } else if (rule.rule_type.includes('AAA') && rule.outcome === 'Failed' && presentAAAError) {
                     presentAAAError = false;
+                    console.log("Inc: AAA");
                     errorAAAReport++;
                 }
 
@@ -271,6 +275,7 @@ export class WebsiteDetailComponent implements OnInit {
             commonError: mapEntries.slice(0, 10)
         };
     }
+    console.log(count);
     console.log(this.errorProb);
   }
 }
