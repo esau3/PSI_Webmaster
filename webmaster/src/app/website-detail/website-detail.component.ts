@@ -202,76 +202,71 @@ export class WebsiteDetailComponent implements OnInit {
     }
 }*/
 
-  calculateProb():void{
-
-    var presentAError;
-    var presentAAError;
-    var presentAAAError;
-    var noError=0;
-    var errorAReport=0;
-    var errorAAReport=0;
-    var errorAAAReport=0;
-    let hashMap = new Map<string, number>();
+  calculateProb(): void {
+    
+    let presentAError = true;
+    let presentAAError = true;
+    let presentAAAError = true;
+    let noError = 0;
+    let errorAReport = 0;
+    let errorAAReport = 0;
+    let errorAAAReport = 0;
+    const hashMap = new Map<string, number>();
 
     console.log("Probabilidades", this.reports);
 
-    if(this.reports)
-    for(const report of this.reports){
+    if (this.reports) {
+        for (const report of this.reports) {
+            console.log(report);
 
-      console.log(report);
+            presentAError = true;
+            presentAAError = true;
+            presentAAAError = true;
 
-      presentAError=true;
-      presentAAError=true;
-      presentAAAError=true;
+            for (const rule of report.rules) {
+                if (rule.rule_type.includes('A') && rule.outcome === 'Failed' && presentAError) {
+                    presentAError = false;
+                    errorAReport++;
+                } else if (rule.rule_type.includes('AA') && rule.outcome === 'Failed' && presentAAError) {
+                    presentAAError = false;
+                    errorAAReport++;
+                } else if (rule.rule_type.includes('AAA') && rule.outcome === 'Failed' && presentAAAError) {
+                    presentAAAError = false;
+                    errorAAAReport++;
+                }
 
-      for(const rule of report.rules){
+                if (presentAError && presentAAError && presentAAAError) {
+                    noError++;
+                }
 
-        console.log(rule.rule_type);
-
-        if(rule.rule_type==='A'&&rule.outcome==='Failed'&&presentAError){
-          presentAError=false;
-          errorAReport++;
-        }else if(rule.rule_type==='AA'&&rule.outcome==='Failed'&&presentAAError){
-          presentAAError=false;
-          errorAAReport++;
-        }else if(rule.rule_type==='AAA'&&rule.outcome==='Failed'&&presentAAAError){
-          presentAAAError=false;
-          errorAAAReport++;
+                const value = hashMap.get(rule.code);
+                if (value !== undefined) {
+                    hashMap.set(rule.code, rule.failed + value);
+                } else {
+                    hashMap.set(rule.code, rule.failed);
+                }
+            }
         }
-
-        if(presentAError&&presentAAError&&presentAAAError){
-          noError++;
-        }
-
-        if(hashMap.has(rule.code)){
-          const value=hashMap.get(rule.code)
-          if(value)
-          hashMap.set(rule.code,rule.failed+value);
-
-        }else{
-          hashMap.set(rule.code,rule.failed);
-        }
-      }
-
     }
 
     const mapEntries = Array.from(hashMap.entries());
 
-// Sort the array based on values
-    mapEntries.sort((a, b) => a[1] - b[1]);
+    // Ordenar o array com base nos valores
+    mapEntries.sort((a, b) => b[1] - a[1]);
 
-    if(this.reports && this.errorProb)
-    this.errorProb={errorNoProb:(this.reports.length-noError)/this.reports.length,
-      errorProb:noError/this.reports.length,
-      errorAProb:errorAReport/this.reports.length,
-      errorAAProb:errorAAReport/this.reports.length,
-      errorAAAProb:errorAAAReport/this.reports.length,
-      commonError:mapEntries.slice(0,10)
-  };
-  //console.log(this.errorProb);
-
-    
+    if (this.reports && this.errorProb) {
+        this.errorProb = {
+            errorNoProb: (this.reports.length - noError) / this.reports.length,
+            errorProb: noError / this.reports.length,
+            errorAProb: errorAReport / this.reports.length,
+            errorAAProb: errorAAReport / this.reports.length,
+            errorAAAProb: errorAAAReport / this.reports.length,
+            commonError: mapEntries.slice(0, 10)
+        };
+        console.log(this.errorProb);
+    }
   }
 }
+
 
 
