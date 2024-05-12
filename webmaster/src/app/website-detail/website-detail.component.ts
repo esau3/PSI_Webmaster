@@ -186,7 +186,7 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
     //console.log(this.pages);
     if (this.pages) {
       this.pages.forEach(page => {
-        console.log(page._id);
+        //console.log(page._id);
         this.getReport(page._id);
       });
     }
@@ -216,6 +216,7 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
     let errorAReport = 0;
     let errorAAReport = 0;
     let errorAAAReport = 0;
+    let pagesEvaluated = 0;
     const hashMap = new Map<string, number>();
 
     //demora mas chega
@@ -224,19 +225,25 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
     if (this.reports) {
         for (const report of this.reports) {
             //console.log(report);
-
-            presentAError = true;
-            presentAAError = true;
-            presentAAAError = true;
+            pagesEvaluated++;
 
             for (const rule of report.rules) {
-                if (rule.rule_type.includes('A') && rule.outcome === 'Failed' && presentAError) {
+
+              presentAError = true;
+              presentAAError = true;
+              presentAAAError = true;
+            
+                if (rule.rule_type.includes('A') && rule.outcome === 'failed' && presentAError) {
                     presentAError = false;
                     errorAReport++;
-                } else if (rule.rule_type.includes('AA') && rule.outcome === 'Failed' && presentAAError) {
+                }
+
+                if (rule.rule_type.includes('AA') && rule.outcome === 'failed' && presentAAError) {
                     presentAAError = false;
                     errorAAReport++;
-                } else if (rule.rule_type.includes('AAA') && rule.outcome === 'Failed' && presentAAAError) {
+                }
+
+                if (rule.rule_type.includes('AAA') && rule.outcome === 'failed' && presentAAAError) {
                     presentAAAError = false;
                     errorAAAReport++;
                 }
@@ -245,11 +252,13 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
                     noError++;
                 }
 
-                const value = hashMap.get(rule.code);
+                //tirar o QW- de antes da string, pode-se tira o ACT- tb
+                const code = rule.code.slice(7);
+                const value = hashMap.get(code);
                 if (value !== undefined) {
-                    hashMap.set(rule.code, rule.failed + value);
+                    hashMap.set(code, rule.failed + value);
                 } else {
-                    hashMap.set(rule.code, rule.failed);
+                    hashMap.set(code, rule.failed);
                 }
             }
         }
@@ -257,20 +266,29 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
 
     const mapEntries = Array.from(hashMap.entries());
 
-    console.log(mapEntries);
+    //console.log(mapEntries);
     // Ordenar o array com base nos valores
     mapEntries.sort((a, b) => b[1] - a[1]);
 
-    if (this.reports && this.errorProb) {
+    console.log(errorAAAReport);
+    console.log(errorAAReport);
+    console.log(errorAReport);
+    console.log(noError);
+
+    if (this.reports) {
+      //numero de rules avaliadas
+        const nRules = 68;
         this.errorProb = {
-            errorNoProb: (this.reports.length - noError) / this.reports.length,
-            errorProb: noError / this.reports.length,
-            errorAProb: errorAReport / this.reports.length,
-            errorAAProb: errorAAReport / this.reports.length,
-            errorAAAProb: errorAAAReport / this.reports.length,
-            commonError: mapEntries.slice(0, 10)
+            errorNoProb: ((nRules - noError) / nRules) * 100,
+            errorProb: (noError / nRules) * 100,
+            errorAProb: (errorAReport / nRules) * 100,
+            errorAAProb: (errorAAReport / nRules) * 100,
+            errorAAAProb: (errorAAAReport / nRules) * 100,
+            commonError: mapEntries.slice(0, 10),
+            pagesEvaluated: pagesEvaluated
         };
     }
+    console.log(pagesEvaluated);
     console.log(this.errorProb);
   }
 }
