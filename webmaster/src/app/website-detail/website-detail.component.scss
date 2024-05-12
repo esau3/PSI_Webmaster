@@ -95,6 +95,16 @@
     align-self: center;
 
     &:hover {
-      background-color: #75b8ff;
+      background-color: #a1cfff;
+    }
+  }
+
+  .delete-button{
+    margin-top: 15px; // Adiciona margem no topo do botão "Add"
+    width: auto; // Ajusta a largura automaticamente
+    align-self: center;
+
+    &:hover {
+      background-color: #a1cfff;
     }
   }
