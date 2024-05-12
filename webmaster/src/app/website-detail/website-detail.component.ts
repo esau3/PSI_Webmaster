@@ -165,14 +165,9 @@ export class WebsiteDetailComponent implements OnInit {
   getReports(): void {
     if (this.pages && this.pages.length === 0 ) {
       for (const page of this.pages) {
-        this.websiteService.getReport(page.report._id)
-          .subscribe((report: Report) => {
-            console.log('Página obtida:', report);
-
-            if(this.reports){
-            this.reports.push(report); 
-            }
-
+        this.websiteService.getReports()
+          .subscribe((reports: Report[]) => {
+            this.reports = reports;
           });
       }
     }
@@ -236,7 +231,7 @@ export class WebsiteDetailComponent implements OnInit {
 // Sort the array based on values
     mapEntries.sort((a, b) => a[1] - b[1]);
 
-    if(this.reports && this.reports.length && this.errorProb)
+    if(this.reports && this.errorProb)
     this.errorProb={errorNoProb:(this.reports.length-noError)/this.reports.length,
       errorProb:noError/this.reports.length,
       errorAProb:errorAReport/this.reports.length,
