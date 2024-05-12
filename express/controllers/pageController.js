@@ -1,4 +1,3 @@
-const file = require("../663b48bf5ba7461b74c8abc6.json");
 const Page = require("../models/page");
 const Website = require("../models/website");
 const ReportMetadata = require("../models/report-metadata");
