@@ -189,9 +189,9 @@ export class WebsiteDetailComponent implements OnInit {
     var errorAAAReport=0;
     let hashMap = new Map<string, number>();
 
-    console.log(this.reports?.length);
+    console.log(this.reports);
 
-    if(this.reports && this.reports.length === 0 )
+    if(this.reports)
     for(const report of this.reports){
 
       console.log(report);
