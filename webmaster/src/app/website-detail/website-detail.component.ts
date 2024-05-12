@@ -44,7 +44,6 @@ export class WebsiteDetailComponent implements OnInit {
   
   ngOnInit(): void {
     this.getWebsite();
-    this.getPages();
     this.getReports();
   }
 
@@ -55,6 +54,7 @@ export class WebsiteDetailComponent implements OnInit {
       this.websiteService.getWebsite(id)
         .subscribe((website: Website) => {
           this.website = website;
+          this.getPages();
         });
     }
   }
