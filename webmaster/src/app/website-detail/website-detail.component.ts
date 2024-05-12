@@ -49,13 +49,14 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
   
   override ngOnInit(): void {
     super.ngOnInit();
+    /*
     this.website = websiteMock;
     this.pages = [pageMock1, pageMock2];
     this.reports = [reportMock1, reportMock2];
+    this.calculateProb();*/
+    this.getWebsite();
+    this.getReports();
     this.calculateProb();
-    //this.getWebsite();
-    //this.getReports();
-    //this.calculateProb();
   }
 
   //o this.website apenas funciona aqui dentro, parece que nao propaga
