@@ -1,21 +1,23 @@
-import { Component} from '@angular/core';
+import { Component, ElementRef, Renderer2} from '@angular/core';
 
 import { Website } from '../types';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WebsiteService} from '../services/websites.service';
+import { arrowComponent } from '../arrow.component';
 
 @Component({
   selector: 'app-website',
   templateUrl: './website.component.html',
   styleUrls: ['./website.component.scss']
 })
-export class WebsiteComponent {
+export class WebsiteComponent extends arrowComponent {
 
   form: FormGroup;
 
   websiteParams: string[] | undefined;
 
-  constructor(private fb: FormBuilder, private websiteService: WebsiteService) {
+  constructor(private renderer2: Renderer2, private elRef2: ElementRef,private fb: FormBuilder, private websiteService: WebsiteService) {
+    super(renderer2,elRef2);
 
 
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
