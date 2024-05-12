@@ -227,28 +227,28 @@ export class WebsiteDetailComponent implements OnInit {
               presentAError = true;
               presentAAError = true;
               presentAAAError = true;
-
+              /*
               console.log("A", rule.rule_type.includes('A'));
               console.log("PresentAERROR: ", presentAError);
               console.log("AA", rule.rule_type.includes('AA'));
               console.log("PresentAAERROR: ", presentAAError);
               console.log("AAA", rule.rule_type.includes('AAA'));
               console.log("PresentAAAERROR: ", presentAAAError);
-              console.log("Failed: ", rule.outcome === 'Failed');
-              console.log("Outcome data: ", rule.outcome);
-                if (rule.rule_type.includes('A') && rule.outcome === 'Failed' && presentAError) {
+              console.log("Failed: ", rule.outcome === 'failed');
+              console.log("Outcome data: ", rule.outcome);*/
+                if (rule.rule_type.includes('A') && rule.outcome === 'failed' && presentAError) {
                     presentAError = false;
                     console.log("Inc: A");
                     errorAReport++;
                 }
 
-                if (rule.rule_type.includes('AA') && rule.outcome === 'Failed' && presentAAError) {
+                if (rule.rule_type.includes('AA') && rule.outcome === 'failed' && presentAAError) {
                     presentAAError = false;
                     console.log("Inc: AA");
                     errorAAReport++;
                 }
 
-                if (rule.rule_type.includes('AAA') && rule.outcome === 'Failed' && presentAAAError) {
+                if (rule.rule_type.includes('AAA') && rule.outcome === 'failed' && presentAAAError) {
                     presentAAAError = false;
                     console.log("Inc: AAA");
                     errorAAAReport++;
