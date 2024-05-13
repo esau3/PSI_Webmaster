@@ -24,8 +24,8 @@ export class WebsiteComponent extends arrowComponent {
     //([/\w .-!@#$%^&*(){}[\]=+/'";:,<>`~\\]
     this.form = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(3)]],
-      url: ['', [Validators.required, Validators.pattern(reg)]], //validaçao com ReGex
-      page: ['', [Validators.required, Validators.pattern(reg)]]
+      url: ['', [Validators.required]], //validaçao com ReGex
+      page: ['', [Validators.required]]
     });
   }
 
