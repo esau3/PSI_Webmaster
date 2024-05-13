@@ -20,7 +20,8 @@ export class WebsiteComponent extends arrowComponent {
     super(renderer2,elRef2);
 
 
-    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\w .-!@#$%^&*(){}[\]=+/";:,<>`~\\]*)*/?';
+    //([/\w .-!@#$%^&*(){}[\]=+/'";:,<>`~\\]
     this.form = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(3)]],
       url: ['', [Validators.required, Validators.pattern(reg)]], //validaçao com ReGex
