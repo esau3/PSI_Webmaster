@@ -8,11 +8,18 @@ import { Page, Report, Rule, Website } from '../types';
 @Injectable({ providedIn: 'root' })
 export class WebsiteService {
 
-  private website = "http://127.0.0.1:3092/website/";//"http://10.101.151.25:3092/website/";
-  private websites = "http://127.0.0.1:3092/websites";//"http://10.101.151.25:3092/websites";
-  private page = "http://127.0.0.1:3092/page/";//"http://10.101.151.25:3092/page/";
-  private eval_page = "http://127.0.0.1:3092/eval/";//"http://10.101.151.25:3092/eval/";
-  private eval_pages = "http://127.0.0.1:3092/evals";//"http://10.101.151.25:3092/evals";
+  private website = "http://10.101.151.25:3092/website/";
+private websites = "http://10.101.151.25:3092/websites";
+private page = "http://10.101.151.25:3092/page/";
+private eval_page = "http://10.101.151.25:3092/eval/";
+private eval_pages = "http://10.101.151.25:3092/evals";
+// comenta o url descomentado e descomenta o outro
+// private website = "http://127.0.0.1:3092/website/";
+// private websites = "http://127.0.0.1:3092/websites";
+// private page = "http://127.0.0.1:3092/page/";
+// private eval_page = "http://127.0.0.1:3092/eval/";
+// private eval_pages = "http://127.0.0.1:3092/evals";
+
   constructor(
     private http: HttpClient) { }
 
