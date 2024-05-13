@@ -101,7 +101,7 @@ export class WebsiteComponent extends arrowComponent {
 
   submitForm() {
     if (this.form.valid) {
-      //console.log(this.form.value);
+      console.log("Validação dos URLs desativada");
     }
   }
 
