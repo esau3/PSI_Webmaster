@@ -44,7 +44,6 @@
           <mat-label>Insira o URL da página</mat-label>
           <input class="focus" type="text" matInput placeholder="Pagina" formControlName="pageUrl" required>
           <mat-error *ngIf="form.get('pageUrl')?.hasError('required')">O URL da página é obrigatório</mat-error>
-          <mat-error *ngIf="form.get('pageUrl')?.hasError('pattern')">O URL da página não é válido</mat-error>
         </mat-form-field>
     
         <button class="submit-button focus" mat-icon-button type="submit" color="primary" [disabled]="form.invalid">
