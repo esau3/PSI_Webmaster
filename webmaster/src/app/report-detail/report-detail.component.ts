@@ -158,10 +158,10 @@ export class ReportDetailComponent implements OnInit {
         }
       
         if (filterText) {
-          filterText = filterText.toLowerCase();
+          //filterText = filterText.toLowerCase();
           filteredData = array.map(copy).filter(function x(y) {
             // Verifica se qualquer uma das propriedades contém o texto do filtro
-            const matches = properties.some(property => y[property] && y[property].toLowerCase().includes(filterText));
+            const matches = properties.some(property => y[property] && y[property].includes(filterText));
             if (matches) {
               return true;
             }
