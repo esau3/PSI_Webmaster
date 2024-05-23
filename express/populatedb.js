@@ -100,16 +100,16 @@ async function createPages() {
 async function createWebsites() {
   console.log("Adding websites");
   await Promise.all([
-    websiteCreate(1, "Netflix", "https://www.netflix.com", new Date(), new Date(), randomState(), [pages[0], pages[1], pages[2]]),
-    websiteCreate(2, "FCUL", "https://ciencias.ulisboa.pt", new Date(), new Date(), randomState(), [pages[3], pages[4], pages[5]]),
-    websiteCreate(3, "Fenix FCUL", "https://fenix.ciencias.ulisboa.pt", new Date(), new Date(), randomState(), [pages[6], pages[7], pages[8]]),
-    websiteCreate(4, "Amazon", "https://www.amazon.com", new Date(), new Date(), randomState(), [pages[9], pages[10], pages[11]]),
-    websiteCreate(5, "OLX", "https://www.olx.pt", new Date(), new Date(), randomState(), [pages[12], pages[13], pages[14]]),
-    websiteCreate(6, "Wikipedia", "https://www.wikipedia.org", new Date(), new Date(), randomState(), [pages[15], pages[16], pages[17]]),
-    websiteCreate(7, "Google", "https://www.google.com", new Date(), new Date(), randomState(), [pages[18], pages[19], pages[20]]),
-    websiteCreate(8, "Youtube", "https://www.youtube.com", new Date(), new Date(), randomState(), [pages[21], pages[22], pages[23]]),
-    websiteCreate(9, "Facebook", "https://www.facebook.com", new Date(), new Date(), randomState(), [pages[24], pages[25], pages[26]]),
-    websiteCreate(10, "Twitter", "https://twitter.com", new Date(), new Date(), randomState(), [pages[27], pages[28], pages[29]]),
+    websiteCreate(1, "Netflix", "https://www.netflix.com", new Date(), new Date(), "Por avaliar", [pages[0], pages[1], pages[2]]),
+    websiteCreate(2, "FCUL", "https://ciencias.ulisboa.pt", new Date(), new Date(), "Por avaliar", [pages[3], pages[4], pages[5]]),
+    websiteCreate(3, "Fenix FCUL", "https://fenix.ciencias.ulisboa.pt", new Date(), new Date(), "Por avaliar", [pages[6], pages[7], pages[8]]),
+    websiteCreate(4, "Amazon", "https://www.amazon.com", new Date(), new Date(), "Por avaliar", [pages[9], pages[10], pages[11]]),
+    websiteCreate(5, "OLX", "https://www.olx.pt", new Date(), new Date(), "Por avaliar", [pages[12], pages[13], pages[14]]),
+    websiteCreate(6, "Wikipedia", "https://www.wikipedia.org", new Date(), new Date(), "Por avaliar", [pages[15], pages[16], pages[17]]),
+    websiteCreate(7, "Google", "https://www.google.com", new Date(), new Date(), "Por avaliar", [pages[18], pages[19], pages[20]]),
+    websiteCreate(8, "Youtube", "https://www.youtube.com", new Date(), new Date(), "Por avaliar", [pages[21], pages[22], pages[23]]),
+    websiteCreate(9, "Facebook", "https://www.facebook.com", new Date(), new Date(), "Por avaliar", [pages[24], pages[25], pages[26]]),
+    websiteCreate(10, "Twitter", "https://twitter.com", new Date(), new Date(), "Por avaliar", [pages[27], pages[28], pages[29]]),
 
   ]);
 }
