@@ -89,14 +89,6 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   if (page === null) {
     const err = new Error("Page not found");
     err.status = 404;
-
-    //atualizar estado da pagina
-  await Page.findByIdAndUpdate(
-    page._id,
-    { $set: { monitor_state: "Erro na avaliação" } },
-    { new: true }
-  )
-
     return next(err);
   }
 
