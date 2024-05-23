@@ -22,12 +22,14 @@
     </div>
   </div>
 
-  <mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input matInput minlength="2" (keyup)="applyFilter($event)" placeholder="Filter" #input>
-  </mat-form-field>
 
   <mat-tree [dataSource]="filteredDataSource" [treeControl]="treeControl" class="example-tree">
+    
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput minlength="2" (keyup)="applyFilter($event)" placeholder="Filter" #input>
+    </mat-form-field>
+
     <!-- This is the tree node template for leaf nodes -->
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
         {{node.code}}
