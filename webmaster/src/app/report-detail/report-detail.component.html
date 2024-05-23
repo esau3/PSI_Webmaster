@@ -24,7 +24,7 @@
 
   <mat-form-field>
     <mat-label>Filter</mat-label>
-    <input matInput minlength="2" (keyup)="applyFilter($event)" placeholder="Filter" #input>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
   </mat-form-field>
 
   <mat-tree [dataSource]="filteredDataSource" [treeControl]="treeControl" class="example-tree">
