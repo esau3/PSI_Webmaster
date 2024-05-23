@@ -23,8 +23,8 @@
   </div>
 
   <mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="AAA" #input>
   </mat-form-field>
 
   <mat-tree [dataSource]="filteredDataSource" [treeControl]="treeControl" class="example-tree">
