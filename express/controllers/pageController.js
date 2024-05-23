@@ -141,8 +141,8 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   const assertions = report[toEval].modules['act-rules'].assertions;
   //console.log(assertions);
   //assertions.push(report[toEval].modules['wcag-rules'].assertions);
-  const alo = report[toEval].modules['wcag-rules'].assertions;
-  console.log(alo);
+  //const alo = report[toEval].modules['wcag-rules'].assertions;
+  //console.log(alo);
 
   //console.log(metadata);
 
