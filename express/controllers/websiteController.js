@@ -45,7 +45,8 @@ exports.website_create_post = [
     const website = new Website({
       name: req.body.name,
       URL: req.body.url,
-      pages: req.body.pages
+      pages: req.body.pages,
+      monitor_state: "Por avaliar"
     });
 
     if (!errors.isEmpty()) {
@@ -115,6 +116,7 @@ exports.page_update = asyncHandler(async (req, res, next) => {
   await website.save();
   await page.save();
   res.redirect(page.url);
+  //update_website(req.params.id);
 });
 
 // Handle Website evaluation on GET.
@@ -140,6 +142,7 @@ exports.website_eval = asyncHandler(async (req, res, next) => {
   console.log(report);
   // parar o avaliador e libertar recursos
   await qualweb.stop();
+  //update_website(req.params.id);
 });
 
 //funcao que atualiza os estados conforme o report
