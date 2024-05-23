@@ -11,13 +11,13 @@
       <div class="info-item">State: <span class="monitor-state">{{ page.monitor_state }}</span></div>
       <div *ngIf="report" class="info-group">
         <div class="info-item-line passed">
-          <span class="material-symbols-outlined">done_all</span> Passed: {{ report.total_passed }} - {{ report.total_passed / 105 }}</div>
+          <span class="material-symbols-outlined">done_all</span> Passed: {{ report.total_passed }} || {{ (report.total_passed / 105) * 100 | number: '1.2-2' }}%</div>
         <div class="info-item-line failed">
-          <span class="material-symbols-outlined">cancel</span> Failed: {{ report.total_failed }} - {{ report.total_failed / 105 }}</div>
+          <span class="material-symbols-outlined">cancel</span> Failed: {{ report.total_failed }} || {{ (report.total_failed / 105) * 100 | number: '1.2-2' }}%</div>
         <div class="info-item-line warning">
-          <span class="material-symbols-outlined">report</span> Warnings: {{ report.total_warning }} - {{ report.total_warning / 105 }}</div>
+          <span class="material-symbols-outlined">report</span> Warnings: {{ report.total_warning }} || {{ (report.total_warning / 105) * 100 | number: '1.2-2' }}%</div>
         <div class="info-item-line inapplicable">
-          <span class="material-symbols-outlined">search_off</span> Inapplicable: {{ report.total_inapplicable }} - {{ report.total_inapplicable / 105 }}</div>
+          <span class="material-symbols-outlined">search_off</span> Inapplicable: {{ report.total_inapplicable }} || {{ (report.total_inapplicable / 105) * 100 | number: '1.2-2' }}%</div>
     </div>
     </div>
   </div>
