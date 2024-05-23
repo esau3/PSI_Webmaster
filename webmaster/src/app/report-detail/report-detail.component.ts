@@ -150,33 +150,37 @@ export class ReportDetailComponent implements OnInit {
 
 
       // Lógica de filtragem
-    filterRecursive(filterText: string, array: any[], property: string) {
-      let filteredData;
-
-      function copy(o: any) {
-        return Object.assign({}, o);
+      filterRecursive(filterText: string, array: any[], properties: string[]) {
+        let filteredData;
+      
+        function copy(o: any) {
+          return Object.assign({}, o);
+        }
+      
+        if (filterText) {
+          filterText = filterText.toLowerCase();
+          filteredData = array.map(copy).filter(function x(y) {
+            // Verifica se qualquer uma das propriedades contém o texto do filtro
+            const matches = properties.some(property => y[property] && y[property].toLowerCase().includes(filterText));
+            if (matches) {
+              return true;
+            }
+            if (y.children) {
+              return (y.children = y.children.map(copy).filter(x)).length;
+            }
+          });
+        } else {
+          filteredData = array;
+        }
+      
+        return filteredData;
       }
 
-      if (filterText) {
-        filterText = filterText.toLowerCase();
-        filteredData = array.map(copy).filter(function x(y) {
-          if (y[property].toLowerCase().includes(filterText)) {
-            return true;
-          }
-          if (y.children) {
-            return (y.children = y.children.map(copy).filter(x)).length;
-          }
-        });
-      } else {
-        filteredData = array;
+
+      filterTree(filterText: string) {
+        const propertiesToFilter = ['name', 'code', 'value'];
+        this.filteredDataSource.data = this.filterRecursive(filterText, this.dataSource.data, propertiesToFilter);
       }
-
-      return filteredData;
-    }
-
-    filterTree(filterText: string) {
-      this.filteredDataSource.data = this.filterRecursive(filterText, this.dataSource.data, 'name');
-    }
 
     applyFilter(event: KeyboardEvent) {
       const inputElement = event.target as HTMLInputElement;
