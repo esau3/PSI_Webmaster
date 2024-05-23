@@ -22,6 +22,7 @@ export class ReportDetailComponent implements OnInit {
     rules: Rule[] |undefined;
     treeControl = new NestedTreeControl<RuleNode>(node => node.children);
     dataSource = new MatTreeNestedDataSource<RuleNode>();
+    filteredDataSource = new MatTreeNestedDataSource<RuleNode>();
     reports: Report[] | undefined;
   
     constructor(
@@ -71,6 +72,7 @@ export class ReportDetailComponent implements OnInit {
           });
 
           this.dataSource.data = TREE_DATA;
+          this.filteredDataSource.data = TREE_DATA;
       }
   }
 
@@ -142,7 +144,51 @@ export class ReportDetailComponent implements OnInit {
     toggleNode(node: RuleNode): void {
       this.treeControl.toggle(node);
     }
-  }
+
+
+
+
+
+      // Lógica de filtragem
+    filterRecursive(filterText: string, array: any[], property: string) {
+      let filteredData;
+
+      function copy(o: any) {
+        return Object.assign({}, o);
+      }
+
+      if (filterText) {
+        filterText = filterText.toLowerCase();
+        filteredData = array.map(copy).filter(function x(y) {
+          if (y[property].toLowerCase().includes(filterText)) {
+            return true;
+          }
+          if (y.children) {
+            return (y.children = y.children.map(copy).filter(x)).length;
+          }
+        });
+      } else {
+        filteredData = array;
+      }
+
+      return filteredData;
+    }
+
+    filterTree(filterText: string) {
+      this.filteredDataSource.data = this.filterRecursive(filterText, this.dataSource.data, 'name');
+    }
+
+    applyFilter(event: KeyboardEvent) {
+      const inputElement = event.target as HTMLInputElement;
+      const filterText = inputElement.value;
+      this.filterTree(filterText);
+      if (filterText) {
+        this.treeControl.expandAll();
+      } else {
+        this.treeControl.collapseAll();
+      }
+    }
+}
       /**
  * Food data with nested structure.
  * Each node has a name and an optional list of children.
