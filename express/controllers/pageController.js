@@ -84,7 +84,7 @@ exports.report_detail = async (req, res, next) => {
 exports.page_report = asyncHandler(async (req, res, next) => {
 
   // Get details of website and their pages (in parallel)
-  const page = await Page.findById(req.params.id).exec();
+  const page = await Page.findById(req.params.id).populate().exec();
 
   if (page === null) {
     const err = new Error("Page not found");
@@ -96,9 +96,9 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   //lembrando que é passado o id em page.report
   //console.log(page.report);
   //ISTO AINDA NAO ESTA A FUNCIONAR, NETAO VAMOS FZR UM NOVO REPORT SEMPRE
-  if(page.report && false) {
+  if(page.report) {
 
-    const reportMetadata = await ReportMetadata.findById(page.report).populate().exec()
+    const reportMetadata = await ReportMetadata.findById(page.report).exec()
   
     console.log(reportMetadata);
     res.send(reportMetadata);
