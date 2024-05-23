@@ -187,7 +187,9 @@ export class ReportDetailComponent implements OnInit {
       const filterText = inputElement.value;
       this.filterTree(filterText);
       if (filterText) {
-        this.treeControl.expandAll();
+        if (this.treeControl.dataNodes && this.treeControl.dataNodes.length > 0) {
+          this.treeControl.expandAll();
+        }
       } else {
         this.treeControl.collapseAll();
       }
