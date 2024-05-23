@@ -199,7 +199,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
 
   //res.send(report);
   //console.log(reportMetadata);
-  res.send(report);
+  res.send(reportMetadata);
   
   await qualweb.stop();
 
