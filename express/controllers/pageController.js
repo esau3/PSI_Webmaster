@@ -139,7 +139,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   //const metadata = report.metadata;
   const metadata = report[toEval].metadata;
   const assertions = report[toEval].modules['act-rules'].assertions;
-  console.log(assertions);
+  //console.log(assertions);
   //assertions.push(report[toEval].modules['wcag-rules'].assertions);
   const alo = report[toEval].modules['wcag-rules'].assertions;
   console.log(alo);
@@ -199,7 +199,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
 
   //res.send(report);
   //console.log(reportMetadata);
-  res.send(reportMetadata);
+  res.send(report);
   
   await qualweb.stop();
 
