@@ -17,8 +17,8 @@ import { arrowComponent } from '../arrow.component';
   templateUrl: './website-detail.component.html',
   styleUrl: './website-detail.component.scss'
 })
-
-export class WebsiteDetailComponent extends arrowComponent implements OnInit {
+// extends arrowComponent
+export class WebsiteDetailComponent implements OnInit {
   website: Website | undefined;
   //page: Page | undefined;
   pages: Page[] | undefined;
@@ -39,7 +39,7 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
     private elRef2: ElementRef
     
   ) {
-    super(renderer2,elRef2);
+    //super(renderer2,elRef2);
 
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.form = this.fb.group({
@@ -47,8 +47,8 @@ export class WebsiteDetailComponent extends arrowComponent implements OnInit {
     });
   }
   
-  override ngOnInit(): void {
-    super.ngOnInit();
+  ngOnInit(): void {
+    //super.ngOnInit();
     /*
     this.website = websiteMock;
     this.pages = [pageMock1, pageMock2];

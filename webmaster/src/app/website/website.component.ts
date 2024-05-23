@@ -10,14 +10,15 @@ import { arrowComponent } from '../arrow.component';
   templateUrl: './website.component.html',
   styleUrls: ['./website.component.scss']
 })
-export class WebsiteComponent extends arrowComponent {
+//export class WebsiteComponent extends arrowComponent {
+export class WebsiteComponent {
 
   form: FormGroup;
 
   websiteParams: string[] | undefined;
 
   constructor(private renderer2: Renderer2, private elRef2: ElementRef,private fb: FormBuilder, private websiteService: WebsiteService) {
-    super(renderer2,elRef2);
+    //super(renderer2,elRef2);
 
 
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\w .-!@#$%^&*(){}[\]=+/";:,<>`~\\]*)*/?';

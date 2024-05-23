@@ -15,7 +15,8 @@ import { arrowComponent } from '../arrow.component';
   templateUrl: './report-detail.component.html',
   styleUrl: './report-detail.component.scss'
 })
-export class ReportDetailComponent extends arrowComponent implements OnInit {
+// extends arrowComponent
+export class ReportDetailComponent implements OnInit {
     page: Page | undefined;
     report: Report | undefined;
     rules: Rule[] |undefined;
@@ -30,7 +31,7 @@ export class ReportDetailComponent extends arrowComponent implements OnInit {
       private location: Location,
       public dialog: MatDialog
     ) {
-      super(renderer2,elRef2);
+      //super(renderer2,elRef2);
     }
 
     buildTree(): void {
@@ -75,8 +76,8 @@ export class ReportDetailComponent extends arrowComponent implements OnInit {
 
   hasChild = (_: number, node: RuleNode) => !!node.children && node.children.length > 0;
 
-  override ngOnInit(): void {
-    super.ngOnInit();
+  ngOnInit(): void {
+    //super.ngOnInit();
       this.getPage();
       this.getReport();
   }

@@ -14,8 +14,8 @@ import { arrowComponent } from '../arrow.component';
   templateUrl: './websites-table.component.html',
   styleUrl: './websites-table.component.scss'
 })
-
-export class WebsitesTableComponent extends arrowComponent {
+// extends arrowComponent
+export class WebsitesTableComponent {
   
   displayedColumns: string[] = ['id', 'name', 'URL', 'register_date', 'eval_date', 'monitor_state', 'actions'];
   dataSource!: MatTableDataSource<Website>;
@@ -26,7 +26,7 @@ export class WebsitesTableComponent extends arrowComponent {
   sort!: MatSort;
 
   constructor(private renderer2: Renderer2, private elRef2: ElementRef,private websiteService: WebsiteService, private router: Router) {
-    super(renderer2,elRef2)
+    //super(renderer2,elRef2)
     this.websiteService.getWebsites().subscribe(websites => {
       this.dataSource = new MatTableDataSource(websites);
       this.dataSource.paginator = this.paginator;
