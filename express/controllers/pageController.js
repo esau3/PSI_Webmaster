@@ -88,11 +88,11 @@ exports.page_report = asyncHandler(async (req, res, next) => {
     path: 'report',
     populate: {
       path: 'rules',
-      model: 'RuleMetadata' // Nome do modelo Rule
+      model: 'RuleMetadata'
     }
   }).exec();
 
-  //console.log("page rules: ", page.report.rules);
+  console.log("page rules: ", page.report.rules);
 
   select: 'code name passed warning failed outcome rule_type'
   if (page === null) {
@@ -111,7 +111,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
 
     const reportMetadata = await ReportMetadata.findById(page.report).populate('rules').exec()
     
-    console.log("report rules: ", reportMetadata.rules)
+    //console.log("report rules: ", reportMetadata.rules)
     res.send(reportMetadata);
   } else {
 
