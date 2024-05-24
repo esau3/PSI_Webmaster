@@ -77,6 +77,7 @@ export class WebsiteDetailComponent implements OnInit {
       .subscribe(
         () => {
           this.router.navigate(['/websites-table']);
+          location.reload();
         }
       );
     }
@@ -170,7 +171,6 @@ export class WebsiteDetailComponent implements OnInit {
   dialogRef.afterClosed().subscribe((result) => {
     if (result === 'true') {
       this.deleteWebsite(id);
-      location.reload();
     }
   });
   }
