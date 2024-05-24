@@ -77,7 +77,6 @@ export class WebsiteDetailComponent implements OnInit {
       .subscribe(
         () => {
           this.router.navigate(['/websites-table']);
-          location.reload();
         }
       );
     }
@@ -320,6 +319,7 @@ export class WebsiteDetailComponent implements OnInit {
   }
   
   savePdf(fileName : string){
+    fileName = fileName + "_Report";
     this.pdfSave.generatePDF(fileName);
   }
   
