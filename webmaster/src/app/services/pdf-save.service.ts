@@ -17,8 +17,8 @@ export class PdfSaveService {
       for (let i = 0; i < elements.length; i++) {
         const element = elements[i] as HTMLElement;
         const canvas = await html2canvas(element);
-        const imgWidth = 208;
-        const imgHeight = canvas.height * imgWidth / canvas.width;
+        const imgWidth = canvas.width;
+        const imgHeight = canvas.height ;//* imgWidth / canvas.width;
         const contentDataURL = canvas.toDataURL('image/png');
 
         pdf.addPage()
