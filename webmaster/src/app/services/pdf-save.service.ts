@@ -19,28 +19,33 @@ export class PdfSaveService {
 
     for (let i = 0; i < elements.length; i++) {
       const element = elements[i] as HTMLElement;
-      
-      // Obtemos a altura total do elemento, incluindo seu conteúdo e margens
+
       const elementHeight = element.getBoundingClientRect().height;
+      const numPages = Math.ceil(elementHeight / pageHeight);
 
-      // Limitamos a altura do elemento para a altura da página
-      element.style.height = '100%';
+      for (let pageNum = 0; pageNum < numPages; pageNum++) {
+        const canvas = await html2canvas(element, {
+          scale: 2,
+          useCORS: true,
+          windowHeight: pageHeight,
+          y: -pageNum * pageHeight
+        });
 
-      const canvas = await html2canvas(element, { scale: 2, useCORS: true }); // Ajustamos a escala e habilitamos o uso de CORS
-      const imgHeight = canvas.height * imgWidth / canvas.width;
-      const contentDataURL = canvas.toDataURL('image/jpeg', 0.7); // Ajustamos a qualidade da imagem
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        const contentDataURL = canvas.toDataURL('image/jpeg', 0.7);
 
-      if (i > 0) {
-        pdf.addPage(); // Adicionamos uma nova página para todos os elementos, exceto o primeiro
+        if (pageNum > 0) {
+          pdf.addPage();
+        }
+
+        if (yOffset + imgHeight > pageHeight) {
+          yOffset = 0;
+          pdf.addPage();
+        }
+
+        pdf.addImage(contentDataURL, 'JPEG', 0, yOffset, imgWidth, imgHeight);
+        yOffset += imgHeight;
       }
-      
-      if (yOffset + imgHeight > pageHeight) {
-        yOffset = 0; // Resetamos o deslocamento quando adicionamos uma nova página
-        pdf.addPage();
-      }
-
-      pdf.addImage(contentDataURL, 'JPEG', 0, yOffset, imgWidth, imgHeight);
-      yOffset += imgHeight;
     }
 
     pdf.save(fileName);
