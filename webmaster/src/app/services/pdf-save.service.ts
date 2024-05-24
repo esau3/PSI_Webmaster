@@ -36,10 +36,10 @@ export class PdfSaveService {
 
         //medidas exatas dos detalhes do website
         if (index == 0) { 
-          pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 304 / 3, 734.4 / 3);
+          pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 175, 0, 304 / 3, 764.4 / 3);
         } else {
         //para ter o tamanho
-          pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 450 / 3 , (171 * (index + 1)) / 1.5);
+          pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 100, 0, 450 / 3 , (171 * (index + 1)) / 1.5);
         }
       });
 
