@@ -170,6 +170,7 @@ export class WebsiteDetailComponent implements OnInit {
   dialogRef.afterClosed().subscribe((result) => {
     if (result === 'true') {
       this.deleteWebsite(id);
+      location.reload();
     }
   });
   }
