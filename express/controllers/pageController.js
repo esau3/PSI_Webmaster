@@ -111,7 +111,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
 
     const reportMetadata = await ReportMetadata.findById(page.report).populate({
       path: 'rules',
-      model: 'RuleMetadata'
+      select: ' outcome rule_type'
     }).exec()
     
     console.log("report rules: ", reportMetadata.rules)
