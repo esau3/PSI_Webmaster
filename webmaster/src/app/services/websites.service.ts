@@ -69,11 +69,19 @@ private eval_pages = "http://10.101.151.25:3092/evals";
       );
   }
   startEvaluation(_id: string):Observable<any>{
+    return this.http.post<any>(this.eval_page + _id, "")
+   .pipe(
+     catchError(this.handleError)
+   );
+  }
+
+  getEvaluation(_id: string):Observable<any>{
     return this.http.get<any>(this.eval_page + _id)
    .pipe(
      catchError(this.handleError)
    );
   }
+
 
   getPage(_id: string):Observable<Page>{
     return this.http.get<Page>(this.page + _id)

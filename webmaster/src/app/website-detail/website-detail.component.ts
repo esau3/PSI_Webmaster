@@ -118,8 +118,8 @@ export class WebsiteDetailComponent implements OnInit {
     location.reload();
   }
 
-  startEvaluation(id:string):void{
-    this.websiteService.startEvaluation(id).subscribe({
+  getEvaluation(id:string):void{
+    this.websiteService.getEvaluation(id).subscribe({
       next: () => {
         // Avaliação concluída com sucesso
         // Chame o método openSnackBar() para exibir a notificação
@@ -127,6 +127,18 @@ export class WebsiteDetailComponent implements OnInit {
       },
       error: (error) => {
         // Tratar erros, se necessário
+        console.error("Error during page evaluation:", error);
+      }
+    });
+    location.reload();
+  }
+
+  startEvaluation(id:string):void{
+    this.websiteService.startEvaluation(id).subscribe({
+      next: () => {
+        this.openSnackBar("Evaluation of the page has started!");
+      },
+      error: (error) => {
         console.error("Error during page evaluation:", error);
       }
     });
