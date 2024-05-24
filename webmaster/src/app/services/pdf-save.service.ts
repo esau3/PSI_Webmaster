@@ -20,6 +20,8 @@ export class PdfSaveService {
         const imgWidth = 208;
         const imgHeight = canvas.height * imgWidth / canvas.width;
         const contentDataURL = canvas.toDataURL('image/png');
+
+        pdf.addPage()
         
         pdf.addImage(contentDataURL, 'PNG', 0, 0, imgWidth, imgHeight);
       }
