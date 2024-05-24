@@ -92,12 +92,16 @@ exports.page_report = asyncHandler(async (req, res, next) => {
     }
   }).exec();
 
+  console.log(page.report.rules);
+
   select: 'code name passed warning failed outcome rule_type'
   if (page === null) {
     const err = new Error("Page not found");
     err.status = 404;
     return next(err);
   }
+
+  
 
   //se ja existir um report feito a essa pagina,
   //lembrando que é passado o id em page.report
@@ -107,7 +111,6 @@ exports.page_report = asyncHandler(async (req, res, next) => {
 
     const reportMetadata = await ReportMetadata.findById(page.report).exec()
   
-    console.log(reportMetadata);
     res.send(reportMetadata);
   } else {
 
