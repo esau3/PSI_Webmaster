@@ -319,7 +319,6 @@ export class WebsiteDetailComponent implements OnInit {
   }
   
   savePdf(fileName : string){
-    fileName = fileName + "_Report";
     this.pdfSave.generatePDF(fileName);
   }
   

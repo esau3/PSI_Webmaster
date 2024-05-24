@@ -49,7 +49,7 @@ export class PdfSaveService {
         author: "Grupo 42"
       });
 
-      pdf.save(fileName + ".pdf");
+      pdf.save(fileName+ " Report.pdf");
     }).catch(error => {
       console.error('Erro ao gerar o PDF:', error);
     });
