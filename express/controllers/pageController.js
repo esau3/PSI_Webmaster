@@ -85,8 +85,8 @@ exports.page_report = asyncHandler(async (req, res, next) => {
 
   // Get details of website and their pages (in parallel)
   const page = await Page.findById(req.params.id).populate({
-    path: 'RuleMetadata',
-    select: 'code name passed warning failed outcome rule_type'
+    path: 'report',
+    select: 'rules'
   })
   .exec();
 
