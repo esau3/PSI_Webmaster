@@ -37,6 +37,9 @@
       <button class="focus" mat-icon-button (click)="openDeleteDialog('0ms', '0ms', website._id)" class="delete-button">
         <span class="material-symbols-outlined">delete</span>
       </button>
+      <button  mat-icon-button (click)='savePdf("websiteInfo")' >
+        <span class="material-symbols-outlined">picture_as_pdf</span>
+      </button>
     </div>
     <div>
       <form [formGroup]="form" (ngSubmit)="submitForm()" class="parentForm">
@@ -72,8 +75,5 @@
     </div>
   </div>
 
-  <button  mat-icon-button (click)='savePdf("websiteInfo")' >
-    <span class="material-symbols-outlined">PDF save</span>
-  </button>
 </div>
 </body>
