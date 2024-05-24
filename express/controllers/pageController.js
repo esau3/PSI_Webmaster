@@ -91,8 +91,9 @@ exports.page_report = asyncHandler(async (req, res, next) => {
       model: 'RuleMetadata'
     }
   }).exec();
-
-  console.log("page rules: ", page.report.rules);
+  
+  //ja vai buscar as rules
+  //console.log("page rules: ", page.report.rules);
 
   select: 'code name passed warning failed outcome rule_type'
   if (page === null) {
