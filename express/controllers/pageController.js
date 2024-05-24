@@ -117,10 +117,35 @@ exports.page_report = asyncHandler(async (req, res, next) => {
     //console.log("report rules: ", reportMetadata.rules)
     res.send(reportMetadata);
   } else {
+    res.send(generate_new_report(page._id));
+  }});
 
+exports.new_report = asyncHandler(async (req, res, next) => {
+
+  // Get details of website and their pages (in parallel)
+  const page = await Page.findById(req.params.id).populate({
+    path: 'report',
+    populate: {
+      path: 'rules',
+      model: 'RuleMetadata'
+    }
+  }).exec();
+
+  //ja vai buscar as rules
+  //console.log("page rules: ", page.report.rules);
+  select: 'code name passed warning failed outcome rule_type'
+  if (page === null) {
+    const err = new Error("Page not found");
+    err.status = 404;
+    return next(err);
+  } 
+    res.send(generate_new_report(page._id));
+  });
+
+async function generate_new_report(pageId) {
   //atualizar estado da pagina
-  await Page.findByIdAndUpdate(
-    page._id,
+  const page = await Page.findByIdAndUpdate(
+    pageId,
     { $set: { monitor_state: "Em avaliação" } },
     { new: true }
   )
@@ -257,8 +282,8 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   }
     
     await qualweb.stop();
-
-  }});
+    return report;
+}
 
 //funcao que retorna o level do teste
 function getErrorLevel(successCriteria) {
@@ -281,7 +306,7 @@ async function find_website_id(page_id) {
 }
 
 async function update_page_state(page_id) {
-  const page = await Page.findById(page_id).exec();
+  const page = await Page.findById(page_id).populate().exec();
   if (page === null) {
     const err = new Error("Page not found");
     err.status = 404;

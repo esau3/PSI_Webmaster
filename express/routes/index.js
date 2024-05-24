@@ -38,6 +38,9 @@ router.get("/page/:id", page_controller.page_detail);
 // GET request for evaluation of a Website and its Pages
 router.get("/eval/:id", page_controller.page_report);
 
+// POST request to generate new page report
+router.post("/eval/:id", page_controller.new_report);
+
 // GET request for evaluation of a Website and its Pages
 router.get("/evals", page_controller.reports_list);
 
