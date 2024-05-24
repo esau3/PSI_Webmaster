@@ -175,7 +175,8 @@ exports.page_report = asyncHandler(async (req, res, next) => {
           outcome: assertion.metadata.outcome,
           rule_type: getErrorLevel(assertion.metadata['success-criteria'])
         })
-        rulesArray.push(ruleMetadata);
+        await ruleMetadata.save(); // Salve cada RuleMetadata antes de adicioná-lo ao array
+        rulesArray.push(ruleMetadata._id);
     }
   }
 
