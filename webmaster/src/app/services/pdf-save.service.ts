@@ -7,25 +7,28 @@ import html2canvas from 'html2canvas';
 })
 export class PdfSaveService {
 
-  constructor() { }
+  constructor() {}
 
   generatePDF(fileName: string) {
 
       const elements: any = document.getElementsByClassName('pdf_content');
-      
-      html2canvas(elements, {scale: 2}).then((canvas) => {
 
-        const pdf = new jspdf();
+      for (let i = 0; i < elements.length; i++) {
+        
+        html2canvas(elements[i], {scale: 2}).then((canvas) => {
 
-        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
+          const pdf = new jspdf();
 
-        pdf.setProperties({
-          title: "ALOOO",
-          subject: "QualWeb Report",
-          author: "Grupo 42"
+          pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
+
+          pdf.setProperties({
+            title: "ALOOO",
+            subject: "QualWeb Report",
+            author: "Grupo 42"
+          })
+
+          pdf.save(fileName + ".pdf");
         })
-
-        pdf.save(fileName + ".pdf");
-      })
+    }
   }
 }
