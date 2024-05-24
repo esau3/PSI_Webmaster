@@ -263,7 +263,7 @@ async function generate_new_report(pageId) {
 
     //res.send(report);
     //console.log(reportMetadata);
-    res.send(reportMetadata);
+    //res.send(reportMetadata);
   } else {
     //erro na avaliacao
     await Page.findByIdAndUpdate(
