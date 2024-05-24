@@ -22,7 +22,7 @@ export class PdfSaveService {
           pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
 
           pdf.setProperties({
-            title: "ALOOO",
+            title: fileName + ".pdf",
             subject: "QualWeb Report",
             author: "Grupo 42"
           })
