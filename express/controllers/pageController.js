@@ -177,6 +177,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
         })
         await ruleMetadata.save(); // Salve cada RuleMetadata antes de adicioná-lo ao array
         rulesArray.push(ruleMetadata._id);
+        console.log("creating rules: ", ruleMetadata._id)
     }
   }
 
