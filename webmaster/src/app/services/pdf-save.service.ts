@@ -9,24 +9,33 @@ export class PdfSaveService {
 
   constructor() { }
 
-   async generatePDF(fileName: string) {
+  async generatePDF(fileName: string) {
     const elements = document.getElementsByClassName('pdf_content');
     
-      const pdf = new jsPDF('p', 'mm', 'a4');
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const imgWidth = 208;
+    const pageHeight = 295;
+    let yOffset = 0;
 
-      for (let i = 0; i < elements.length; i++) {
-        const element = elements[i] as HTMLElement;
-        const canvas = await html2canvas(element);
-        const imgWidth = 208;
-        const imgHeight = canvas.height * imgWidth / canvas.width;
-        const contentDataURL = canvas.toDataURL('image/png');
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i] as HTMLElement;
+      const canvas = await html2canvas(element, { scale: 3 }); // Aumentando a escala para melhorar a qualidade
+      const imgHeight = canvas.height * imgWidth / canvas.width;
+      const contentDataURL = canvas.toDataURL('image/png');
 
-        pdf.addPage()
-        
-        pdf.addImage(contentDataURL, 'PNG', 0, 0, imgWidth, imgHeight);
+      if (i > 0) {
+        pdf.addPage(); // Adiciona uma nova página para todos os elementos, exceto o primeiro
       }
       
-      pdf.save(fileName)
+      if (yOffset + imgHeight > pageHeight) {
+        yOffset = 0; // Reseta o deslocamento quando adicionamos uma nova página
+        pdf.addPage();
+      }
+
+      pdf.addImage(contentDataURL, 'PNG', 0, yOffset, imgWidth, imgHeight);
+      yOffset += imgHeight;
     }
-  
+
+    pdf.save(fileName);
+  }
 }
