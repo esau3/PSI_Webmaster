@@ -157,7 +157,6 @@ exports.page_report = asyncHandler(async (req, res, next) => {
     const act_assertions = report[toEval].modules['act-rules'].assertions;
 
     const wcag_assertions = report[toEval].modules['wcag-techniques'].assertions;
-    const assertions = [...act_assertions, ...wcag_assertions];
     //assertions.push(report[toEval].modules['wcag-rules'].assertions);
     //const alo = report[toEval].modules['wcag-rules'].assertions;
     //console.log(alo);
@@ -166,9 +165,30 @@ exports.page_report = asyncHandler(async (req, res, next) => {
 
     const rulesArray = [];
 
-    for (const assertionKey in assertions) {
+    for (const assertionKey in act_assertions) {
       if (assertions.hasOwnProperty(assertionKey)) {
           const assertion = assertions[assertionKey];
+          const ruleMetadata = new RuleMetadata ({
+            code: assertion.code,
+            name: assertion.name,
+            passed: assertion.metadata.passed,
+            warning: assertion.metadata.warning,
+            failed: assertion.metadata.failed,
+            inapplicable: assertion.metadata.inapplicable,
+            outcome: assertion.metadata.outcome,
+            rule_type: getErrorLevel(assertion.metadata['success-criteria'])
+          })
+          await ruleMetadata.save();
+          rulesArray.push(ruleMetadata._id);
+          //console.log("creating rules: ", ruleMetadata._id)
+      }
+    }
+
+
+    //we have to dup the code... assertions are not iterable
+    for (const assertionKey in wcag_assertions) {
+      if (wcag_assertions.hasOwnProperty(assertionKey)) {
+          const assertion = wcag_assertions[assertionKey];
           const ruleMetadata = new RuleMetadata ({
             code: assertion.code,
             name: assertion.name,
