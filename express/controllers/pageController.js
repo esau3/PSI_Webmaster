@@ -98,7 +98,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   //ISTO AINDA NAO ESTA A FUNCIONAR, NETAO VAMOS FZR UM NOVO REPORT SEMPRE
   if(page.report) {
 
-    const reportMetadata = await ReportMetadata.findById(page.report).populate().exec()
+    const reportMetadata = await ReportMetadata.findById(page.report).exec()
   
     console.log(reportMetadata);
     res.send(reportMetadata);
