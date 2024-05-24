@@ -234,7 +234,7 @@ export class WebsiteDetailComponent implements OnInit {
         //console.log(report);
             pagesEvaluated++;
             noError = 0;
-
+          if (report.rules && report.rules.length !== 0)
             for (const rule of report.rules) {
               
               presentAError = true;
