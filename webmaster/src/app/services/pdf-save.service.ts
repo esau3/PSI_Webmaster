@@ -39,7 +39,7 @@ export class PdfSaveService {
           pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 304 / 3, 734.4 / 3);
         } else {
         //para ter o tamanho
-          pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 450 / 3 , (171 * (index + 1)) / 1.5);
+          pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 450 / 4 , (171 * (index + 1)) / 2);
         }
       });
 
