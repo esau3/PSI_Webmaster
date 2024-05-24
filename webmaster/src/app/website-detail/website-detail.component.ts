@@ -237,7 +237,8 @@ export class WebsiteDetailComponent implements OnInit {
           if (report.rules && report.rules.length !== 0)
             for (const rule of report.rules) {
               
-              if (rule) {
+              if (rule && rule.rule_type && rule.code) {
+
                 presentAError = true;
                 presentAAError = true;
                 presentAAAError = true;
