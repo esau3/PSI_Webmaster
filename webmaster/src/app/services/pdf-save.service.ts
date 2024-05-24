@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import jsPDF from 'jspdf';
+import jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 
 @Injectable({
@@ -10,44 +10,25 @@ export class PdfSaveService {
   constructor() { }
 
   async generatePDF(fileName: string) {
-    const elements = document.getElementsByClassName('pdf_content');
+
+    const elements: any = document.getElementsByClassName('pdf_content');
     
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const imgWidth = 208;
-    const pageHeight = 295;
-    let yOffset = 0;
+    html2canvas(elements, {scale: 2}).then((canvas) => {
 
-    for (let i = 0; i < elements.length; i++) {
-      const element = elements[i] as HTMLElement;
+      const pdf = new jspdf();
 
-      const elementHeight = element.getBoundingClientRect().height;
-      const numPages = Math.ceil(elementHeight / pageHeight);
+      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
 
-      for (let pageNum = 0; pageNum < numPages; pageNum++) {
-        const canvas = await html2canvas(element, {
-          scale: 2,
-          useCORS: true,
-          windowHeight: pageHeight,
-          y: -pageNum * pageHeight
-        });
+      pdf.setProperties({
+        title: "ALOOO",
+        subject: "QualWeb Report",
+        author: "Grupo 42"
+      })
 
-        const imgHeight = canvas.height * imgWidth / canvas.width;
-        const contentDataURL = canvas.toDataURL('image/jpeg', 0.7);
-
-        if (pageNum > 0) {
-          pdf.addPage();
-        }
-
-        if (yOffset + imgHeight > pageHeight) {
-          yOffset = 0;
-          pdf.addPage();
-        }
-
-        pdf.addImage(contentDataURL, 'JPEG', 0, yOffset, imgWidth, imgHeight);
-        yOffset += imgHeight;
-      }
+      pdf.save(fileName + ".pdf");
     }
+  ) 
 
-    pdf.save(fileName);
+  
   }
 }
