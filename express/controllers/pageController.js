@@ -109,10 +109,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   //ISTO AINDA NAO ESTA A FUNCIONAR, NETAO VAMOS FZR UM NOVO REPORT SEMPRE
   if(page.report && page.report.rules) {
 
-    const reportMetadata = await ReportMetadata.findById(page.report).populate({
-      path: 'rules',
-      select: ' outcome rule_type'
-    }).exec()
+    const reportMetadata = await ReportMetadata.findById(page.report).populate('rules').exec()
     
     console.log("report rules: ", reportMetadata.rules)
     res.send(reportMetadata);
@@ -175,9 +172,9 @@ exports.page_report = asyncHandler(async (req, res, next) => {
           outcome: assertion.metadata.outcome,
           rule_type: getErrorLevel(assertion.metadata['success-criteria'])
         })
-        await ruleMetadata.save(); // Salve cada RuleMetadata antes de adicioná-lo ao array
+        await ruleMetadata.save();
         rulesArray.push(ruleMetadata._id);
-        console.log("creating rules: ", ruleMetadata._id)
+        //console.log("creating rules: ", ruleMetadata._id)
     }
   }
 
