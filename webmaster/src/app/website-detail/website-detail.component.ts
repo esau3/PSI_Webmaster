@@ -282,7 +282,7 @@ export class WebsiteDetailComponent implements OnInit {
                       noError++;
                   }
 
-                  //tirar o QW- de antes da string, pode-se tira o ACT- tb
+                  //tirar o QW- de antes da string
                   const code = rule.code.slice(3);
                   const value = hashMap.get(code);
                   if (value !== undefined) {
