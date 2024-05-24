@@ -166,8 +166,8 @@ exports.page_report = asyncHandler(async (req, res, next) => {
     const rulesArray = [];
 
     for (const assertionKey in act_assertions) {
-      if (assertions.hasOwnProperty(assertionKey)) {
-          const assertion = assertions[assertionKey];
+      if (act_assertions.hasOwnProperty(assertionKey)) {
+          const assertion = act_assertions[assertionKey];
           const ruleMetadata = new RuleMetadata ({
             code: assertion.code,
             name: assertion.name,
