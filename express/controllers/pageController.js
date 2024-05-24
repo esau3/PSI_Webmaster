@@ -157,7 +157,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
     const act_assertions = report[toEval].modules['act-rules'].assertions;
 
     const wcag_assertions = report[toEval].modules['wcag-techniques'].assertions;
-    assertions = act_assertions.concat(wcag_assertions);
+    const assertions = act_assertions.concat(wcag_assertions);
     //assertions.push(report[toEval].modules['wcag-rules'].assertions);
     //const alo = report[toEval].modules['wcag-rules'].assertions;
     //console.log(alo);
