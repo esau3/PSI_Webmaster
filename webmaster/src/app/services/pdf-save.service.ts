@@ -33,7 +33,14 @@ export class PdfSaveService {
         if (index !== 0) {
           pdf.addPage(); // Adiciona uma nova página para os elementos subsequentes
         }
-        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
+
+        //medidas exatas dos detalhes do website
+        if (index == 0) { 
+          pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 304, 764.4);
+        }
+        //para ter o tamanho
+        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 450, 171 * (index + 1));
+        
       });
 
       pdf.setProperties({
