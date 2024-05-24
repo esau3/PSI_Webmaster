@@ -38,7 +38,7 @@ export class PdfSaveService {
         if (index == 0) { 
           pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 175 / 3, 0, 304 / 3, 764.4 / 3, undefined, 'FAST');
         } else {
-        //para ter o tamanho
+        //para ter o tamanho proporicional as paginas
           pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 100 / 3, 0, 450 / 3 , (171 * (index + 1)) / 1.5, undefined, 'FAST');
         }
       });
