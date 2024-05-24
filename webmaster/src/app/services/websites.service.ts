@@ -8,17 +8,18 @@ import { Page, Report, Rule, Website } from '../types';
 @Injectable({ providedIn: 'root' })
 export class WebsiteService {
 
-  private website = "http://10.101.151.25:3092/website/";
+  /*
+private website = "http://10.101.151.25:3092/website/";
 private websites = "http://10.101.151.25:3092/websites";
 private page = "http://10.101.151.25:3092/page/";
 private eval_page = "http://10.101.151.25:3092/eval/";
-private eval_pages = "http://10.101.151.25:3092/evals";
+private eval_pages = "http://10.101.151.25:3092/evals";*/
 // comenta o url descomentado e descomenta o outro
-// private website = "http://127.0.0.1:3092/website/";
-// private websites = "http://127.0.0.1:3092/websites";
-// private page = "http://127.0.0.1:3092/page/";
-// private eval_page = "http://127.0.0.1:3092/eval/";
-// private eval_pages = "http://127.0.0.1:3092/evals";
+private website = "http://127.0.0.1:3092/website/";
+private websites = "http://127.0.0.1:3092/websites";
+private page = "http://127.0.0.1:3092/page/";
+private eval_page = "http://127.0.0.1:3092/eval/";
+private eval_pages = "http://127.0.0.1:3092/evals";
 
   constructor(
     private http: HttpClient) { }
@@ -69,11 +70,19 @@ private eval_pages = "http://10.101.151.25:3092/evals";
       );
   }
   startEvaluation(_id: string):Observable<any>{
+    return this.http.post<any>(this.eval_page + _id, "")
+   .pipe(
+     catchError(this.handleError)
+   );
+  }
+
+  getEvaluation(_id: string):Observable<any>{
     return this.http.get<any>(this.eval_page + _id)
    .pipe(
      catchError(this.handleError)
    );
   }
+
 
   getPage(_id: string):Observable<Page>{
     return this.http.get<Page>(this.page + _id)
