@@ -224,6 +224,9 @@ export class WebsiteDetailComponent implements OnInit {
     let errorAAAReport = 0;
     let pagesEvaluated = 0;
     let pageHasNoError = 0;
+    let pagesA = 0;
+    let pagesAA = 0;
+    let pagesAAA = 0;
     const hashMap = new Map<string, number>();
 
     //demora mas chega
@@ -234,9 +237,26 @@ export class WebsiteDetailComponent implements OnInit {
         //console.log(report);
             pagesEvaluated++;
             noError = 0;
+
+          //se houver um erro nas rules entao existe uma pagina com pelo menos 1 erro
+          if (errorAReport > 0) {
+            pagesA += 1;
+          }
+          if (errorAAReport > 0) {
+            pagesAA += 1;
+          }
+          if (errorAAAReport > 0) {
+            pagesAAA += 1;
+          }
+
+          errorAReport = 0;
+          errorAAReport = 0;
+          errorAAAReport = 0;
+
+
           if (report.rules && report.rules.length !== 0)
             for (const rule of report.rules) {
-              
+
               if (rule && rule.rule_type && rule.code) {
 
                 presentAError = true;
@@ -288,9 +308,9 @@ export class WebsiteDetailComponent implements OnInit {
         this.error = {
             noError: pageHasNoError,
             errors: pagesEvaluated - pageHasNoError,
-            errorA: errorAReport,
-            errorAA: errorAAReport,
-            errorAAA: errorAAAReport,
+            errorA: pagesA,
+            errorAA: pagesAA,
+            errorAAA: pagesAAA,
             commonErrors: mapEntries.slice(0, 10),
             pagesEvaluated: pagesEvaluated,
             nRules: 68
