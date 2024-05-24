@@ -91,7 +91,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
       model: 'RuleMetadata'
     }
   }).exec();
-  
+
   //ja vai buscar as rules
   //console.log("page rules: ", page.report.rules);
 
@@ -108,7 +108,9 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   //lembrando que é passado o id em page.report
   //console.log(page.report);
   //ISTO AINDA NAO ESTA A FUNCIONAR, NETAO VAMOS FZR UM NOVO REPORT SEMPRE
-  if(page.report && page.report.rules) {
+  if(page.report && page.report.rules.length !== 0) {
+
+    console.log("nao fez nova avaliacao");
 
     const reportMetadata = await ReportMetadata.findById(page.report).populate('rules').exec()
     
