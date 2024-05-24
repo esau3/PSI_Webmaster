@@ -88,10 +88,11 @@ exports.page_report = asyncHandler(async (req, res, next) => {
     path: 'report',
     populate: {
       path: 'rules',
-      select: 'code name passed warning failed outcome rule_type'
+      model: 'RuleMetadata' // Nome do modelo Rule
     }
   }).exec();
 
+  select: 'code name passed warning failed outcome rule_type'
   if (page === null) {
     const err = new Error("Page not found");
     err.status = 404;
