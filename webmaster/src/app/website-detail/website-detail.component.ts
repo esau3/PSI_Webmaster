@@ -10,6 +10,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { forkJoin } from 'rxjs';
 import { arrowComponent } from '../arrow.component';
+import { PdfSaveService } from '../services/pdf-save.service';
 
 
 @Component({
@@ -36,7 +37,7 @@ export class WebsiteDetailComponent implements OnInit {
     private fb: FormBuilder,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,private renderer2: Renderer2, 
-    private elRef2: ElementRef
+    private elRef2: ElementRef,private pdfSave:PdfSaveService
     
   ) {
     //super(renderer2,elRef2);
@@ -296,7 +297,13 @@ export class WebsiteDetailComponent implements OnInit {
         };
     }
   }
+  
+savePdf(fileName : string){
+  
+this.pdfSave.generatePDF(fileName);
 }
+}
+
 
 
 const reportMock1: Report = {

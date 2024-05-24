@@ -11,7 +11,7 @@
     <div class="info-item">Evaluation date: {{ website.eval_date | date:'short' }}</div>
     <div class="info-item">Monitoring state: <span class="monitor-state">{{ website.monitor_state }}</span></div>
     
-    <div *ngIf="error" class="info-group">
+    <div *ngIf="error" class="info-group pdf_content">
       <div class="info-item-line passed">
           <span class="material-symbols-outlined">done_all</span> Pages without errors: {{ error.noError }} || {{ (error.noError / error.pagesEvaluated) * 100 | number: '1.2-2' }}%
       </div>
@@ -55,7 +55,7 @@
 </div>
   <div class="pages-menu">
     <h3>Pages</h3>
-    <div *ngFor="let page of website.pages" class="page-item">
+    <div *ngFor="let page of website.pages" class="page-item pdf_content">
       <div class="info-item">ID: {{ page._id }}</div>
       <div class="info-item">{{ page.page_URL }}</div>
       <div class="info-item">Last evaluation: {{ page.eval_date | date:'short' }}</div>
@@ -71,5 +71,9 @@
       </button>
     </div>
   </div>
+
+  <button  mat-icon-button (click)="savePdf(websiteInfo)" >
+    <span class="material-symbols-outlined">Save Info pdf File</span>
+  </button>
 </div>
 </body>
