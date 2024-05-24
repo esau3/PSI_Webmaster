@@ -237,37 +237,39 @@ export class WebsiteDetailComponent implements OnInit {
           if (report.rules && report.rules.length !== 0)
             for (const rule of report.rules) {
               
-              presentAError = true;
-              presentAAError = true;
-              presentAAAError = true;
-            
-                if (rule.rule_type && rule.rule_type.includes('A') && rule.outcome === 'failed' && presentAError) {
-                    presentAError = false;
-                    errorAReport++;
-                }
+              if (rule) {
+                presentAError = true;
+                presentAAError = true;
+                presentAAAError = true;
+              
+                  if (rule.rule_type.includes('A') && rule.outcome === 'failed' && presentAError) {
+                      presentAError = false;
+                      errorAReport++;
+                  }
 
-                if (rule.rule_type && rule.rule_type.includes('AA') && rule.outcome === 'failed' && presentAAError) {
-                    presentAAError = false;
-                    errorAAReport++;
-                }
+                  if (rule.rule_type.includes('AA') && rule.outcome === 'failed' && presentAAError) {
+                      presentAAError = false;
+                      errorAAReport++;
+                  }
 
-                if (rule.rule_type && rule.rule_type.includes('AAA') && rule.outcome === 'failed' && presentAAAError) {
-                    presentAAAError = false;
-                    errorAAAReport++;
-                }
+                  if (rule.rule_type.includes('AAA') && rule.outcome === 'failed' && presentAAAError) {
+                      presentAAAError = false;
+                      errorAAAReport++;
+                  }
 
-                if (presentAError && presentAAError && presentAAAError) {
-                    noError++;
-                }
+                  if (presentAError && presentAAError && presentAAAError) {
+                      noError++;
+                  }
 
-                //tirar o QW- de antes da string, pode-se tira o ACT- tb
-                const code = rule.code.slice(7);
-                const value = hashMap.get(code);
-                if (value !== undefined) {
-                    hashMap.set(code, rule.failed + value);
-                } else if (rule.failed !== 0) {
-                    hashMap.set(code, rule.failed);
-                }
+                  //tirar o QW- de antes da string, pode-se tira o ACT- tb
+                  const code = rule.code.slice(7);
+                  const value = hashMap.get(code);
+                  if (value !== undefined) {
+                      hashMap.set(code, rule.failed + value);
+                  } else if (rule.failed !== 0) {
+                      hashMap.set(code, rule.failed);
+                  }
+              }
             }
             pageHasNoError = (68 - noError) === 0 ? pageHasNoError + 1 : pageHasNoError;
         }
@@ -282,6 +284,8 @@ export class WebsiteDetailComponent implements OnInit {
     if (this.reports) {
       //numero de rules avaliadas
         //const nRules = 68;
+
+      
 
         this.error = {
             noError: pageHasNoError,
