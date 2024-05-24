@@ -229,7 +229,7 @@ export class WebsiteDetailComponent implements OnInit {
     //demora mas chega
     //console.log("Probabilidades", this.reports);
 
-    if (this.reports) {
+    if (this.reports && this.reports?.length !== 0) {
         for (const report of this.reports) {
         //console.log(report);
             pagesEvaluated++;

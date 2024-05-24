@@ -20,7 +20,7 @@ selectedIndex = 0;
     if (event.key === 'ArrowUp') {
       //event.preventDefault(); // Evita o comportamento padrão de mover o cursor de texto para cima
       this.selectedIndex = Math.max(0, this.selectedIndex - 1);
-      console.log("hello")
+      //console.log("hello")
     } else if (event.key === 'ArrowDown') {
       //event.preventDefault(); // Evita o comportamento padrão de mover o cursor de texto para baixo
       this.selectedIndex = Math.min(this.items.length - 1, this.selectedIndex + 1);
