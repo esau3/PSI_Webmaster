@@ -3,7 +3,7 @@
   <button class="focus" mat-icon-button (click)="goBack()" class="back-button">
     <span class="material-symbols-outlined">arrow_back</span>
   </button>
-  <div class="website-info">
+  <div class="website-info pdf_content">
     <h2>{{ website.name }} details</h2>
     <div class="info-item">ID: {{ website._id }}</div>
     <div class="info-item">URL: {{ website.URL }}</div>
@@ -11,7 +11,7 @@
     <div class="info-item">Evaluation date: {{ website.eval_date | date:'short' }}</div>
     <div class="info-item">Monitoring state: <span class="monitor-state">{{ website.monitor_state }}</span></div>
     
-    <div *ngIf="error" class="info-group pdf_content">
+    <div *ngIf="error" class="info-group">
       <div class="info-item-line passed">
           <span class="material-symbols-outlined">done_all</span> Pages without errors: {{ error.noError }} || {{ (error.noError / error.pagesEvaluated) * 100 | number: '1.2-2' }}%
       </div>
@@ -34,7 +34,7 @@
   
   
     <div>
-      <button class="focus pdf_content" mat-icon-button (click)="openDeleteDialog('0ms', '0ms', website._id)" class="delete-button">
+      <button class="focus" mat-icon-button (click)="openDeleteDialog('0ms', '0ms', website._id)" class="delete-button">
         <span class="material-symbols-outlined">delete</span>
       </button>
     </div>
