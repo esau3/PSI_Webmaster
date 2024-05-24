@@ -92,7 +92,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
     }
   }).exec();
 
-  console.log("page rules: ", page.report.rules);
+  //console.log("page rules: ", page.report.rules);
 
   select: 'code name passed warning failed outcome rule_type'
   if (page === null) {
@@ -107,7 +107,7 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   //lembrando que é passado o id em page.report
   //console.log(page.report);
   //ISTO AINDA NAO ESTA A FUNCIONAR, NETAO VAMOS FZR UM NOVO REPORT SEMPRE
-  if(page.report) {
+  if(page.report && page.report.rules) {
 
     const reportMetadata = await ReportMetadata.findById(page.report).populate({
       path: 'rules',
