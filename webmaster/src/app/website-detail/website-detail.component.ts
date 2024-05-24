@@ -241,17 +241,17 @@ export class WebsiteDetailComponent implements OnInit {
               presentAAError = true;
               presentAAAError = true;
             
-                if (rule.rule_type.includes('A') && rule.outcome === 'failed' && presentAError) {
+                if (rule.rule_type && rule.rule_type.includes('A') && rule.outcome === 'failed' && presentAError) {
                     presentAError = false;
                     errorAReport++;
                 }
 
-                if (rule.rule_type.includes('AA') && rule.outcome === 'failed' && presentAAError) {
+                if (rule.rule_type && rule.rule_type.includes('AA') && rule.outcome === 'failed' && presentAAError) {
                     presentAAError = false;
                     errorAAReport++;
                 }
 
-                if (rule.rule_type.includes('AAA') && rule.outcome === 'failed' && presentAAAError) {
+                if (rule.rule_type && rule.rule_type.includes('AAA') && rule.outcome === 'failed' && presentAAAError) {
                     presentAAAError = false;
                     errorAAAReport++;
                 }
@@ -282,8 +282,6 @@ export class WebsiteDetailComponent implements OnInit {
     if (this.reports) {
       //numero de rules avaliadas
         //const nRules = 68;
-
-      
 
         this.error = {
             noError: pageHasNoError,
