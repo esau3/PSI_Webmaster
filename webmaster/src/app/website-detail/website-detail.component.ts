@@ -281,11 +281,8 @@ export class WebsiteDetailComponent implements OnInit {
     // Ordenar o array com base nos valores
     mapEntries.sort((a, b) => b[1] - a[1]);
 
-    if (this.reports) {
-      //numero de rules avaliadas
+    if (this.reports && this.reports.length !== 0) {
         //const nRules = 68;
-
-      
 
         this.error = {
             noError: pageHasNoError,
@@ -300,10 +297,10 @@ export class WebsiteDetailComponent implements OnInit {
     }
   }
   
-savePdf(fileName : string){
+  savePdf(fileName : string){
+    this.pdfSave.generatePDF(fileName);
+  }
   
-this.pdfSave.generatePDF(fileName);
-}
 }
 
 
