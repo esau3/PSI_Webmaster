@@ -150,74 +150,91 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   // executar a avaliação, recebendo o relatório
   const report = await qualweb.evaluate(qualwebOptions);
 
-  //const metadata = report.metadata;
-  const metadata = report[toEval].metadata;
-  const assertions = report[toEval].modules['act-rules'].assertions;
-  //console.log(assertions);
-  //assertions.push(report[toEval].modules['wcag-rules'].assertions);
-  //const alo = report[toEval].modules['wcag-rules'].assertions;
-  //console.log(alo);
+  if (report[toEval] && report[toEval].metadata && report[toEval].modules && report[toEval].modules['act-rules']) {
 
-  //console.log(metadata);
+    //const metadata = report.metadata;
+    const metadata = report[toEval].metadata;
+    const assertions = report[toEval].modules['act-rules'].assertions;
+    //console.log(assertions);
+    //assertions.push(report[toEval].modules['wcag-rules'].assertions);
+    //const alo = report[toEval].modules['wcag-rules'].assertions;
+    //console.log(alo);
 
-  const rulesArray = [];
+    //console.log(metadata);
 
-  for (const assertionKey in assertions) {
-    if (assertions.hasOwnProperty(assertionKey)) {
-        const assertion = assertions[assertionKey];
-        const ruleMetadata = new RuleMetadata ({
-          code: assertion.code,
-          name: assertion.name,
-          passed: assertion.metadata.passed,
-          warning: assertion.metadata.warning,
-          failed: assertion.metadata.failed,
-          inapplicable: assertion.metadata.inapplicable,
-          outcome: assertion.metadata.outcome,
-          rule_type: getErrorLevel(assertion.metadata['success-criteria'])
-        })
-        await ruleMetadata.save();
-        rulesArray.push(ruleMetadata._id);
-        //console.log("creating rules: ", ruleMetadata._id)
-    }
-  }
+    const rulesArray = [];
 
-  //console.log(rulesArray);
-
-  const reportMetadata = new ReportMetadata({
-    page_url: toEval,
-    total_passed: metadata.passed,
-    total_warning: metadata.warning,
-    total_failed: metadata.failed,
-    total_inapplicable: metadata.inapplicable,
-    rules: rulesArray
-  });
-  
-
-  await reportMetadata.save();
-
-  //await update_page_state(page._id);
- 
-  //console.log(page._id);
-  await Page.findByIdAndUpdate(
-    page._id,
-    { 
-      $set: { 
-        monitor_state: "Conforme",
-        eval_date: Date.now()
+    for (const assertionKey in assertions) {
+      if (assertions.hasOwnProperty(assertionKey)) {
+          const assertion = assertions[assertionKey];
+          const ruleMetadata = new RuleMetadata ({
+            code: assertion.code,
+            name: assertion.name,
+            passed: assertion.metadata.passed,
+            warning: assertion.metadata.warning,
+            failed: assertion.metadata.failed,
+            inapplicable: assertion.metadata.inapplicable,
+            outcome: assertion.metadata.outcome,
+            rule_type: getErrorLevel(assertion.metadata['success-criteria'])
+          })
+          await ruleMetadata.save();
+          rulesArray.push(ruleMetadata._id);
+          //console.log("creating rules: ", ruleMetadata._id)
       }
-    },
-    { new: true }
-  );
+    }
 
-  page.report = reportMetadata;
-  //console.log(page);
-  await page.save();
+    //console.log(rulesArray);
 
-  //res.send(report);
-  //console.log(reportMetadata);
-  res.send(reportMetadata);
+    const reportMetadata = new ReportMetadata({
+      page_url: toEval,
+      total_passed: metadata.passed,
+      total_warning: metadata.warning,
+      total_failed: metadata.failed,
+      total_inapplicable: metadata.inapplicable,
+      rules: rulesArray
+    });
+
+    await reportMetadata.save();
+
+    //await update_page_state(page._id);
   
-  await qualweb.stop();
+    //console.log(page._id);
+    await Page.findByIdAndUpdate(
+      page._id,
+      { 
+        $set: { 
+          monitor_state: "Conforme",
+          eval_date: Date.now()
+        }
+      },
+      { new: true }
+    );
+
+    page.report = reportMetadata;
+    //console.log(page);
+    await page.save();
+
+    //res.send(report);
+    //console.log(reportMetadata);
+    res.send(reportMetadata);
+  } else {
+    //erro na avaliacao
+    await Page.findByIdAndUpdate(
+      page._id,
+      { 
+        $set: { 
+          monitor_state: "Erro na avaliação",
+          eval_date: Date.now()
+        }
+      },
+      { new: true }
+    );
+      const err = new Error("Erro na avaliação do QualWeb!");
+      err.status = 500;
+      return next(err);
+  }
+    
+    await qualweb.stop();
 
   }});
 
