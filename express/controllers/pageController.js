@@ -86,9 +86,11 @@ exports.page_report = asyncHandler(async (req, res, next) => {
   // Get details of website and their pages (in parallel)
   const page = await Page.findById(req.params.id).populate({
     path: 'report',
-    select: 'rules'
-  })
-  .exec();
+    populate: {
+      path: 'rules',
+      select: 'code name passed warning failed outcome rule_type'
+    }
+  }).exec();
 
   if (page === null) {
     const err = new Error("Page not found");
